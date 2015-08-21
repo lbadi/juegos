@@ -19,12 +19,12 @@ public class MyGdxGame extends ApplicationAdapter {
 	Texture img;
 	Mesh spaceshipMesh;
 	ShaderProgram shaderProgram;
-    Controller leapController;
+//    Controller leapController;
 	OrthoCam cam;
 
 	@Override
 	public void create () {
-        leapController = new Controller();
+//        leapController = new Controller();
 		img = new Texture("ship.png");
 		String vs = Gdx.files.internal("defaultVS.glsl").readString();
 		String fs = Gdx.files.internal("defaultFS.glsl").readString();
@@ -35,16 +35,19 @@ public class MyGdxGame extends ApplicationAdapter {
 		spaceshipMesh = new Mesh(true,
 				data.meshes.get(0).vertices.length,
 				data.meshes.get(0).parts[0].indices.length,
-				VertexAttribute.Position(), VertexAttribute.TexCoords(0), VertexAttribute.Normal());
+				VertexAttribute.Position(),VertexAttribute.Normal(), VertexAttribute.TexCoords(0));
 		spaceshipMesh.setVertices(data.meshes.get(0).vertices);
 		spaceshipMesh.setIndices(data.meshes.get(0).parts[0].indices);
+		
+		Gdx.gl.glEnable(GL20.GL_DEPTH_TEST);
+		Gdx.gl.glDepthFunc(Gdx.gl.GL_LESS);
 		cam = new OrthoCam();
 
     }
 
     @Override
 	public void render() {
-        Frame leapFrame = leapController.frame();
+//        Frame leapFrame = leapController.frame();
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 		img.bind();
@@ -53,21 +56,25 @@ public class MyGdxGame extends ApplicationAdapter {
         float pitch = 0;
         float roll = 0;
 		float z = 0;
-        for(Hand hand: leapFrame.hands()) {
-            yaw = (float) Math.toDegrees(hand.direction().yaw());
-            pitch = (float) Math.toDegrees(hand.direction().pitch());
-            roll = (float) Math.toDegrees(hand.palmNormal().roll());
-			z = hand.palmPosition().getZ();
-        }
+//        for(Hand hand: leapFrame.hands()) {
+//            yaw = (float) Math.toDegrees(hand.direction().yaw());
+//            pitch = (float) Math.toDegrees(hand.direction().pitch());
+//            roll = (float) Math.toDegrees(hand.palmNormal().roll());
+//			z = hand.palmPosition().getZ();
+//        }
 //		System.out.println("yaw: " + yaw + " pitch: " + pitch + " roll: " + roll);
 //		shaderProgram.setUniformMatrix("u_worldView", new Matrix4(new Quaternion().setEulerAngles(yaw, pitch, roll))); //aca trabajar
-		cam.setPosition(new Vector3(2, 2, 2));
+		cam.setPosition(new Vector3(0f, 00f, 1f));
 		cam.setProjection(-2, 2, -2, 2, 2, -2);
 		cam.setProjection(-1, 1, -1, 1, 1, -1);
-		cam.lookAt(new Vector3((float)Math.random(), (float)Math.random(), (float)Math.random()));
-		shaderProgram.setUniformMatrix("u_worldView", cam.getProjectionMatrix().mul(cam.getViewMatrix())); //aca trabajar
+//		Vector3 lookAt = new Vector3((float)0.1, (float)0.1, (float)0.1);
+		
+//		System.out.println(lookAt);
+//		cam.lookAt(lookAt);
+//		shaderProgram.setUniformMatrix("u_worldView", cam.getProjectionMatrix().mul(cam.getViewMatrix())); //aca trabajar
+		shaderProgram.setUniformMatrix("u_worldView", cam.getViewMatrix().mul(cam.getProjectionMatrix()));
 		shaderProgram.setUniformi("u_texture", 0);
-        spaceshipMesh.render(shaderProgram, GL20.GL_TRIANGLE_FAN);
+        spaceshipMesh.render(shaderProgram, GL20.GL_TRIANGLES);
 		shaderProgram.end();
 	}
 

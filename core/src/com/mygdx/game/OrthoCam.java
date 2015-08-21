@@ -12,7 +12,7 @@ public class OrthoCam extends Cam {
                             0, 2/(t-b), 0, -(t+b)/(t-b),
                             0, 0, 2/(f-n), -(f+n)/(f-n),
                             0, 0, 0, 1};
-        projection = new Matrix4(values);
+        projection = new Matrix4(values).tra();
     }
 
     // Projection matrix P

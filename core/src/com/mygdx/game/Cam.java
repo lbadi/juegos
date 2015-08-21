@@ -28,14 +28,15 @@ public abstract class Cam {
                             h * v.x * v.y + v.z, e + h * (float) Math.pow(v.y, 2), h * v.y * v.z - v.x, 0,
                             h * v.x * v.z - v.y, h * v.y * v.z + v.x, e + h * (float) Math.pow(v.z, 2), 0,
                             0, 0, 0, 1 };
-        return new Matrix4(values);
+        return new Matrix4(values).tra();
     }
 
     // View matrix V
     public Matrix4 getViewMatrix() {
         float [] values = {1, 0, 0, position.x, 0, 1, 0, position.y, 0, 0, 1, position.z, 0, 0, 0, 1};
-        Matrix4 translationMatrix = new Matrix4(values);
-        return translationMatrix.inv().mul(rotationMatrix);
+        Matrix4 translationMatrix = new Matrix4(values).tra();
+//        return translationMatrix.inv().mul(rotationMatrix);
+        return translationMatrix.inv();
     }
 
 
