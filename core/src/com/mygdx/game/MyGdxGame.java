@@ -11,9 +11,10 @@ import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Quaternion;
 import com.badlogic.gdx.math.Vector3;
-import com.leapmotion.leap.Controller;
-import com.leapmotion.leap.Frame;
-import com.leapmotion.leap.Hand;
+//import com.leapmotion.leap.Controller;
+//import com.leapmotion.leap.Frame;
+//import com.leapmotion.leap.Hand;
+import com.mygdx.game.controller.SimpleInputController;
 
 public class MyGdxGame extends ApplicationAdapter {
 	Texture img;
@@ -42,6 +43,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		Gdx.gl.glEnable(GL20.GL_DEPTH_TEST);
 		Gdx.gl.glDepthFunc(Gdx.gl.GL_LESS);
 		cam = new OrthoCam();
+		Gdx.input.setInputProcessor(new SimpleInputController(cam));
 
     }
 
@@ -52,6 +54,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 		img.bind();
 		shaderProgram.begin();
+//		cam.setPosition(new Vector3(1, 1, 0));
         float yaw = 0;
         float pitch = 0;
         float roll = 0;
@@ -64,9 +67,9 @@ public class MyGdxGame extends ApplicationAdapter {
 //        }
 //		System.out.println("yaw: " + yaw + " pitch: " + pitch + " roll: " + roll);
 //		shaderProgram.setUniformMatrix("u_worldView", new Matrix4(new Quaternion().setEulerAngles(yaw, pitch, roll))); //aca trabajar
-		cam.setPosition(new Vector3(0f, 00f, 1f));
 		cam.setProjection(-2, 2, -2, 2, 2, -2);
 		cam.setProjection(-1, 1, -1, 1, 1, -1);
+		cam.move();
 //		Vector3 lookAt = new Vector3((float)0.1, (float)0.1, (float)0.1);
 		
 //		System.out.println(lookAt);
