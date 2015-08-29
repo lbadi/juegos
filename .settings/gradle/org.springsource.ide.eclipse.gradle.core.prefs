@@ -1,0 +1,7 @@
+#org.springsource.ide.eclipse.gradle.core.preferences.GradleProjectPreferences
+#Fri Aug 21 19:42:12 ART 2015
+build.family.org.gradle.tooling.model.eclipse.HierarchicalEclipseProject=;core;desktop;
+org.springsource.ide.eclipse.gradle.classname.enableSorting=false
+org.springsource.ide.eclipse.gradle.classpath.enableSorting=true
+org.springsource.ide.eclipse.gradle.linkedresources=
+org.springsource.ide.eclipse.gradle.rootprojectloc=
