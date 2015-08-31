@@ -48,38 +48,14 @@ public abstract class Cam {
 
 	public void setRotationY(float rotationY) {
 		if (rotationY > 2*Math.PI) {
-			this.rotationY = (float) (2*Math.PI);
+			this.rotationY = 0f;
 		} else if (rotationY < 0) {
-			this.rotationY = 0;
+			this.rotationY = (float) ( 2*Math.PI);
 		} else {
 			this.rotationY = rotationY;
 		}
 	}
 
-	public Matrix4 getFpsView() {
-//		Vector3 up = new Vector3(0, 1, 0);
-		float cosRotationX = (float) Math.cos(Math.toRadians(rotationX));
-		float sinRotationX = (float) Math.sin(Math.toRadians(rotationX));
-		float cosRotationY = (float) Math.sin(Math.toRadians(rotationY));
-		float sinRotationY = (float) Math.sin(Math.toRadians(rotationY));
-		
-		Vector3 xAxis = new Vector3(cosRotationY , 0 , -sinRotationY);
-		Vector3 yAxis = new Vector3(sinRotationY * sinRotationX, cosRotationX, cosRotationY * sinRotationX);
-		Vector3 zAxis = new Vector3(sinRotationY * cosRotationX, - sinRotationX, cosRotationX * cosRotationY);
-		float[] matrixValues = {
-				xAxis.x, yAxis.x, zAxis.x, 0,
-				xAxis.y, yAxis.y, zAxis.y, 0,
-				xAxis.z, yAxis.z, zAxis.z, 0,
-				- new Vector3(xAxis).dot(getPosition()), - new Vector3(yAxis).dot(getPosition()), - new Vector3(xAxis).dot(getPosition()), 1
-//				getPosition().x, getPosition().y, getPosition().z, 1
-		};
-		Matrix4 viewMatrix = new Matrix4(matrixValues);
-		return viewMatrix;
-//		
-	}
-
-
-	
 	public Matrix4 getTranslationMatrix(){
 		Vector3 pos = getPosition();
 		float[] values = { 1,0,0,0,
@@ -95,8 +71,6 @@ public abstract class Cam {
 	public Matrix4 getViewMatrix() {
 		Matrix4 rot = getRy().mul(getRx());
 		return getTranslationMatrix().mul(rot).inv();
-//		return getTranslationMatrix().inv();
-//		return getFpsView();
 	}
 	
 	public Matrix4 getRx(){

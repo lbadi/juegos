@@ -16,7 +16,7 @@ void main() {
     
     float normal_dot_light = dot(normal, normalize(light_vector));
     
-    vec4 diffusal_irradiance = normal_dot_light * gl_FragColor * light_color ;
+    vec4 diffusal_irradiance = normal_dot_light * gl_FragColor  * light_color ;
     
     //Especular
     float m_shine = 1.5; //Brillo del material
