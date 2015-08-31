@@ -1,24 +1,40 @@
 package com.mygdx.game.controller;
 
-import sun.reflect.ReflectionFactory.GetReflectionFactoryAction;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.Cam;
-import com.badlogic.gdx.Gdx;
+import com.mygdx.game.Enviroment;
+import com.mygdx.game.light.DirectionalLight;
+import com.mygdx.game.light.Light;
 
 public class SimpleInputController extends InputAdapter{
 	
-	Cam cam;
+	Enviroment enviroment;
 	
-	public  SimpleInputController(Cam cam) {
+	private float mouseLastPositionX = 0.5f;
+	private float mouseLastPositionY = 0.5f;
+	
+	private float mouseSensibility = 1f;
+	
+	public  SimpleInputController(Enviroment enviroment) {
 		super();
-		this.cam = cam;
+		this.enviroment = enviroment;
 	}
 
+	public float getMouseSensibility() {
+		return mouseSensibility;
+	}
+	public void setMouseSensibility(float mouseSensibility) {
+		this.mouseSensibility = mouseSensibility;
+	}
 	@Override
 	public boolean keyDown(int keycode) {
+		Cam cam = enviroment.getCam();
+		Light light = enviroment.getLight();
 		 switch (keycode)
 	        {
 	        case Keys.LEFT:
@@ -33,6 +49,22 @@ public class SimpleInputController extends InputAdapter{
 	        case Keys.DOWN:
 	        	cam.setFowardSpeed(-1);
 	            break;
+	        case Keys.R:
+	        	light.setLightColor(light.getLightColor().add(0.2f, -0.1f, -0.1f, 0));
+	        	enviroment.setLight(light);
+	        	break;
+	        case Keys.B:
+	        	light.setLightColor(light.getLightColor().add(-0.1f, -0.1f, 0.2f, 0));
+	        	enviroment.setLight(light);
+	        	break;
+	        case Keys.G:
+	        	light.setLightColor(light.getLightColor().add(-0.1f, 0.2f, -0.1f, 0));
+	        	enviroment.setLight(light);
+	        	break;
+	        case Keys.L:
+	        	light.setLightColor(new Color(1,1,1, 1));
+	        	enviroment.setLight(light);
+	        	break;
 	        }
 		 
 		 
@@ -43,6 +75,8 @@ public class SimpleInputController extends InputAdapter{
 
 	@Override
 	public boolean keyUp(int keycode) {
+		Cam cam = enviroment.getCam();
+
 		switch (keycode)
         {
         case Keys.LEFT:
@@ -87,24 +121,30 @@ public class SimpleInputController extends InputAdapter{
 
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
+		Cam cam = enviroment.getCam();
 		float xMovement = (float)screenX  / Gdx.graphics.getWidth();
 		float yMovement = (float)screenY  / Gdx.graphics.getHeight();
-		
 		//TODO HACER QUE NO SEA DISCRETO EL MOVIMIENTO; QUE SEA CONTINUO
-		if(xMovement < 0.35){
-			cam.setRotationY(cam.getRotationY() + 0.01f);
+		float quantityMovement = 0.05f * getMouseSensibility();
+		float yQuantityMovement = yMovement * quantityMovement;
+		float xQuantityMovement = xMovement * quantityMovement;
+		if(xMovement < 0.499){
+			cam.setRotationY(cam.getRotationY() +  xQuantityMovement );
 		}
-		else if(xMovement > 0.65){
-			cam.setRotationY(cam.getRotationY() - 0.01f);
+		else if(xMovement > 0.501){
+			cam.setRotationY(cam.getRotationY() - xQuantityMovement);
 		}
 		
-		if(yMovement < 0.35){
-			cam.setRotationX(cam.getRotationX() + 0.01f);
+		if(yMovement < 0.499){
+			cam.setRotationX(cam.getRotationX() + yQuantityMovement);
 		}
-		else if(yMovement > 0.65){
-			cam.setRotationX(cam.getRotationX() - 0.01f);
+		else if(yMovement > 0.501){
+			cam.setRotationX(cam.getRotationX() - yQuantityMovement);
 		}
+		Gdx.input.setCursorPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
 
+		
+		
 //		cam.lookAt(target);
 		// TODO Auto-generated method stub
 		return false;

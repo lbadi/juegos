@@ -18,11 +18,6 @@ public class PerspectiveCam extends Cam {
 	// Ver pagina 91 del libro
 	public void setProjection(float l, float r, float b, float t, float n,
 			float f) {
-//		float[] values = { 2 * n / (r - l), 0, -(r + l) / (r - l), 0, 0,
-//				2 * n / (t - b), -(t + b) / (t - b), 0, 0, 0,
-//				(f + n) / (f - n), -2 * f * n / (f - n), 0, 0, 1, 0 };
-//		projection = new Matrix4().setToProjection(l, r, b, t, n, f);
-		// projection = new Matrix4(values).tra();
 	}
 
 	//Matriz que esta en http://ogldev.atspace.co.uk/www/tutorial12/tutorial12.html

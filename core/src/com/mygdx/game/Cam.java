@@ -47,13 +47,14 @@ public abstract class Cam {
 	}
 
 	public void setRotationY(float rotationY) {
-		if (rotationY > 2*Math.PI) {
-			this.rotationY = 0f;
-		} else if (rotationY < 0) {
-			this.rotationY = (float) ( 2*Math.PI);
-		} else {
-			this.rotationY = rotationY;
-		}
+//		if (rotationY > 2*Math.PI) {
+//			this.rotationY = 0f;
+//		} else if (rotationY < 0) {
+//			this.rotationY = (float) ( 2*Math.PI);
+//		} else {
+//			this.rotationY = rotationY;
+//		}
+		this.rotationY = rotationY;
 	}
 
 	public Matrix4 getTranslationMatrix(){
@@ -88,8 +89,8 @@ public abstract class Cam {
 	public Matrix4 getRy(){
 		float cosY =(float) Math.cos(getRotationY());
 		float sinY =(float) Math.sin(getRotationY());
-		System.out.println("COS:" + cosY);
-		System.out.println("COS:" + sinY);
+//		System.out.println("COS:" + cosY);
+//		System.out.println("COS:" + sinY);
 		float[] values = {
 				cosY,0,-sinY,0,
 				0,1,0,0,
@@ -109,17 +110,12 @@ public abstract class Cam {
 	}
 
 	public void move() {
-		// Sacar una base ortonormal a la dirección
-//		System.out.println("DIRECTION AUX : " + directionAux);
-//		System.out.println("DIRECTION AUX2 : " + directionAux2);
-		// Go foward or backward
 		Vector3 fowardDirection = new Vector3(0,0,-1);
 		Vector3 leftDirection = new Vector3(1,0,0);
 		position.add(fowardDirection.mul(getRy().mul(getRx())).nor().scl(
 				fowardSpeed * Gdx.graphics.getDeltaTime()));
 		position.add(leftDirection.mul(getRy().mul(getRx())).nor().scl(
 				horizontalSpeed * Gdx.graphics.getDeltaTime()));
-		System.out.println("Position : " + getPosition() + " Pitch:" + getRotationX() + "Yaw:"+getRotationY());
 	}
 	
 	
