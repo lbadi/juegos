@@ -27,10 +27,10 @@ void main() {
     vec4 specular_irradiance = max(0, pow(dot(r, eye-v_position), m_shine)) * m_spec * specular_color;
     
     //Ambient
-    vec4 m_ambient = vec4(0.0001,0.0001,0.0001,1); //Material ambiente
+    vec4 m_ambient = vec4(0.01,0.01,0.00001,1); //Material ambiente
     vec4 ambient_irradiance = m_ambient * ambient_color;
     
-    //Phone 
+    //Phong 
     gl_FragColor =  diffusal_irradiance + specular_irradiance + ambient_irradiance;
 }
 

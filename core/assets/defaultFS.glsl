@@ -9,6 +9,7 @@ uniform vec4 eye;
 uniform vec4 specular_color;
 uniform vec4 ambient_color;
 
+
 void main() {
 
 //PREGUNTAR COMO LEVANTAR  colores del material
@@ -30,6 +31,7 @@ void main() {
     
     //Phone 
     gl_FragColor =  diffusal_irradiance + specular_irradiance + ambient_irradiance;
+    
 }
 
 

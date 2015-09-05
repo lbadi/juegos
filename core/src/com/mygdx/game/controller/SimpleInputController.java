@@ -10,6 +10,8 @@ import com.mygdx.game.Cam;
 import com.mygdx.game.Enviroment;
 import com.mygdx.game.light.DirectionalLight;
 import com.mygdx.game.light.Light;
+import com.mygdx.game.light.SpotLight;
+import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
 
 public class SimpleInputController extends InputAdapter{
 	
@@ -64,6 +66,30 @@ public class SimpleInputController extends InputAdapter{
 	        case Keys.L:
 	        	light.setLightColor(new Color(1,1,1, 1));
 	        	enviroment.setLight(light);
+	        	break;
+	        case Keys.F1:
+	        	if(light instanceof SpotLight){
+	        		((SpotLight)light).setInner_cos(((SpotLight) light).getInner_cos() + 0.02f);
+	        		enviroment.setLight(light);
+	        	}
+	        	break;
+	        case Keys.F2:
+	        	if(light instanceof SpotLight){
+	        		((SpotLight)light).setInner_cos(((SpotLight) light).getInner_cos() - 0.02f);
+	        		enviroment.setLight(light);
+	        	}
+	        	break;
+	        case Keys.F3:
+	        	if(light instanceof SpotLight){
+	        		((SpotLight)light).setOutter_cos(((SpotLight) light).getOutter_cos() + 0.02f);
+	        		enviroment.setLight(light);
+	        	}
+	        	break;
+	        case Keys.F4:
+	        	if(light instanceof SpotLight){
+	        		((SpotLight)light).setOutter_cos(((SpotLight) light).getOutter_cos() - 0.02f);
+	        		enviroment.setLight(light);
+	        	}
 	        	break;
 	        }
 		 

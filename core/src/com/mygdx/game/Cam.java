@@ -12,7 +12,9 @@ public abstract class Cam {
 
 	private float rotationY = 0; // [0...360]
 	private float rotationX = 0;// [-90 .. 90]
-	Vector3 direction = new Vector3(0, 0, -1);
+	
+	private Vector3 fowardDirection = new Vector3(0,0,-1);
+	private Vector3 leftDirection = new Vector3(1,0,0);
 
 	private float fowardSpeed = 0;
 	private float horizontalSpeed = 0;
@@ -20,13 +22,20 @@ public abstract class Cam {
 	public void setPosition(Vector3 position) {
 		this.position = position;
 	}
+	
+	public Vector3 getFowardDirection() {
+		return new Vector3(fowardDirection);
+	}
+	public Vector3 getLeftDirection() {
+		return new Vector3(leftDirection);
+	}
 
 	public Vector3 getPosition() {
 		return new Vector3(position);
 	}
 
 	public Vector3 getDirection() {
-		return new Vector3(direction);
+		return getFowardDirection().mul(getRy().mul(getRx()));
 	}
 	
 	public float getRotationX() {
@@ -110,11 +119,9 @@ public abstract class Cam {
 	}
 
 	public void move() {
-		Vector3 fowardDirection = new Vector3(0,0,-1);
-		Vector3 leftDirection = new Vector3(1,0,0);
-		position.add(fowardDirection.mul(getRy().mul(getRx())).nor().scl(
+		position.add(getFowardDirection().mul(getRy().mul(getRx())).nor().scl(
 				fowardSpeed * Gdx.graphics.getDeltaTime()));
-		position.add(leftDirection.mul(getRy().mul(getRx())).nor().scl(
+		position.add(getLeftDirection().mul(getRy().mul(getRx())).nor().scl(
 				horizontalSpeed * Gdx.graphics.getDeltaTime()));
 	}
 	

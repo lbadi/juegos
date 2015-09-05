@@ -5,7 +5,7 @@ import com.badlogic.gdx.math.Vector3;
 
 public class PointLight extends Light{
 
-	Vector3 position = new Vector3();
+	Vector3 position = new Vector3(0,2,0);
 	
 	public PointLight(){	}
 	
