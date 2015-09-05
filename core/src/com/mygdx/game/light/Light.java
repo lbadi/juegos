@@ -1,7 +1,7 @@
 package com.mygdx.game.light;
 
 import com.badlogic.gdx.graphics.Color;
-
+import com.mygdx.game.GenericObject;
 
 
 public abstract class Light {
@@ -23,6 +23,7 @@ public abstract class Light {
 	public void setSpecularColor(Color specularColor) {
 		this.specularColor = new Color(specularColor);
 	}
-	
+
+	public abstract void render(GenericObject object);
 	
 }

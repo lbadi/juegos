@@ -14,7 +14,7 @@ void main() {
 //PREGUNTAR COMO LEVANTAR  colores del material
 	vec4 light_vector = normalize(light_position - v_position);
 	//vec4 light_vector = normalize(v_position - light_position);
-   gl_FragColor = v_color * texture2D(u_texture, v_texCoords);
+	gl_FragColor = v_color * texture2D(u_texture, v_texCoords);
     
     float normal_dot_light = dot(normal, normalize(light_vector));
     
@@ -24,7 +24,7 @@ void main() {
     float m_shine = 1.2; //Brillo del material
     vec4 r = -1.0*light_vector + 2.0 * normal_dot_light * normal;
     vec4 m_spec = vec4(0.1,0.1,0.1,1); //Materia especular
-    vec4 specular_irradiance = max(0, pow(dot(r, eye-v_position), m_shine)) * m_spec * specular_color;
+    vec4 specular_irradiance = max(0.0, pow(dot(r, eye-v_position), m_shine)) * m_spec * specular_color;
     
     //Ambient
     vec4 m_ambient = vec4(0.01,0.01,0.00001,1); //Material ambiente

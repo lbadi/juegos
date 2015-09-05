@@ -30,7 +30,7 @@ void main() {
     float m_shine = 1.2; //Brillo del material
     vec4 r = -1.0*light_vector + 2.0 * normal_dot_light * normal;
     vec4 m_spec = vec4(0.00001,0.00001,0.00001,1); //Materia especular
-    vec4 specular_irradiance = max(0, pow(dot(r, eye-v_position), m_shine)) * m_spec * specular_color;
+    vec4 specular_irradiance = max(0.0, pow(dot(r, eye-v_position), m_shine)) * m_spec * specular_color;
     
     //Ambient
     vec4 m_ambient = vec4(0.0001,0.0001,0.0001,1); //Material ambiente
