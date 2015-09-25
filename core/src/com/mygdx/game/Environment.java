@@ -1,9 +1,10 @@
 package com.mygdx.game;
 
-import com.mygdx.game.light.Light;
-
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+
+import com.mygdx.game.light.Light;
 
 public class Environment {
 
@@ -25,6 +26,10 @@ public class Environment {
         lights = new HashMap<String, Light>();
         cams = new HashMap<String, Cam>();
     }
+    
+    public Collection<Light> getLights() {
+		return lights.values();
+	}
 
 	public Cam getCurrentCam() {
 		return currentCam;

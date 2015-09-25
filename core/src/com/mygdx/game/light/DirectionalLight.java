@@ -3,16 +3,21 @@ package com.mygdx.game.light;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g3d.environment.ShadowMap;
+import com.badlogic.gdx.graphics.g3d.utils.TextureDescriptor;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
+import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.Cam;
 import com.mygdx.game.Environment;
 import com.mygdx.game.GenericObject;
+import com.mygdx.game.OrthoCam;
 
 public class DirectionalLight extends Light{
 
 	Vector3 lightVector = new Vector3(0,0,0);
 	ShaderProgram shader;
+	OrthoCam projectionCamera = new OrthoCam();
 	
 	public DirectionalLight() {	}
 	
@@ -22,6 +27,7 @@ public class DirectionalLight extends Light{
 		String vs = Gdx.files.internal("defaultVS.glsl").readString();
 		String fs = Gdx.files.internal("defaultFS.glsl").readString();
 		shader = new ShaderProgram(vs, fs);
+		projectionCamera.setFather(this);
 		System.out.println(shader.getLog());
 	}
 	
@@ -35,6 +41,7 @@ public class DirectionalLight extends Light{
 
 	@Override
 	public void render(GenericObject object) {
+		object.getImg().bind();
         Environment environment = Environment.getInstance();
 		Cam cam = environment.getCurrentCam();
 		Vector3 position = cam.getPosition();
@@ -60,4 +67,18 @@ public class DirectionalLight extends Light{
 
 		shader.end();
 	}
+
+	@Override
+	public ShadowMap getShadowMap() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Matrix4 getProjectionMatrix() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 }

@@ -13,8 +13,6 @@ public class SimpleInputController extends InputAdapter{
 
 	Environment enviroment;
 	
-	private float mouseLastPositionX = 0.5f;
-	private float mouseLastPositionY = 0.5f;
 	
 	private float mouseSensibility = 1f;
 	
@@ -155,7 +153,7 @@ public class SimpleInputController extends InputAdapter{
 		else if(yMovement > 0.501){
 			cam.setRotationX(cam.getRotationX() - yQuantityMovement);
 		}
-//		Gdx.input.setCursorPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
+		Gdx.input.setCursorPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
 
 		
 		

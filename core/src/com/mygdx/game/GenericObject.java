@@ -1,23 +1,59 @@
 package com.mygdx.game;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Mesh;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector3;
 
 public class GenericObject {
 
 	private Vector3 position = new Vector3();
+	private Vector3 scaleVector = new Vector3(1,1,1);
 	private float rotationX = 0;
 	private float rotationY = 0;
 	private float rotationZ = 0;
 	private Mesh mesh;
+	private Texture img;
+	public GenericObject father;
+	public List<GenericObject> childs = new ArrayList<GenericObject>();
+	
+	//Movimiento
+	private Vector3 fowardDirection = new Vector3(0,0,-1);
+	private Vector3 leftDirection = new Vector3(1,0,0);
+	private float fowardSpeed = 0;
+	private float horizontalSpeed = 0;
+	
 	public GenericObject() {}
 	
-	public GenericObject(Vector3 position, Mesh mesh){
+	public GenericObject(Vector3 position, Mesh mesh, Texture img){
 		setPosition(position);
 		setMesh(mesh);
+		setImg(img);
 	}
 	
+	public GenericObject getFather() {
+		return father;
+	}
+	public void setFather(GenericObject father) {
+		this.father = father;
+	}
+	public List<GenericObject> getChilds() {
+		return childs;
+	}
+	public void addChild(GenericObject child) {
+		childs.add(child);
+	}
+	public Texture getImg() {
+		return img;
+	}
+	public void setImg(Texture img) {
+		this.img = img;
+	}
 	public void setMesh(Mesh mesh) {
 		this.mesh = mesh;
 	}
@@ -36,6 +72,13 @@ public class GenericObject {
 	public float getRotationY() {
 		return rotationY;
 	}
+	
+	public Vector3 getScaleVector() {
+		return new Vector3(scaleVector);
+	}
+	public void setScaleVector(float x, float y, float z){
+		scaleVector = new Vector3(x,y,z);
+	}
 
 	public void setRotationX(float rotationX) {
 		this.rotationX = rotationX;
@@ -50,6 +93,9 @@ public class GenericObject {
 	public void setRotationZ(float rotationZ) {
 		this.rotationZ = rotationZ;
 	}
+	public Vector3 getDirection() {
+		return getFowardDirection().mul(getRy().mul(getRx()));
+	}
 	
 	public Matrix4 getTranslationMatrix(){
 		Vector3 pos = getPosition();
@@ -60,6 +106,16 @@ public class GenericObject {
 		};
 		Matrix4 translationMatrix = new Matrix4(values);
 		return translationMatrix;
+	}
+	
+	public Matrix4 getScaleMatrix(){
+		float[] values = { scaleVector.x,0,0,0,
+							0,scaleVector.y,0,0,
+							0,0,scaleVector.z,0,
+							0,0,0,1
+		};
+		Matrix4 scaleMatrix = new Matrix4(values);
+		return scaleMatrix;
 	}
 	
 	public Matrix4 getRx(){
@@ -77,8 +133,6 @@ public class GenericObject {
 	public Matrix4 getRy(){
 		float cosY =(float) Math.cos(getRotationY());
 		float sinY =(float) Math.sin(getRotationY());
-		System.out.println("COS:" + cosY);
-		System.out.println("COS:" + sinY);
 		float[] values = {
 				cosY,0,-sinY,0,
 				0,1,0,0,
@@ -91,12 +145,41 @@ public class GenericObject {
 	
 	public Matrix4 getTRS() {
 		Matrix4 rot = getRy().mul(getRx());
-		return getTranslationMatrix().mul(rot);
+		Matrix4 fatherTRS = new Matrix4();
+		if(father != null){
+			fatherTRS = father.getTRS();
+		}
+		return fatherTRS.mul(getTranslationMatrix().mul(rot).mul(getScaleMatrix()));
 //		return getTranslationMatrix().inv();
 //		return getFpsView();
 	}
-	
 	//TODO hacer el Rz()
+	
+	public void setFowardSpeed(float fowardSpeed) {
+		this.fowardSpeed = fowardSpeed;
+	}
+
+	public void setHorizontalSpeed(float horizontalSpeed) {
+		this.horizontalSpeed = horizontalSpeed;
+	}
+	
+	public Vector3 getFowardDirection() {
+		return new Vector3(fowardDirection);
+	}
+	public Vector3 getLeftDirection() {
+		return new Vector3(leftDirection);
+	}
+
+	public void move() {
+		//TODO arreglar cuando el padre esta rotado
+		System.out.println(getFowardDirection().mul(getRy().mul(getRx())).nor().scl(
+				fowardSpeed * Gdx.graphics.getDeltaTime()));
+		position.add(getFowardDirection().mul(getRy().mul(getRx())).nor().scl(
+				fowardSpeed * Gdx.graphics.getDeltaTime()));
+		position.add(getLeftDirection().mul(getRy().mul(getRx())).nor().scl(
+				horizontalSpeed * Gdx.graphics.getDeltaTime()));
+	}
+	
 	
 	
 }

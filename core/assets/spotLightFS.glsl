@@ -5,6 +5,7 @@ varying vec4 v_position;
 uniform vec4 light_color;
 uniform vec4 light_position;
 uniform sampler2D u_texture;
+uniform sampler2D u_texture2;
 uniform vec4 eye;
 uniform vec4 specular_color;
 uniform vec4 ambient_color;
@@ -26,6 +27,7 @@ void main() {
     
     vec4 diffusal_irradiance = spotlight  * gl_FragColor  * light_color ;
     
+    //TODO hacer que la especular funcione como spot
     //Especular
     float m_shine = 1.2; //Brillo del material
     vec4 r = -1.0*light_vector + 2.0 * normal_dot_light * normal;
@@ -39,6 +41,8 @@ void main() {
     //Phone 
     gl_FragColor =  diffusal_irradiance + specular_irradiance + ambient_irradiance;
     
+    //Aca estoy usando dos texturas, cuando haya construido el shadowMap con esto voy a poder hacer cosas locas
+    //gl_FragColor = gl_FragColor * 0.0001 + v_color *   texture2D(u_texture2, v_texCoords);
 }
 
    

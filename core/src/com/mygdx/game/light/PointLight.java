@@ -3,38 +3,33 @@ package com.mygdx.game.light;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g3d.environment.ShadowMap;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
+import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.Cam;
 import com.mygdx.game.Environment;
 import com.mygdx.game.GenericObject;
-import com.sun.tools.doclint.Env;
 
 public class PointLight extends Light{
 
-	Vector3 position = new Vector3(0,2,0);
 	ShaderProgram shader;
-	
-	public PointLight(){	}
+	ShadowMap shadowMap = new ShadowMapImpl();
+	public PointLight(){		}
 	
 	public PointLight(Vector3 position,Color lightColor){
 		this.lightColor = lightColor;
-		this.position = position;
+		setPosition(position);
 		String vs = Gdx.files.internal("defaultVS.glsl").readString();
 		String fs = Gdx.files.internal("pointLightFS.glsl").readString();
 		shader = new ShaderProgram(vs, fs);
         System.out.println(shader.getLog());
 	}
-	
-	public Vector3 getPosition() {
-		return new Vector3(position);
-	}
-	public void setPosition(Vector3 position) {
-		this.position = new Vector3(position);
-	}
 
 	@Override
 	public void render(GenericObject object) {
+		
+		object.getImg().bind();
         Environment environment = Environment.getInstance();
 		Cam cam = environment.getCurrentCam();
 		Vector3 position = cam.getPosition();
@@ -54,5 +49,17 @@ public class PointLight extends Light{
 		object.getMesh().render(shader, GL20.GL_TRIANGLES);
 
 		shader.end();
+	}
+	
+
+	@Override
+	public ShadowMap getShadowMap() {
+		return shadowMap;
+	}
+
+	@Override
+	public Matrix4 getProjectionMatrix() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
