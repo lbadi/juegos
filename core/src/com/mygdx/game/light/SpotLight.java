@@ -1,21 +1,26 @@
 package com.mygdx.game.light;
 
+
+import java.nio.IntBuffer;
+
 import projection.PerspectiveProjection;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Mesh;
 import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.VertexAttribute;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.BufferUtils;
 import com.mygdx.game.Cam;
 import com.mygdx.game.Environment;
 import com.mygdx.game.GenericObject;
-import com.mygdx.game.PerspectiveCam;
 
 public class SpotLight extends PointLight{
 
@@ -30,6 +35,7 @@ public class SpotLight extends PointLight{
 	private FrameBuffer frameBuffer = new FrameBuffer(Format.RGB565, 128, 128, false, true); 
 	private FrameBuffer frameBuffer2 = new FrameBuffer(Format.RGB565, 128, 128, false);
 	SpriteBatch spriteBatch = new SpriteBatch();
+	private Mesh fullScreenQuad;
 
     public SpotLight() {
         super();
@@ -52,11 +58,25 @@ public class SpotLight extends PointLight{
 
     private void initShader() {
         String vs = Gdx.files.internal("defaultVS.glsl").readString();
+        String shadowVs = Gdx.files.internal("shadowVs.glsl").readString();
         String fs = Gdx.files.internal("spotLightFS.glsl").readString();
         String shadowFs = Gdx.files.internal("shadowMapFS.glsl").readString();
         shader = new ShaderProgram(vs, fs);
-        shadowShader = new ShaderProgram(vs, shadowFs);
+        shadowShader = new ShaderProgram(shadowVs, shadowFs);
+        System.out.println(shadowShader.getLog());
         System.out.println(shader.getLog());
+        fullScreenQuad 
+        		  = new Mesh(true,
+        				4,
+        				6,
+        				VertexAttribute.Position());
+        		fullScreenQuad.setVertices(new float[] 
+        				{-1, -1, 0.5f, 
+        				 -1, 1, 0.5f,
+        				 1, 1, 0.5f,
+        				 1, -1, 0.5f
+        				});
+        		fullScreenQuad.setIndices(new short[] { 0, 1, 2, 0, 2, 3 } );
     }
 	
 	public Vector3 getLightDirection() {
@@ -81,9 +101,36 @@ public class SpotLight extends PointLight{
 
     @Override
 	public void render(GenericObject object) {
-//    	generateShadowMap(object);
-		object.getImg().bind(0);
-		getShadowMap().getDepthMap().texture.bind(1);
+    	
+    	/*
+    	SHADOWS
+    	*/
+    	FrameBuffer buffer = generateShadowMap(object);
+    	////////////////////
+//		object.getImg().bind(0);
+    	//buffer.getColorBufferTexture().bind(0);
+    	
+    	//---------
+    	IntBuffer depthBuffer = BufferUtils.newIntBuffer(1);
+
+    	  // AFAIK this puts 1 texture name into depthBuffer.
+    	  Gdx.gl20.glGenTextures(1, depthBuffer);
+    	  int depthBufferValue = depthBuffer.get();
+
+    	  // I now bind the texture, so I can use it.
+    	  Gdx.gl20.glBindTexture(GL20.GL_TEXTURE_2D, depthBufferValue);
+    	  Gdx.gl20.glTexImage2D(GL20.GL_TEXTURE_2D, 0, GL20.GL_DEPTH_COMPONENT, Gdx.graphics.getWidth(),  Gdx.graphics.getHeight(), 0, GL20.GL_DEPTH_COMPONENT, GL20.GL_UNSIGNED_INT,  BufferUtils.newIntBuffer(1));
+    	  Gdx.gl20.glTexImage2D(GL20.GL_TEXTURE_2D, 0, GL20.GL_DEPTH_COMPONENT, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), 0, GL20.GL_DEPTH_COMPONENT, GL20.GL_UNSIGNED_INT, null);
+    	  
+    	  IntBuffer depthFrameBuffer = BufferUtils.newIntBuffer(1);
+    	  Gdx.gl20.glGenFramebuffers(1, depthFrameBuffer);
+    	  int depthFrameBufferValue = depthFrameBuffer.get();
+    	  Gdx.gl20.glBindFramebuffer(GL20.GL_FRAMEBUFFER, depthFrameBufferValue);
+    	  Gdx.gl20.glFramebufferTexture2D(GL20.GL_FRAMEBUFFER, GL20.GL_DEPTH_ATTACHMENT, GL20.GL_TEXTURE_2D, depthFrameBufferValue, 0);
+    	Gdx.gl20.glBindBuffer(buffer.getDepthBufferHandle(), 0);
+    	
+    	//----------------
+//		getShadowMap().getDepthMap().texture.bind(1);
         Environment environment = Environment.getInstance();
 		Cam cam = environment.getCurrentCam();
 		Vector3 position = cam.getPosition();
@@ -108,66 +155,28 @@ public class SpotLight extends PointLight{
 //		System.out.println("Outter : " + outterAngle + " Inner: " + innerAngle);
 		shader.end();
     	
-    	
     	//Prueba
-//    	spriteBatch.begin();
-//    	 spriteBatch.draw(frameBuffer2.getColorBufferTexture(), 0, 0, 256, 256, 0, 0, frameBuffer2.getColorBufferTexture().getWidth(),
-//    			 frameBuffer2.getColorBufferTexture().getHeight(), false, true);
-//    	spriteBatch.draw(frameBuffer.getColorBufferTexture(), 256, 256, 256, 256, 0, 0, frameBuffer.getColorBufferTexture()
-//    			.getWidth(), frameBuffer.getColorBufferTexture().getHeight(), false, true);
-//    			spriteBatch.end();
+    	
 	}
     
     Texture texture = new Texture(Gdx.files.internal("badlogic.jpg"));
 	
-    public void generateShadowMap(GenericObject object){
-    	//object.getImg().bind(0);
-//    	getShadowMap().getDepthMap().texture.bind(0);
+    FrameBuffer buffer = new FrameBuffer(Format.RGBA8888, 1024, 1024, true);
+    public FrameBuffer generateShadowMap(GenericObject object){
+    	buffer.begin();
+    	Gdx.gl20.glClearColor(0, 1, 0, 1);
+    	Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
+    	Gdx.gl.glEnable(GL20.GL_DEPTH_TEST);
+		Gdx.gl.glDepthFunc(GL20.GL_LEQUAL);
     	Environment environment = Environment.getInstance();
     	Cam cam = environment.getCurrentCam();
-//    	frameBuffer.begin();
-//    	Gdx.gl20.glViewport(0, 0, frameBuffer.getWidth(), frameBuffer.getHeight());
-//    	Gdx.gl20.glClearColor(1f, 1f, 1f, 1);
-//    	Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_STENCIL_BUFFER_BIT);
-//    	Gdx.gl20.glEnable(GL20.GL_TEXTURE_2D);
-//    	Gdx.gl20.glEnable(GL20.GL_STENCIL_TEST);
-//    	Gdx.gl20.glColorMask(false, false, false, false);
-//    	Gdx.gl20.glDepthMask(false);
-//    	Gdx.gl20.glStencilFunc(GL20.GL_NEVER, 1, 0xFF);
-//    	Gdx.gl20.glStencilOp(GL20.GL_REPLACE, GL20.GL_KEEP, GL20.GL_KEEP);
-//    	Gdx.gl20.glStencilMask(0xFF);
-//    	Gdx.gl20.glClear(GL20.GL_STENCIL_BUFFER_BIT);
-//    	shadowShader.begin();
-//    	shader.setUniformi("u_texture", 0);
-////    	shadowShader.setUniformMatrix("u_worldView", cam.getProjectionMatrix().mul(cam.getViewMatrix()).mul(object.getTRS())); //aca trabajar
-////    	shadowShader.setUniformMatrix("u_worldMatrix", object.getTRS()); //aca trabajar
-//    	object.getMesh().render(shadowShader, GL20.GL_TRIANGLES);
-//    	shadowShader.end();
-//    	
-//    	
-//    	Gdx.gl20.glColorMask(true, true, true, true);
-//    	Gdx.gl20.glDepthMask(true);
-//    	Gdx.gl20.glStencilMask(0x00);
-//    	Gdx.gl20.glStencilFunc(GL20.GL_EQUAL, 1, 0xFF);
-//    	shadowShader.begin();
-//    	object.getMesh().render(shadowShader, GL20.GL_TRIANGLES);
-//    	shadowShader.end();
-//    	Gdx.gl20.glDisable(GL20.GL_STENCIL_TEST);
-//    	frameBuffer.end();
-    	
-    	//otro frambuffer
-    	frameBuffer2.begin();
-    	Gdx.gl20.glViewport(0, 0, frameBuffer2.getWidth(), frameBuffer2.getHeight());
-    	Gdx.gl20.glClearColor(1f, 1f, 1f, 1);
-    	Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
-    	Gdx.gl20.glEnable(GL20.GL_TEXTURE_2D);
-    	texture.bind(0);
     	shadowShader.begin();
-    	//shadowShader.setUniformi("u_texture", 0);
+    	shadowShader.setUniformMatrix("u_worldView", cam.getProjectionMatrix().mul(cam.getViewMatrix()).mul(object.getTRS()));
     	object.getMesh().render(shadowShader, GL20.GL_TRIANGLES);
+//    	fullScreenQuad.render(shadowShader, GL20.GL_TRIANGLES);
     	shadowShader.end();
-    	frameBuffer2.end();
-    	
+    	buffer.end();
+    	return buffer;
     }
     
     @Override

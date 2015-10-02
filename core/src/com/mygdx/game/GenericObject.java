@@ -172,8 +172,6 @@ public class GenericObject {
 
 	public void move() {
 		//TODO arreglar cuando el padre esta rotado
-		System.out.println(getFowardDirection().mul(getRy().mul(getRx())).nor().scl(
-				fowardSpeed * Gdx.graphics.getDeltaTime()));
 		position.add(getFowardDirection().mul(getRy().mul(getRx())).nor().scl(
 				fowardSpeed * Gdx.graphics.getDeltaTime()));
 		position.add(getLeftDirection().mul(getRy().mul(getRx())).nor().scl(

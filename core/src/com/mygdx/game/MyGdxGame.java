@@ -84,7 +84,7 @@ public class MyGdxGame extends ApplicationAdapter {
         cam.setPosition(new Vector3(0,0,5));
         objects.get(2).setFather(cam);
         //TODO Arreglar lo de padre e hijo y completar los casos que faltan.
-        //objects.get(2).setFather(cam);
+        objects.get(2).setFather(cam);
 		env = Environment.getInstance();
 //        env.addLight("directional", new DirectionalLight(new Vector3(1,1,0), new Color(1, 1, 1, 1)));
 //        env.addLight("point", new PointLight(new Vector3(1.5f,0,0), new Color(1, 1, 1, 1)));
