@@ -192,7 +192,6 @@ public class SpotLight extends PointLight{
     FrameBuffer buffer = new FrameBuffer(Format.RGB888, Gdx.graphics.getWidth(),Gdx.graphics.getHeight(), true);
     Texture texture = new Texture("ship.png");
     public FrameBuffer generateShadowMap(GenericObject object){
-;
     	buffer.begin();
     	object.getImg().bind(0);
     	Gdx.gl20.glClearColor(0, 0, 0, 1);
