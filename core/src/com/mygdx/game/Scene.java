@@ -6,23 +6,23 @@ import java.util.Map;
 
 import com.mygdx.game.light.Light;
 
-public class Environment {
+public class Scene {
 
-    private static Environment instance;
+    private static Scene instance;
 
     private Cam currentCam;
     private Light defaultLight;
 	private Map<String, Light> lights;
 	private Map<String, Cam> cams;
 
-	public static Environment getInstance() {
+	public static Scene getInstance() {
 		if(instance == null) {
-			instance = new Environment();
+			instance = new Scene();
 		}
 		return instance;
 	}
 
-    private Environment() {
+    private Scene() {
         lights = new HashMap<String, Light>();
         cams = new HashMap<String, Cam>();
     }
