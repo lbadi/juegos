@@ -9,6 +9,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Mesh;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.VertexAttribute;
@@ -21,6 +22,7 @@ import com.badlogic.gdx.utils.BufferUtils;
 import com.mygdx.game.Cam;
 import com.mygdx.game.Environment;
 import com.mygdx.game.GenericObject;
+import com.sun.pisces.RendererBase;
 
 public class SpotLight extends PointLight{
 
@@ -29,6 +31,7 @@ public class SpotLight extends PointLight{
 	private float outterAngle = 30;
 	private ShaderProgram shader;
 	private ShaderProgram shadowShader;
+	private ShaderProgram renderShadowShader;
 	private PerspectiveProjection perspectiveProjection = new PerspectiveProjection();
 	
 	//Pruebas
@@ -59,24 +62,27 @@ public class SpotLight extends PointLight{
     private void initShader() {
         String vs = Gdx.files.internal("defaultVS.glsl").readString();
         String shadowVs = Gdx.files.internal("shadowVs.glsl").readString();
+        String renderShadowVs = Gdx.files.internal("renderShadowVs.glsl").readString();
         String fs = Gdx.files.internal("spotLightFS.glsl").readString();
         String shadowFs = Gdx.files.internal("shadowMapFS.glsl").readString();
+        String renderShadowFs = Gdx.files.internal("renderShadowMapFS.glsl").readString();
         shader = new ShaderProgram(vs, fs);
         shadowShader = new ShaderProgram(shadowVs, shadowFs);
+        renderShadowShader = new ShaderProgram(renderShadowVs, renderShadowFs);
         System.out.println(shadowShader.getLog());
         System.out.println(shader.getLog());
         fullScreenQuad 
         		  = new Mesh(true,
         				4,
         				6,
-        				VertexAttribute.Position());
+        				VertexAttribute.Position(),VertexAttribute.TexCoords(0));
         		fullScreenQuad.setVertices(new float[] 
-        				{-1, -1, 0.5f, 
-        				 -1, 1, 0.5f,
-        				 1, 1, 0.5f,
-        				 1, -1, 0.5f
+        				{-1, -1, 0f, 0, 0, 
+        				 -1, 1, 0f, 0, 1,
+        				 1, -1, 0f, 1 ,0,
+        				 1, 1, 0f , 1 ,1 
         				});
-        		fullScreenQuad.setIndices(new short[] { 0, 1, 2, 0, 2, 3 } );
+        		fullScreenQuad.setIndices(new short[] { 0, 1, 2, 1, 2, 3 } );
     }
 	
 	public Vector3 getLightDirection() {
@@ -105,77 +111,112 @@ public class SpotLight extends PointLight{
     	/*
     	SHADOWS
     	*/
-    	FrameBuffer buffer = generateShadowMap(object);
+    	generateShadowMap(object);
     	////////////////////
-//		object.getImg().bind(0);
-    	//buffer.getColorBufferTexture().bind(0);
+		object.getImg().bind(0);
+//    	buffer.getColorBufferTexture().bind(0);
     	
     	//---------
-    	IntBuffer depthBuffer = BufferUtils.newIntBuffer(1);
-
-    	  // AFAIK this puts 1 texture name into depthBuffer.
-    	  Gdx.gl20.glGenTextures(1, depthBuffer);
-    	  int depthBufferValue = depthBuffer.get();
-
-    	  // I now bind the texture, so I can use it.
-    	  Gdx.gl20.glBindTexture(GL20.GL_TEXTURE_2D, depthBufferValue);
-    	  Gdx.gl20.glTexImage2D(GL20.GL_TEXTURE_2D, 0, GL20.GL_DEPTH_COMPONENT, Gdx.graphics.getWidth(),  Gdx.graphics.getHeight(), 0, GL20.GL_DEPTH_COMPONENT, GL20.GL_UNSIGNED_INT,  BufferUtils.newIntBuffer(1));
-    	  Gdx.gl20.glTexImage2D(GL20.GL_TEXTURE_2D, 0, GL20.GL_DEPTH_COMPONENT, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), 0, GL20.GL_DEPTH_COMPONENT, GL20.GL_UNSIGNED_INT, null);
-    	  
-    	  IntBuffer depthFrameBuffer = BufferUtils.newIntBuffer(1);
-    	  Gdx.gl20.glGenFramebuffers(1, depthFrameBuffer);
-    	  int depthFrameBufferValue = depthFrameBuffer.get();
-    	  Gdx.gl20.glBindFramebuffer(GL20.GL_FRAMEBUFFER, depthFrameBufferValue);
-    	  Gdx.gl20.glFramebufferTexture2D(GL20.GL_FRAMEBUFFER, GL20.GL_DEPTH_ATTACHMENT, GL20.GL_TEXTURE_2D, depthFrameBufferValue, 0);
-    	Gdx.gl20.glBindBuffer(buffer.getDepthBufferHandle(), 0);
+//    	IntBuffer depthBuffer = BufferUtils.newIntBuffer(1);
+//
+//    	  // AFAIK this puts 1 texture name into depthBuffer.
+//    	  Gdx.gl20.glGenTextures(1, depthBuffer);
+//    	  int depthBufferValue = depthBuffer.get();
+//
+//    	  // I now bind the texture, so I can use it.
+//    	  Gdx.gl20.glBindTexture(GL20.GL_TEXTURE_2D, depthBufferValue);
+//    	  Gdx.gl20.glTexImage2D(GL20.GL_TEXTURE_2D, 0, GL20.GL_DEPTH_COMPONENT, Gdx.graphics.getWidth(),  Gdx.graphics.getHeight(), 0, GL20.GL_DEPTH_COMPONENT, GL20.GL_UNSIGNED_INT,  BufferUtils.newIntBuffer(1));
+//    	  Gdx.gl20.glTexImage2D(GL20.GL_TEXTURE_2D, 0, GL20.GL_DEPTH_COMPONENT, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), 0, GL20.GL_DEPTH_COMPONENT, GL20.GL_UNSIGNED_INT, null);
+//    	  
+//    	  IntBuffer depthFrameBuffer = BufferUtils.newIntBuffer(1);
+//    	  Gdx.gl20.glGenFramebuffers(1, depthFrameBuffer);
+//    	  int depthFrameBufferValue = depthFrameBuffer.get();
+//    	  Gdx.gl20.glBindFramebuffer(GL20.GL_FRAMEBUFFER, depthFrameBufferValue);
+//    	  Gdx.gl20.glFramebufferTexture2D(GL20.GL_FRAMEBUFFER, GL20.GL_DEPTH_ATTACHMENT, GL20.GL_TEXTURE_2D, depthFrameBufferValue, 0);
+//    	Gdx.gl20.glBindBuffer(buffer.getDepthBufferHandle(), 0);
     	
     	//----------------
+		//Descomentar esto
 //		getShadowMap().getDepthMap().texture.bind(1);
-        Environment environment = Environment.getInstance();
-		Cam cam = environment.getCurrentCam();
-		Vector3 position = cam.getPosition();
-		shader.begin();
-		shader.setUniformMatrix("u_worldView", cam.getProjectionMatrix().mul(cam.getViewMatrix()).mul(object.getTRS())); //aca trabajar
-		shader.setUniformMatrix("u_worldMatrix", object.getTRS()); //aca trabajar
-		shader.setUniformi("u_texture", 0);
-//		shader.setUniformi("u_texture2", 1);
-		shader.setUniform4fv("light_color", new float[]{lightColor.r, lightColor.g, lightColor.b, lightColor.a}, 0, 4);
-		shader.setUniform4fv("light_position", new float[]{getPosition().x, getPosition().y, getPosition().z,1}, 0, 4);
-		//Especular
-		shader.setUniform4fv("eye", new float[]{position.x,position.y,position.z,1}, 0, 4);
-		shader.setUniform4fv("specular_color", new float[]{specularColor.r,specularColor.g,specularColor.b,1}, 0, 4);
-		//Ambiente
-		shader.setUniform4fv("ambient_color", new float[]{0,0,1,1}, 0, 4);
-
-		shader.setUniform4fv("light_direction", new float[]{lightDirection.x,lightDirection.y,lightDirection.z,1}, 0, 4);
-		shader.setUniformf("cosine_inner", (float) Math.cos(innerAngle));
-		shader.setUniformf("cosine_outter", (float) Math.cos(outterAngle));
-		object.getMesh().render(shader, GL20.GL_TRIANGLES);
-//		object.getImg().dispose();
-//		System.out.println("Outter : " + outterAngle + " Inner: " + innerAngle);
-		shader.end();
+//        Environment environment = Environment.getInstance();
+//		Cam cam = environment.getCurrentCam();
+//		Vector3 position = cam.getPosition();
+//		shader.begin();
+//		shader.setUniformMatrix("u_worldView", cam.getProjectionMatrix().mul(cam.getViewMatrix()).mul(object.getTRS())); //aca trabajar
+//		shader.setUniformMatrix("u_worldMatrix", object.getTRS()); //aca trabajar
+//		shader.setUniformi("u_texture", 0);
+////		shader.setUniformi("u_texture2", 1);
+//		shader.setUniform4fv("light_color", new float[]{lightColor.r, lightColor.g, lightColor.b, lightColor.a}, 0, 4);
+//		shader.setUniform4fv("light_position", new float[]{getPosition().x, getPosition().y, getPosition().z,1}, 0, 4);
+//		//Especular
+//		shader.setUniform4fv("eye", new float[]{position.x,position.y,position.z,1}, 0, 4);
+//		shader.setUniform4fv("specular_color", new float[]{specularColor.r,specularColor.g,specularColor.b,1}, 0, 4);
+//		//Ambiente
+//		shader.setUniform4fv("ambient_color", new float[]{0,0,1,1}, 0, 4);
+//
+//		shader.setUniform4fv("light_direction", new float[]{lightDirection.x,lightDirection.y,lightDirection.z,1}, 0, 4);
+//		shader.setUniformf("cosine_inner", (float) Math.cos(innerAngle));
+//		shader.setUniformf("cosine_outter", (float) Math.cos(outterAngle));
+//		object.getMesh().render(shader, GL20.GL_TRIANGLES);
+////		object.getImg().dispose();
+////		System.out.println("Outter : " + outterAngle + " Inner: " + innerAngle);
+//		shader.end();
     	
     	//Prueba
     	
 	}
-    
-    Texture texture = new Texture(Gdx.files.internal("badlogic.jpg"));
-	
-    FrameBuffer buffer = new FrameBuffer(Format.RGBA8888, 1024, 1024, true);
+    FrameBuffer buffer = new FrameBuffer(Format.RGBA8888, Gdx.graphics.getWidth(),Gdx.graphics.getHeight(), true);
+    Texture texture = new Texture("ship.png");
     public FrameBuffer generateShadowMap(GenericObject object){
+//    	int renderBuffer = Gdx.gl20.glGenRenderbuffer();
+//    	int frameBuffer = buffer.getFramebufferHandle();
+//    	System.out.println("Depth1  : " + renderBuffer);
+//    	Gdx.gl20.glBindRenderbuffer(frameBuffer, renderBuffer);
     	buffer.begin();
-    	Gdx.gl20.glClearColor(0, 1, 0, 1);
-    	Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
-    	Gdx.gl.glEnable(GL20.GL_DEPTH_TEST);
-		Gdx.gl.glDepthFunc(GL20.GL_LEQUAL);
+    	object.getImg().bind(0);
+//    	Gdx.gl20.glClearColor(0, 0, 0, 1);
+//    	Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
+//    	Gdx.gl.glEnable(GL20.GL_DEPTH_TEST);
+//		Gdx.gl.glDepthFunc(GL20.GL_LEQUAL);
     	Environment environment = Environment.getInstance();
     	Cam cam = environment.getCurrentCam();
     	shadowShader.begin();
-    	shadowShader.setUniformMatrix("u_worldView", cam.getProjectionMatrix().mul(cam.getViewMatrix()).mul(object.getTRS()));
+    	shadowShader.setUniformMatrix("u_worldView", cam.getProjectionMatrix().mul(cam.getViewMatrix()).mul(object.getTRS())); //aca trabajar
+    	shadowShader.setUniformi("u_texture", 0);
     	object.getMesh().render(shadowShader, GL20.GL_TRIANGLES);
 //    	fullScreenQuad.render(shadowShader, GL20.GL_TRIANGLES);
     	shadowShader.end();
     	buffer.end();
+    	
+    	//Esta siendo aditivo, el clearColor se esta superponiendo
+//    	Gdx.gl20.glClearColor(0,0,0, 1);
+//    	//Esto para que no me blendee con el fondo.. pero esta andando mal entonces
+////    	Gdx.gl20.glDisable(GL20.GL_BLEND);
+    	Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
+//    	Gdx.gl20.glClear(GL20.GL_DEPTH_BUFFER_BIT);
+////    	Gdx.gl.glEnable(GL20.GL_DEPTH_TEST);
+////		Gdx.gl.glDepthFunc(GL20.GL_LEQUAL);
+//		
+//    	object.getImg().bind(0);
+//    	buffer.getColorBufferTexture().draw(new Pixmap(Gdx.files.internal("ship.png")), 0, 0);
+    	buffer.getColorBufferTexture().bind(0);
+//    	System.out.println("Depth : " + buffer.getFramebufferHandle());
+//    	System.out.println(buffer.getDepth());
+//    	int depth = buffer.getDepthBufferHandle();
+//    	Gdx.gl.glActiveTexture(depth);
+//    	Gdx.gl.glBindTexture(0, depth);
+//    	texture.bind(0);
+//    	getShadowMap().getDepthMap().texture.bind(1);
+		Vector3 position = cam.getPosition();
+		renderShadowShader.begin();
+//		renderShadowShader.setUniformMatrix("u_worldView", cam.getProjectionMatrix().mul(cam.getViewMatrix()).mul(object.getTRS())); //aca trabajar
+		renderShadowShader.setUniformi("u_texture", 0);
+//		object.getMesh().render(renderShadowShader, GL20.GL_TRIANGLES);
+		fullScreenQuad.render(renderShadowShader, GL20.GL_TRIANGLES);
+//		object.getImg().dispose();
+//		System.out.println("Outter : " + outterAngle + " Inner: " + innerAngle);
+		renderShadowShader.end();
+    	
     	return buffer;
     }
     
