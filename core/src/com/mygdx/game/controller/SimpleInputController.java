@@ -5,20 +5,20 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.mygdx.game.Cam;
-import com.mygdx.game.Environment;
+import com.mygdx.game.Scene;
 import com.mygdx.game.light.Light;
 import com.mygdx.game.light.SpotLight;
 
 public class SimpleInputController extends InputAdapter{
 
-	Environment enviroment;
+	Scene enviroment;
 	
 	
 	private float mouseSensibility = 1f;
 	
 	public  SimpleInputController() {
 		super();
-		this.enviroment = Environment.getInstance();
+		this.enviroment = Scene.getInstance();
 	}
 
 	public float getMouseSensibility() {

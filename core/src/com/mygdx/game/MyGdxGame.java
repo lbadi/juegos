@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import com.badlogic.gdx.ApplicationAdapter;
@@ -19,7 +20,6 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.mygdx.game.controller.SimpleInputController;
-import com.mygdx.game.light.DirectionalLight;
 import com.mygdx.game.light.Light;
 import com.mygdx.game.light.SpotLight;
 
@@ -28,9 +28,10 @@ public class MyGdxGame extends ApplicationAdapter {
 	Texture img2;
 	Mesh spaceshipMesh;
 	ShaderProgram shaderProgram;
-	List<GenericObject> objects = new ArrayList<GenericObject>();
-	Environment env ;
+	Scene env ;
 	boolean firstTime = true;
+
+	private Scene scene = Scene.getInstance();
 	
 	//UI
 	 private SpriteBatch batch;
@@ -53,13 +54,15 @@ public class MyGdxGame extends ApplicationAdapter {
 		spaceshipMesh.setVertices(data.meshes.get(0).vertices);
 		spaceshipMesh.setIndices(data.meshes.get(0).parts[0].indices);
 		for(int i = 0; i<5; i++){
-			objects.add(new GenericObject(new Vector3(i*2- 4, 0, 0),spaceshipMesh,img));
+			scene.addObject(new GenericObject(new Vector3(i * 2 - 4, 0, 0), spaceshipMesh, img));
 		}
-//		/*Definimos la posicion del objeto principal*/
-		objects.get(2).setPosition(new Vector3(0,-0.5f,-2));
-		objects.get(2).setRotationY((float)Math.PI);
-		objects.get(2).setRotationX(-(float)Math.PI/12);
-		objects.get(2).setScaleVector(1, 1, 1);
+		//		/*Definimos la posicion del objeto principal*/
+		GenericObject mainShip = new GenericObject(new Vector3(0,-0.5f, -2), spaceshipMesh, img);
+		mainShip.setRotationY((float) Math.PI);
+		mainShip.setRotationX(-(float) Math.PI / 12);
+		mainShip.setScaleVector(1, 1, 1);
+		scene.addObject("MainShip", mainShip);
+
 		img2 = new Texture("spaceBIG.png");
 		data = loader.loadModelData(Gdx.files.internal("cube.obj"));
 		Mesh mesh = new Mesh(true,
@@ -70,7 +73,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		mesh.setIndices(data.meshes.get(0).parts[0].indices);
 		GenericObject backgroundSpace = new GenericObject(new Vector3(0,-1,0),mesh,img2);
 		backgroundSpace.setScaleVector(100f, 0.1f, 100f);
-		objects.add(backgroundSpace);
+		scene.addObject("SpaceBackground", backgroundSpace);
 		
 //		String vs = Gdx.files.internal("defaultVS.glsl").readString();
 //		String fs = Gdx.files.internal("defaultFS.glsl").readString();
@@ -82,10 +85,9 @@ public class MyGdxGame extends ApplicationAdapter {
 
         Cam cam = new PerspectiveCam();
         cam.setPosition(new Vector3(0,0,5));
-        objects.get(2).setFather(cam);
+        mainShip.setFather(cam);
         //TODO Arreglar lo de padre e hijo y completar los casos que faltan.
-        objects.get(2).setFather(cam);
-		env = Environment.getInstance();
+		env = Scene.getInstance();
 //        env.addLight("directional", new DirectionalLight(new Vector3(1,1,0), new Color(1, 1, 1, 1)));
 //        env.addLight("point", new PointLight(new Vector3(1.5f,0,0), new Color(1, 1, 1, 1)));
         env.addLight("spot", new SpotLight());
@@ -112,7 +114,7 @@ public class MyGdxGame extends ApplicationAdapter {
 				Gdx.gl.glEnable(GL20.GL_BLEND);
 				Gdx.gl.glBlendFunc(GL20.GL_ONE,GL20.GL_ONE);
 			}
-			light.render(objects);
+			light.render(Scene.getInstance());
 			firstTime = false;
         }
 		Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA,GL20.GL_ONE_MINUS_SRC_ALPHA);

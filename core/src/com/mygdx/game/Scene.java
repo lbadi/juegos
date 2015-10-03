@@ -2,6 +2,7 @@ package com.mygdx.game;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.mygdx.game.light.Light;
@@ -14,6 +15,9 @@ public class Scene {
     private Light defaultLight;
 	private Map<String, Light> lights;
 	private Map<String, Cam> cams;
+    private Map<String, GenericObject> objects;
+
+    private long objectsCount;
 
 	public static Scene getInstance() {
 		if(instance == null) {
@@ -25,6 +29,8 @@ public class Scene {
     private Scene() {
         lights = new HashMap<String, Light>();
         cams = new HashMap<String, Cam>();
+        objects = new HashMap<String, GenericObject>();
+        objectsCount = 0;
     }
     
     public Collection<Light> getLights() {
@@ -83,6 +89,22 @@ public class Scene {
         if(cams.containsKey(tag)) {
             cams.put(tag, cam);
         }
+    }
+
+    public void addObject(String tag, GenericObject object) {
+        objects.put(tag, object);
+    }
+
+    public void addObject(GenericObject object) {
+        objects.put("OBJECT_KEY_" + objectsCount++, object);
+    }
+
+    public GenericObject getObject(String tag) {
+        return objects.get(tag);
+    }
+
+    public Collection<GenericObject> getAllObjects() {
+        return objects.values();
     }
 
 }

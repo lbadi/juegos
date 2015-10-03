@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.math.Matrix4;
 import com.mygdx.game.Cam;
 import com.mygdx.game.GenericObject;
+import com.mygdx.game.Scene;
 
 
 public abstract class Light extends GenericObject{
@@ -33,12 +34,7 @@ public abstract class Light extends GenericObject{
 		this.specularColor = new Color(specularColor);
 	}
 	
-    public void render(List<GenericObject> objects){
-    	for(GenericObject object : objects){
-    		render(object);
-    	}
-    }
-    public abstract FrameBuffer generateShadowMap(List<GenericObject> object);
+    public abstract void render(Scene scene);
 	public abstract void render(GenericObject object);
 	public abstract Matrix4 getProjectionMatrix();
 }

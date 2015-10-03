@@ -4,12 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g3d.environment.ShadowMap;
-import com.badlogic.gdx.graphics.g3d.utils.TextureDescriptor;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.Cam;
-import com.mygdx.game.Environment;
+import com.mygdx.game.Scene;
 import com.mygdx.game.GenericObject;
 import com.mygdx.game.OrthoCam;
 
@@ -42,8 +41,8 @@ public class DirectionalLight extends Light{
 	@Override
 	public void render(GenericObject object) {
 		object.getImg().bind();
-        Environment environment = Environment.getInstance();
-		Cam cam = environment.getCurrentCam();
+        Scene scene = Scene.getInstance();
+		Cam cam = scene.getCurrentCam();
 		Vector3 position = cam.getPosition();
 		//TODO preguntar para varias luces como hay que hacer
 		//TODO Blending y merge, DepthTest
@@ -72,6 +71,11 @@ public class DirectionalLight extends Light{
 	public ShadowMap getShadowMap() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void render(Scene scene) {
+
 	}
 
 	@Override

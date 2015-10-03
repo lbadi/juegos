@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.Cam;
-import com.mygdx.game.Environment;
+import com.mygdx.game.Scene;
 import com.mygdx.game.GenericObject;
 
 public class PointLight extends Light{
@@ -30,8 +30,8 @@ public class PointLight extends Light{
 	public void render(GenericObject object) {
 		
 		object.getImg().bind();
-        Environment environment = Environment.getInstance();
-		Cam cam = environment.getCurrentCam();
+        Scene scene = Scene.getInstance();
+		Cam cam = scene.getCurrentCam();
 		Vector3 position = cam.getPosition();
 		//TODO preguntar para varias luces como hay que hacer
 		shader.begin();
@@ -55,6 +55,11 @@ public class PointLight extends Light{
 	@Override
 	public ShadowMap getShadowMap() {
 		return shadowMap;
+	}
+
+	@Override
+	public void render(Scene scene) {
+
 	}
 
 	@Override
