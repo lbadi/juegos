@@ -1,7 +1,10 @@
 package com.mygdx.game.light;
 
+import java.util.List;
+
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g3d.environment.ShadowMap;
+import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.math.Matrix4;
 import com.mygdx.game.Cam;
 import com.mygdx.game.GenericObject;
@@ -29,7 +32,11 @@ public abstract class Light extends GenericObject{
 	public void setSpecularColor(Color specularColor) {
 		this.specularColor = new Color(specularColor);
 	}
-
+    public void render(List<GenericObject> objects){
+    	for(GenericObject object : objects){
+    		render(object);
+    	}
+    }
 	public abstract void render(GenericObject object);
 	public abstract Matrix4 getProjectionMatrix();
 }
