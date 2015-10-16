@@ -153,6 +153,15 @@ public class GenericObject {
 //		return getTranslationMatrix().inv();
 //		return getFpsView();
 	}
+	
+	public Matrix4 getRS(){
+		Matrix4 rot = getRy().mul(getRx());
+		Matrix4 fatherRS = new Matrix4();
+		if(father != null){
+			fatherRS = father.getRS();
+		}
+		return fatherRS.mul(rot);
+	}
 	//TODO hacer el Rz()
 	
 	public void setFowardSpeed(float fowardSpeed) {

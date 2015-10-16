@@ -1,9 +1,5 @@
 package com.mygdx.game;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.loaders.ModelLoader;
@@ -63,7 +59,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		mainShip.setScaleVector(1, 1, 1);
 		scene.addObject("MainShip", mainShip);
 
-		img2 = new Texture("spaceBIG.png");
+		img2 = new Texture("white.jpg");
 		data = loader.loadModelData(Gdx.files.internal("cube.obj"));
 		Mesh mesh = new Mesh(true,
 				data.meshes.get(0).vertices.length,
@@ -90,8 +86,9 @@ public class MyGdxGame extends ApplicationAdapter {
 		env = Scene.getInstance();
 //        env.addLight("directional", new DirectionalLight(new Vector3(1,1,0), new Color(1, 1, 1, 1)));
 //        env.addLight("point", new PointLight(new Vector3(1.5f,0,0), new Color(1, 1, 1, 1)));
-        env.addLight("spot", new SpotLight());
-        env.addLight("spot2", new SpotLight(new Vector3(3, 2, 0),new Vector3(0, -1, 0),new Color(1,1,1,1)));
+//        env.addLight("spot", new SpotLight());
+		
+        env.addLight("spot2", new SpotLight(new Vector3(3, 2, 0),new Vector3((float)(Math.PI * 1.5f),0, 0),new Color(1,1,1,1)));
         env.addCam("camera", cam);
 		Gdx.input.setInputProcessor(new SimpleInputController());
         env.setDefaultLight("spot2");

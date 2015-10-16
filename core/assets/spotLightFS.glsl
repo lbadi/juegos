@@ -2,10 +2,11 @@ varying vec4 v_color;
 varying vec2 v_texCoords;
 varying vec4 normal;
 varying vec4 v_position;
+varying vec4 ShadowCoord;
 uniform vec4 light_color;
 uniform vec4 light_position;
 uniform sampler2D u_texture;
-uniform sampler2D u_texture2;
+uniform sampler2D u_shadowMap;
 uniform vec4 eye;
 uniform vec4 specular_color;
 uniform vec4 ambient_color;
@@ -15,7 +16,10 @@ uniform float cosine_outter;
 
 void main() {
 
-//PREGUNTAR COMO LEVANTAR  colores del material
+	float visibility = 1f;
+	if ( ShadowCoord.z > texture2D(u_shadowMap, ShadowCoord.xy).z){
+		visibility = 0.5f;
+	}
 	//vec4 light_vector = normalize(light_position - v_position);
 	vec4 light_vector = normalize(v_position - light_position);
 	float cosine_light = dot(light_vector,normalize(light_direction));
@@ -40,9 +44,9 @@ void main() {
     
     //Phone 
     gl_FragColor =  diffusal_irradiance + specular_irradiance + ambient_irradiance;
+    //Shadows
+    gl_FragColor = gl_FragColor * visibility;
     
-    //Aca estoy usando dos texturas, cuando haya construido el shadowMap con esto voy a poder hacer cosas locas
-    //gl_FragColor = gl_FragColor * 0.0001 + v_color *   texture2D(u_texture2, v_texCoords);
 }
 
    
