@@ -17,8 +17,12 @@ uniform float cosine_outter;
 void main() {
 
 	float visibility = 1f;
-	if ( ShadowCoord.z > texture2D(u_shadowMap, ShadowCoord.xy).z){
-		visibility = 0.5f;
+	//Solamente hay que calcularlo si esta adentro del shadowMap
+	if(ShadowCoord.x <= 1.0 && ShadowCoord.x >= 0.0 && ShadowCoord.y <= 1.0 && ShadowCoord.y >= 0.0){
+		
+		if ( ShadowCoord.z > texture2D(u_shadowMap, ShadowCoord.xy).z){
+			visibility = 0.1f;
+		}
 	}
 	//vec4 light_vector = normalize(light_position - v_position);
 	vec4 light_vector = normalize(v_position - light_position);
@@ -45,7 +49,8 @@ void main() {
     //Phone 
     gl_FragColor =  diffusal_irradiance + specular_irradiance + ambient_irradiance;
     //Shadows
-    gl_FragColor = gl_FragColor * visibility;
+    //gl_FragColor = gl_FragColor * visibility;
+    gl_FragColor = gl_FragColor * visibility * 0.000001 + vec4(ShadowCoord.x,0,0,1);
     
 }
 

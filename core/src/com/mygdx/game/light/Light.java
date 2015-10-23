@@ -36,7 +36,7 @@ public abstract class Light extends GenericObject{
 		0.0f, 0.0f, 0.5f, 0.0f,
 		0.5f, 0.5f, 0.5f, 1.0f
 		};
-		return new Matrix4(values).inv();
+		return new Matrix4(values).tra();
 	}
 	
     public abstract void render(Scene scene);

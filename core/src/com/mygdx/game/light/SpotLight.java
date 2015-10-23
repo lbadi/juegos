@@ -122,7 +122,6 @@ public class SpotLight extends PointLight {
                 object.getImg().bind(0);
                 shadowShader.begin();
                 shadowShader.setUniformMatrix("u_worldView", getProjectionMatrix().mul(getViewMatrix()).mul(object.getTRS())); //aca trabajar
-//                shadowShader.setUniformi("u_texture", 0);
                 object.getMesh().render(shadowShader, GL20.GL_TRIANGLES);
                 shadowShader.end();
             }
@@ -152,10 +151,12 @@ public class SpotLight extends PointLight {
        	 object.getImg().bind(0);
 			Vector3 position = cam.getPosition();
 			shader.begin();
-			shader.setUniformMatrix("u_worldView", cam.getProjectionMatrix().mul(cam.getViewMatrix()).mul(object.getTRS())); //aca trabajar
+//			shader.setUniformMatrix("u_worldView", cam.getProjectionMatrix().mul(cam.getViewMatrix()).mul(object.getTRS())); //aca trabajar
 			shader.setUniformMatrix("u_worldMatrix", object.getTRS()); //aca trabajar
-			
-			shader.setUniformMatrix("u_lightMVP",  getProjectionMatrix().mul(getViewMatrix()).mul(object.getTRS()).mul(getBiasMatrix()));
+			//Debug code
+			shader.setUniformMatrix("u_worldView",  getProjectionMatrix().mul(getViewMatrix()).mul(object.getTRS())); //ver el bias
+			//
+			shader.setUniformMatrix("u_lightMVP",  getProjectionMatrix().mul(getViewMatrix()).mul(object.getTRS()).mul(getBiasMatrix())); //ver el bias
 			shader.setUniformi("u_texture", 0);
 			shader.setUniformi("u_shadowMap", 1);
 			
