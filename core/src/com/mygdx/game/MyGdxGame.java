@@ -16,6 +16,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.mygdx.game.controller.SimpleInputController;
+import com.mygdx.game.light.DirectionalLight;
 import com.mygdx.game.light.Light;
 import com.mygdx.game.light.SpotLight;
 
@@ -50,7 +51,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		spaceshipMesh.setVertices(data.meshes.get(0).vertices);
 		spaceshipMesh.setIndices(data.meshes.get(0).parts[0].indices);
 		for(int i = 0; i<5; i++){
-			scene.addObject(new GenericObject(new Vector3(i * 2 - 4, 0, 0), spaceshipMesh, img));
+			scene.addObject(new GenericObject(new Vector3(i * 2 - 4, 0.4f, 0), spaceshipMesh, img));
 		}
 		//		/*Definimos la posicion del objeto principal*/
 		GenericObject mainShip = new GenericObject(new Vector3(0,-0.5f, -2), spaceshipMesh, img);
@@ -72,7 +73,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		scene.addObject("SpaceBackground", backgroundSpace);
 		
 //		String vs = Gdx.files.internal("defaultVS.glsl").readString();
-//		String fs = Gdx.files.internal("defaultFS.glsl").readString();
+//		String fs = Gdx.files.internal("directional_fs.glsl").readString();
 //		ShaderProgram shader = new ShaderProgram(vs, fs);
 		
 		Gdx.gl.glEnable(GL20.GL_DEPTH_TEST);
@@ -80,18 +81,20 @@ public class MyGdxGame extends ApplicationAdapter {
 
 
         Cam cam = new PerspectiveCam();
-        cam.setPosition(new Vector3(0,0,5));
+        cam.setPosition(new Vector3(0, 5, 4));
+		cam.setRotationX(-(float) Math.PI/4);
         mainShip.setFather(cam);
         //TODO Arreglar lo de padre e hijo y completar los casos que faltan.
 		env = Scene.getInstance();
-//        env.addLight("directional", new DirectionalLight(new Vector3(1,1,0), new Color(1, 1, 1, 1)));
+		env.addLight("directional", new DirectionalLight(new Vector3(0, 2, 0), new Vector3(0, 1, 0), new Color(1, 1, 1, 1)));
 //        env.addLight("point", new PointLight(new Vector3(1.5f,0,0), new Color(1, 1, 1, 1)));
 //        env.addLight("spot", new SpotLight());
 		
-        env.addLight("spot2", new SpotLight(new Vector3(3, 2, 0),new Vector3((float)(Math.PI * 1.5f),0, 0),new Color(1,1,1,1)));
+//        env.addLight("spot2", new SpotLight(new Vector3(3, 2, 0),new Vector3((float)(Math.PI * 1.5f),0, 0),new Color(1,1,1,1)));
         env.addCam("camera", cam);
 		Gdx.input.setInputProcessor(new SimpleInputController());
-        env.setDefaultLight("spot2");
+        env.setDefaultLight("directional");
+		env.getDefaultLight().setRotationX(-(float) Math.PI/2);
     }
 //GL
     @Override

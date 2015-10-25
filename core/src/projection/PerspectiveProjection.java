@@ -5,8 +5,8 @@ import com.badlogic.gdx.math.Matrix4;
 public class PerspectiveProjection {
 	private Matrix4 projection;
 
-	public static final float DEFAULT_FOVX = 45.0f;
-	public static final float DEFAULT_FOVY = 45.0f;
+	public static final float DEFAULT_FOVX = 60.0f;
+	public static final float DEFAULT_FOVY = 60.0f;
 	public static final float DEFAULT_NEAR = 0.1f;
 	public static final float DEFAULT_FAR = 100.0f;
 	

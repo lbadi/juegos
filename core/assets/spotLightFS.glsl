@@ -16,12 +16,12 @@ uniform float cosine_outter;
 
 void main() {
 
-	float visibility = 1f;
+	float visibility = 1.0;
 	//Solamente hay que calcularlo si esta adentro del shadowMap
 	if(ShadowCoord.x <= 1.0 && ShadowCoord.x >= 0.0 && ShadowCoord.y <= 1.0 && ShadowCoord.y >= 0.0){
 		
 		if ( ShadowCoord.z > texture2D(u_shadowMap, ShadowCoord.xy).z){
-			visibility = 0.1f;
+			visibility = 0.1;
 		}
 	}
 	//vec4 light_vector = normalize(light_position - v_position);

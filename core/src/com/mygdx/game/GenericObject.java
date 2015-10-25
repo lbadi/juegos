@@ -175,6 +175,9 @@ public class GenericObject {
 	public Vector3 getFowardDirection() {
 		return new Vector3(fowardDirection);
 	}
+
+
+
 	public Vector3 getLeftDirection() {
 		return new Vector3(leftDirection);
 	}

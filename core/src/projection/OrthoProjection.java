@@ -5,6 +5,10 @@ import com.badlogic.gdx.math.Matrix4;
 public class OrthoProjection {
 
 	private Matrix4 projection;
+
+    public OrthoProjection() {
+        setProjection(-5f, 5f, -5f, 5f, -5f, 5f);
+    }
 	
 	// Ver pagina 91 del libro
     //TODO ARREGLAR ESTA CAMARA
