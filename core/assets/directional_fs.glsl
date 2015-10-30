@@ -15,12 +15,12 @@ uniform vec4 ambient_color;
 
 void main() {
 
-
+	float bias = 0.1;
     float visibility = 1.0;
     //Solamente hay que calcularlo si esta adentro del shadowMap
-    if(ShadowCoord.x <= 1.0 && ShadowCoord.x >= 0.0 && ShadowCoord.y <= 1.0 && ShadowCoord.y >= 0.0){
+    if(ShadowCoord.x <= 1.0 && ShadowCoord.x >= -1.0 && ShadowCoord.y <= 1.0 && ShadowCoord.y >= -1.0){
 
-        if ( ShadowCoord.z > texture2D(u_shadowMap, ShadowCoord.xy).z){
+        if ( ShadowCoord.z + bias> texture2D(u_shadowMap, (ShadowCoord.xy + vec2(1,1)) / 2.0).z){
             visibility = 0.4;
         }
     }
@@ -49,7 +49,7 @@ void main() {
 
     //Shadows
     gl_FragColor = gl_FragColor * visibility;
-//    gl_FragColor = gl_FragColor * visibility * 0.000001 + vec4(0,ShadowCoord.y,0,1);
+   // gl_FragColor = gl_FragColor * visibility * 0.000001 + vec4(0,texture2D(u_shadowMap, (ShadowCoord.xy + vec2(1,1)) / 2.0).z,0,1);
 
 
 }

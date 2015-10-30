@@ -66,8 +66,6 @@ public class DirectionalLight extends Light{
         Scene scene = Scene.getInstance();
 		Cam cam = scene.getCurrentCam();
 		Vector3 position = cam.getPosition();
-		//TODO preguntar para varias luces como hay que hacer
-		//TODO Blending y merge, DepthTest
 
 		//Para shadow Mapping:
 		//DepthBuffer sirva para rendir target final y para textura.
@@ -146,9 +144,11 @@ public class DirectionalLight extends Light{
 			shader.begin();
 			shader.setUniformMatrix("u_worldView", cam.getProjectionMatrix().mul(cam.getViewMatrix()).mul(object.getTRS())); //aca trabajar
 			shader.setUniformMatrix("u_worldMatrix", object.getTRS()); //aca trabajar
-			shader.setUniformMatrix("u_lightMVP",  getProjectionMatrix().mul(getViewMatrix()).mul(object.getTRS()).mul(getBiasMatrix())); //ver el bias
+			shader.setUniformMatrix("u_lightMVP",  getProjectionMatrix().mul(getViewMatrix()).mul(object.getTRS())); //ver el bias
 
-
+//			shader.setUniformMatrix("u_worldView", getProjectionMatrix().mul(getViewMatrix()).mul(object.getTRS())); //aca trabajar
+			
+			
 			shader.setUniformi("u_texture", 0);
 			shader.setUniformi("u_shadowMap", 1);
 
