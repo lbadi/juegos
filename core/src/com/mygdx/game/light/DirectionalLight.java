@@ -116,7 +116,6 @@ public class DirectionalLight extends Light{
 	private FrameBuffer shadowMapBuffer = new FrameBuffer(Pixmap.Format.RGBA8888, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), true);
 
 	private void generateShadowMap(Scene scene) {
-		Cam cam = scene.getCurrentCam();
 		shadowMapBuffer.begin(); {
 			Gdx.gl20.glClearColor(0, 0, 0, 0);
 			Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
@@ -144,7 +143,7 @@ public class DirectionalLight extends Light{
 			shader.begin();
 			shader.setUniformMatrix("u_worldView", cam.getProjectionMatrix().mul(cam.getViewMatrix()).mul(object.getTRS())); //aca trabajar
 			shader.setUniformMatrix("u_worldMatrix", object.getTRS()); //aca trabajar
-			shader.setUniformMatrix("u_lightMVP",  getProjectionMatrix().mul(getViewMatrix()).mul(object.getTRS())); //ver el bias
+			shader.setUniformMatrix("u_lightMVP",  getProjectionMatrix().mul(getViewMatrix()).mul(object.getTRS()));
 
 //			shader.setUniformMatrix("u_worldView", getProjectionMatrix().mul(getViewMatrix()).mul(object.getTRS())); //aca trabajar
 			
@@ -155,6 +154,7 @@ public class DirectionalLight extends Light{
 //			shaderProgram.setUniform4fv("u_specular_material", 0);
 			shader.setUniform4fv("light_color", new float[]{lightColor.r,lightColor.g,lightColor.b,lightColor.a}, 0, 4);
 			shader.setUniform4fv("light_vector", new float[]{lightVector.x,lightVector.y,lightVector.z,1}, 0, 4);
+			System.out.println("LIGHTVECTOR : " +  lightVector);
 			//Especular
 			shader.setUniform4fv("eye", new float[]{position.x,position.y,position.z,1}, 0, 4);
 			shader.setUniform4fv("specular_color", new float[]{specularColor.r,specularColor.g,specularColor.b,1}, 0, 4);

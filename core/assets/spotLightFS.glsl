@@ -14,6 +14,8 @@ uniform vec4 light_direction;
 uniform float cosine_inner;
 uniform float cosine_outter;
 
+float unpackFloatFromVec4i(const vec4 value);
+
 void main() {
 
 	float  bias = 0.1;
@@ -21,7 +23,7 @@ void main() {
 	//Solamente hay que calcularlo si esta adentro del shadowMap
 	if(ShadowCoord.x <= 1.0 && ShadowCoord.x >= -1.0 && ShadowCoord.y <= 1.0 && ShadowCoord.y >= -1.0){
 
-        if ( ShadowCoord.z + bias> texture2D(u_shadowMap, (ShadowCoord.xy + vec2(1,1)) / 2.0).z){
+        if ( ShadowCoord.z + bias> unpackFloatFromVec4i(texture2D(u_shadowMap, (ShadowCoord.xy + vec2(1,1)) / 2.0))){
             visibility = 0.4;
         }
     }
@@ -50,9 +52,15 @@ void main() {
     //Phone 
     gl_FragColor =  diffusal_irradiance + specular_irradiance + ambient_irradiance;
     //Shadows
-    //gl_FragColor = gl_FragColor * visibility;
-    gl_FragColor = gl_FragColor * visibility * 0.000001 + vec4(ShadowCoord.x,0,0,1);
+    gl_FragColor = vec4(gl_FragColor.xyz * visibility,gl_FragColor.a);
+    //gl_FragColor = gl_FragColor * visibility * 0.000001 + vec4(ShadowCoord.x,0,0,1);
     
+}
+
+float unpackFloatFromVec4i(const vec4 value)
+{
+  const vec4 bitSh = vec4(1.0/(256.0*256.0*256.0), 1.0/(256.0*256.0), 1.0/256.0, 1.0);
+  return(dot(value, bitSh));
 }
 
    

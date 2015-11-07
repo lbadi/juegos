@@ -106,28 +106,28 @@ public class SpotLight extends PointLight {
 
 
 
-    private FrameBuffer buffer = new FrameBuffer(Format.RGBA8888, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), true);
+    private FrameBuffer shadowMapBuffer = new FrameBuffer(Format.RGBA8888, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), true);
 
+    
+    private void generateShadowMap(Scene scene) {
+		shadowMapBuffer.begin(); {
+			Gdx.gl20.glClearColor(0, 0, 0, 0);
+			Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+			Gdx.gl20.glDisable(GL20.GL_BLEND);
+			for (GenericObject object : scene.getAllObjects()) {
+				object.getImg().bind(0);
+				shadowShader.begin();
+				shadowShader.setUniformMatrix("u_worldView", getProjectionMatrix().mul(getViewMatrix()).mul(object.getTRS())); //aca trabajar
+				object.getMesh().render(shadowShader, GL20.GL_TRIANGLES);
+				shadowShader.end();
+			}
+		}
+		shadowMapBuffer.end();
+		Gdx.gl20.glEnable(GL20.GL_BLEND);
+	}
     @Override
     public void render(Scene scene) {
-        Cam cam = scene.getCurrentCam();
-        //Generate shadow map
-       
-//        setRotationX( 1 );
-        buffer.begin(); {
-            Gdx.gl20.glClearColor(0, 0, 0, 0);
-            Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
-            Gdx.gl20.glDisable(GL20.GL_BLEND);
-            for (GenericObject object : scene.getAllObjects()) {
-                object.getImg().bind(0);
-                shadowShader.begin();
-                shadowShader.setUniformMatrix("u_worldView", getProjectionMatrix().mul(getViewMatrix()).mul(object.getTRS())); //aca trabajar
-                object.getMesh().render(shadowShader, GL20.GL_TRIANGLES);
-                shadowShader.end();
-            }
-        }
-        buffer.end();
-        Gdx.gl20.glEnable(GL20.GL_BLEND);
+        generateShadowMap(scene);
 
 //        renderShadowMap();
         //-----------------
@@ -135,7 +135,7 @@ public class SpotLight extends PointLight {
     }
     
     private void renderShadowMap(){
-      buffer.getColorBufferTexture().bind();
+    shadowMapBuffer.getColorBufferTexture().bind();
       renderShadowShader.begin(); {
           renderShadowShader.setUniformi("u_texture", 0);
           fullScreenQuad.render(renderShadowShader, GL20.GL_TRIANGLES);
@@ -146,17 +146,17 @@ public class SpotLight extends PointLight {
     private void renderObjects(Scene scene){
     	Vector3 lightDirection = getDirection();
     	Cam cam = scene.getCurrentCam();
-    	buffer.getColorBufferTexture().bind(1);
+    	shadowMapBuffer.getColorBufferTexture().bind(1);
     	for (GenericObject object : scene.getAllObjects()) {
        	 object.getImg().bind(0);
 			Vector3 position = cam.getPosition();
 			shader.begin();
-//			shader.setUniformMatrix("u_worldView", cam.getProjectionMatrix().mul(cam.getViewMatrix()).mul(object.getTRS())); //aca trabajar
+			shader.setUniformMatrix("u_worldView", cam.getProjectionMatrix().mul(cam.getViewMatrix()).mul(object.getTRS())); //aca trabajar
 			shader.setUniformMatrix("u_worldMatrix", object.getTRS()); //aca trabajar
 			//Debug code
-			shader.setUniformMatrix("u_worldView",  getProjectionMatrix().mul(getViewMatrix()).mul(object.getTRS())); //ver el bias
+//			shader.setUniformMatrix("u_worldView",  getProjectionMatrix().mul(getViewMatrix()).mul(object.getTRS())); //ver el bias
 			//
-			shader.setUniformMatrix("u_lightMVP",  getProjectionMatrix().mul(getViewMatrix()).mul(object.getTRS()).mul(getBiasMatrix())); //ver el bias
+			shader.setUniformMatrix("u_lightMVP",  getProjectionMatrix().mul(getViewMatrix()).mul(object.getTRS())); //ver el bias
 			shader.setUniformi("u_texture", 0);
 			shader.setUniformi("u_shadowMap", 1);
 			

@@ -12,16 +12,20 @@ uniform vec4 eye;
 uniform vec4 specular_color;
 uniform vec4 ambient_color;
 
+float unpackFloatFromVec4i(const vec4 value);
+vec4 packFloatToVec4i(const float value);
 
 void main() {
 
-	float bias = 0.1;
+	float bias = 0.00;
     float visibility = 1.0;
     //Solamente hay que calcularlo si esta adentro del shadowMap
+    vec2 convertedShadowCoord = (ShadowCoord.xy + vec2(1,1)) / 2.0;
+    float diffCoordMap = unpackFloatFromVec4i(texture2D(u_shadowMap, convertedShadowCoord)) - ShadowCoord.z;
     if(ShadowCoord.x <= 1.0 && ShadowCoord.x >= -1.0 && ShadowCoord.y <= 1.0 && ShadowCoord.y >= -1.0){
 
-        if ( ShadowCoord.z + bias> texture2D(u_shadowMap, (ShadowCoord.xy + vec2(1,1)) / 2.0).z){
-            visibility = 0.4;
+        if ( unpackFloatFromVec4i(packFloatToVec4i(ShadowCoord.z)) + bias> unpackFloatFromVec4i(texture2D(u_shadowMap, convertedShadowCoord))){
+            visibility = 0.0;
         }
     }
 
@@ -30,7 +34,7 @@ void main() {
 
     float normal_dot_light = dot(normal, normalize(light_vector));
 
-    vec4 diffusal_irradiance = normal_dot_light * gl_FragColor  * light_color ;
+    vec4 diffusal_irradiance = normal_dot_light  * gl_FragColor  * light_color ;
 
     //Especular
     float m_shine = 1.0; //Brillo del material
@@ -44,14 +48,31 @@ void main() {
     vec4 ambient_irradiance = m_ambient * ambient_color;
 
     //Phone
-    gl_FragColor =  diffusal_irradiance + specular_irradiance + ambient_irradiance;
-
+    gl_FragColor =  diffusal_irradiance + specular_irradiance  + ambient_irradiance ;
 
     //Shadows
-    gl_FragColor = gl_FragColor * visibility;
-   // gl_FragColor = gl_FragColor * visibility * 0.000001 + vec4(0,texture2D(u_shadowMap, (ShadowCoord.xy + vec2(1,1)) / 2.0).z,0,1);
+    gl_FragColor = vec4(gl_FragColor.xyz * visibility,gl_FragColor.a);
+  //  float diffDepth = unpackFloatFromVec4i(packFloatToVec4i(ShadowCoord.z)) - unpackFloatFromVec4i(texture2D(u_shadowMap, convertedShadowCoord));
+ //   gl_FragColor = gl_FragColor * 0.000001 + vec4(diffDepth,diffDepth,diffDepth,1);
+  // 	gl_FragColor = gl_FragColor + vec4(normal.xyz,1);
+  // gl_FragColor = gl_FragColor * visibility * 0.000001 + vec4(unpackFloatFromVec4i(texture2D(u_shadowMap, (ShadowCoord.xy + vec2(1,1)) / 2.0)),0,ShadowCoord.z,1);
+ //	gl_FragColor = gl_FragColor * visibility * 0.000001 + vec4(0,0,unpackFloatFromVec4i(texture2D(u_shadowMap, (ShadowCoord.xy + vec2(1,1)) / 2.0)),1);
+ //	gl_FragColor = gl_FragColor * visibility * 0.000001 + vec4(0,0,ShadowCoord.z,1);
 
+}
 
+float unpackFloatFromVec4i(const vec4 value)
+{
+  const vec4 bitSh = vec4(1.0/(256.0*256.0*256.0), 1.0/(256.0*256.0), 1.0/256.0, 1.0);
+  return(dot(value, bitSh));
+}
+vec4 packFloatToVec4i(const float value)
+{
+  const vec4 bitSh = vec4(256.0*256.0*256.0, 256.0*256.0, 256.0, 1.0);
+  const vec4 bitMsk = vec4(0.0, 1.0/256.0, 1.0/256.0, 1.0/256.0);
+  vec4 res = fract(value * bitSh);
+  res -= res.xxyz * bitMsk;
+  return res;
 }
 
 

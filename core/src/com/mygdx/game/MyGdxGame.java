@@ -68,8 +68,9 @@ public class MyGdxGame extends ApplicationAdapter {
 				VertexAttribute.Position(),VertexAttribute.Normal(), VertexAttribute.TexCoords(0));
 		mesh.setVertices(data.meshes.get(0).vertices);
 		mesh.setIndices(data.meshes.get(0).parts[0].indices);
-		GenericObject backgroundSpace = new GenericObject(new Vector3(0,-1,0),mesh,img2);
-		backgroundSpace.setScaleVector(100f, 0.1f, 100f);
+		GenericObject backgroundSpace = new GenericObject(new Vector3(0,-3,0),mesh,img2);
+		backgroundSpace.setScaleVector(100f, 2f, 100f);
+//		backgroundSpace.setRotationX(+(float) Math.PI);
 		scene.addObject("SpaceBackground", backgroundSpace);
 		
 //		String vs = Gdx.files.internal("defaultVS.glsl").readString();
@@ -86,7 +87,7 @@ public class MyGdxGame extends ApplicationAdapter {
         mainShip.setFather(cam);
         //TODO Arreglar lo de padre e hijo y completar los casos que faltan.
 		env = Scene.getInstance();
-		env.addLight("directional", new DirectionalLight(new Vector3(0, 2, 0), new Vector3(0, 1, 0), new Color(1, 1, 1, 1)));
+		env.addLight("directional", new DirectionalLight(new Vector3(0, 15, 0), new Vector3(0, 1, 0), new Color(1, 1, 1, 1)));
 //        env.addLight("point", new PointLight(new Vector3(1.5f,0,0), new Color(1, 1, 1, 1)));
 //        env.addLight("spot", new SpotLight());
 		
