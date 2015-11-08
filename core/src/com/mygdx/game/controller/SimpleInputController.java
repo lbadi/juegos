@@ -18,7 +18,7 @@ public class SimpleInputController extends InputAdapter{
 	
 	public  SimpleInputController() {
 		super();
-		this.enviroment = Scene.getInstance();
+		this.enviroment = Scene.getCurrentScene();
 	}
 
 	public float getMouseSensibility() {

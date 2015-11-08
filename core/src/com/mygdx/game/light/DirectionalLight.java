@@ -63,7 +63,7 @@ public class DirectionalLight extends Light{
 	@Override
 	public void render(GenericObject object) {
 		object.getImg().bind();
-        Scene scene = Scene.getInstance();
+        Scene scene = Scene.getCurrentScene();
 		Cam cam = scene.getCurrentCam();
 		Vector3 position = cam.getPosition();
 
@@ -113,7 +113,7 @@ public class DirectionalLight extends Light{
 
 	private ShaderProgram shadowShader;
 	private ShaderProgram renderShadowShader;
-	private FrameBuffer shadowMapBuffer = new FrameBuffer(Pixmap.Format.RGBA8888, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), true);
+	private FrameBuffer shadowMapBuffer = new FrameBuffer(Pixmap.Format.RGBA8888, 2048, 2048, true);
 
 	private void generateShadowMap(Scene scene) {
 		shadowMapBuffer.begin(); {

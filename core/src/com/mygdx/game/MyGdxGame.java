@@ -28,7 +28,7 @@ public class MyGdxGame extends ApplicationAdapter {
 	Scene env ;
 	boolean firstTime = true;
 
-	private Scene scene = Scene.getInstance();
+	private Scene scene = Scene.newScene("space");
 	
 	//UI
 	 private SpriteBatch batch;
@@ -86,7 +86,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		cam.setRotationX(-(float) Math.PI/4);
         mainShip.setFather(cam);
         //TODO Arreglar lo de padre e hijo y completar los casos que faltan.
-		env = Scene.getInstance();
+		env = Scene.getCurrentScene();
 		env.addLight("directional", new DirectionalLight(new Vector3(0, 15, 0), new Vector3(0, 1, 0), new Color(1, 1, 1, 1)));
 //        env.addLight("point", new PointLight(new Vector3(1.5f,0,0), new Color(1, 1, 1, 1)));
 //        env.addLight("spot", new SpotLight());
@@ -106,8 +106,7 @@ public class MyGdxGame extends ApplicationAdapter {
 //		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 		//Aca activo el blending para hacer muchas luces
-		
-		
+
 		Gdx.gl.glEnable(GL20.GL_DEPTH_TEST);
 		Gdx.gl.glDepthFunc(GL20.GL_LEQUAL);
 		for(Light light: env.getLights()){
@@ -115,12 +114,12 @@ public class MyGdxGame extends ApplicationAdapter {
 				Gdx.gl.glEnable(GL20.GL_BLEND);
 				Gdx.gl.glBlendFunc(GL20.GL_ONE,GL20.GL_ONE);
 			}
-			light.render(Scene.getInstance());
+			light.render(Scene.getCurrentScene());
 			firstTime = false;
         }
 		Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA,GL20.GL_ONE_MINUS_SRC_ALPHA);
 		env.getCurrentCam().move();
-		
+
 		//UI
 //		batch.begin();
 //        stage.draw();

@@ -25,7 +25,7 @@ void main() {
     if(ShadowCoord.x <= 1.0 && ShadowCoord.x >= -1.0 && ShadowCoord.y <= 1.0 && ShadowCoord.y >= -1.0){
 
         if ( unpackFloatFromVec4i(packFloatToVec4i(ShadowCoord.z)) + bias> unpackFloatFromVec4i(texture2D(u_shadowMap, convertedShadowCoord))){
-            visibility = 0.0;
+            visibility = 0.1;
         }
     }
 

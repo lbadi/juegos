@@ -30,7 +30,7 @@ public class PointLight extends Light{
 	public void render(GenericObject object) {
 		
 		object.getImg().bind();
-        Scene scene = Scene.getInstance();
+        Scene scene = Scene.getCurrentScene();
 		Cam cam = scene.getCurrentCam();
 		Vector3 position = cam.getPosition();
 		//TODO preguntar para varias luces como hay que hacer

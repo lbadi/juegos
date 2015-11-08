@@ -9,7 +9,9 @@ import com.mygdx.game.light.Light;
 
 public class Scene {
 
-    private static Scene instance;
+    private static Scene currentScene;
+
+    private static Map<String, Scene> scenes = new HashMap<String, Scene>();
 
     private Cam currentCam;
     private Light defaultLight;
@@ -19,12 +21,24 @@ public class Scene {
 
     private long objectsCount;
 
-	public static Scene getInstance() {
-		if(instance == null) {
-			instance = new Scene();
-		}
-		return instance;
+	public static Scene getCurrentScene() {
+		return currentScene;
 	}
+
+    public static void setCurrentScene(String tag) {
+        Scene scene = scenes.get(tag);
+        if(scene != null) {
+            currentScene = scene;
+        }
+    }
+
+    public static Scene newScene(String tag) {
+        Scene scene = new Scene();
+        if(currentScene == null)
+            currentScene = scene;
+        scenes.put(tag, scene);
+        return scene;
+    }
 
     private Scene() {
         lights = new HashMap<String, Light>();
