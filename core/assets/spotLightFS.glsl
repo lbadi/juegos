@@ -21,10 +21,11 @@ void main() {
 	float  bias = 0.1;
 	float visibility = 1.0;
 	//Solamente hay que calcularlo si esta adentro del shadowMap
-	if(ShadowCoord.x <= 1.0 && ShadowCoord.x >= -1.0 && ShadowCoord.y <= 1.0 && ShadowCoord.y >= -1.0){
-
-        if ( ShadowCoord.z + bias> unpackFloatFromVec4i(texture2D(u_shadowMap, (ShadowCoord.xy + vec2(1,1)) / 2.0))){
-            visibility = 0.4;
+	vec2 convertedShadowCoord = (ShadowCoord.xy + vec2(1,1)) / 2.0;
+    float diffCoordMap = unpackFloatFromVec4i(texture2D(u_shadowMap, convertedShadowCoord)) - ShadowCoord.z;
+    if(ShadowCoord.x <= 1.0 && ShadowCoord.x >= -1.0 && ShadowCoord.y <= 1.0 && ShadowCoord.y >= -1.0){
+        if ( ShadowCoord.z - bias> unpackFloatFromVec4i(texture2D(u_shadowMap, convertedShadowCoord)) ){
+            visibility = 0.1;
         }
     }
 	//vec4 light_vector = normalize(light_position - v_position);
@@ -62,5 +63,11 @@ float unpackFloatFromVec4i(const vec4 value)
   const vec4 bitSh = vec4(1.0/(256.0*256.0*256.0), 1.0/(256.0*256.0), 1.0/256.0, 1.0);
   return(dot(value, bitSh));
 }
-
-   
+vec4 packFloatToVec4i(const float value)
+{
+  const vec4 bitSh = vec4(256.0*256.0*256.0, 256.0*256.0, 256.0, 1.0);
+  const vec4 bitMsk = vec4(0.0, 1.0/256.0, 1.0/256.0, 1.0/256.0);
+  vec4 res = fract(value * bitSh);
+  res -= res.xxyz * bitMsk;
+  return res;
+}

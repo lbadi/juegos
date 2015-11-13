@@ -25,7 +25,7 @@ public class SpotLight extends PointLight {
     private ShaderProgram shader;
     private ShaderProgram shadowShader;
     private ShaderProgram renderShadowShader;
-    private PerspectiveProjection perspectiveProjection = new PerspectiveProjection();
+    private PerspectiveProjection perspectiveProjection;
 
     private Mesh fullScreenQuad;
 
@@ -39,6 +39,9 @@ public class SpotLight extends PointLight {
         setRotationX(lightRotation.x);
         setRotationY(lightRotation.y);
         initShader();
+        perspectiveProjection = new PerspectiveProjection();
+        perspectiveProjection.setProjection(0.1f, 100, 30, 30);
+
     }
     
     public SpotLight(Vector3 position, Vector3 lightRotation, Color color, float inner_cos, float outter_cos) {
@@ -106,7 +109,7 @@ public class SpotLight extends PointLight {
 
 
 
-    private FrameBuffer shadowMapBuffer = new FrameBuffer(Format.RGBA8888, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), true);
+    private FrameBuffer shadowMapBuffer = new FrameBuffer(Format.RGBA8888, 2048, 2048, true);
 
     
     private void generateShadowMap(Scene scene) {
@@ -151,10 +154,10 @@ public class SpotLight extends PointLight {
        	 object.getImg().bind(0);
 			Vector3 position = cam.getPosition();
 			shader.begin();
-			shader.setUniformMatrix("u_worldView", cam.getProjectionMatrix().mul(cam.getViewMatrix()).mul(object.getTRS())); //aca trabajar
+//			shader.setUniformMatrix("u_worldView", cam.getProjectionMatrix().mul(cam.getViewMatrix()).mul(object.getTRS())); //aca trabajar
 			shader.setUniformMatrix("u_worldMatrix", object.getTRS()); //aca trabajar
 			//Debug code
-//			shader.setUniformMatrix("u_worldView",  getProjectionMatrix().mul(getViewMatrix()).mul(object.getTRS())); //ver el bias
+			shader.setUniformMatrix("u_worldView",  getProjectionMatrix().mul(getViewMatrix()).mul(object.getTRS())); //ver el bias
 			//
 			shader.setUniformMatrix("u_lightMVP",  getProjectionMatrix().mul(getViewMatrix()).mul(object.getTRS())); //ver el bias
 			shader.setUniformi("u_texture", 0);
