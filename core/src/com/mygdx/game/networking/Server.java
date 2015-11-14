@@ -1,4 +1,4 @@
-package ar.edu.itba.pdc.nio;
+package com.mygdx.game.networking;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -14,10 +14,8 @@ class Server {
     private static final int ECHOMAX = 255; // Maximum size of echo datagram 
 
     public static void main(String[] args) throws IOException {
-        if (args.length != 1) // Test for correct argument list
-        throw new IllegalArgumentException("Parameter(s): <Port>");
 
-        int servPort = Integer.parseInt(args[0]);
+        int servPort = 1234;
         // Create a selector to multiplex client connections.
         Selector selector = Selector.open();
 
@@ -39,11 +37,15 @@ class Server {
                 SelectionKey key = keyIter.next(); // Key is bit mask
 
                 // Client socket channel has pending data?
-                if (key.isReadable()) handleRead(key);
+                if (key.isReadable()) {
+                    handleRead(key);
+                }
 
                 // Client socket channel is available for writing and
                 // key is valid (i.e., channel not closed).
-                if (key.isValid() && key.isWritable()) handleWrite(key);
+                if (key.isValid() && key.isWritable()) {
+                    handleWrite(key);
+                }
                 keyIter.remove();
             }
         }
@@ -52,12 +54,19 @@ class Server {
     public static void handleRead(SelectionKey key) throws IOException {
         DatagramChannel channel = (DatagramChannel) key.channel();
         ClientRecord clntRec = (ClientRecord) key.attachment();
+
         clntRec.buffer.clear(); // Prepare buffer for receiving
         clntRec.clientAddress = channel.receive(clntRec.buffer);
         if (clntRec.clientAddress != null) { // Did we receive something?
             // Register write with the selector
             key.interestOps(SelectionKey.OP_WRITE);
         }
+
+        byte[] buffer = clntRec.buffer.array();
+        for (int i = 0; i < clntRec.buffer.position(); i ++) {
+            System.out.print(new String(new byte[] {buffer[i]}, "UTF-8"));
+        }
+        System.out.println();
     }
 
     public static void handleWrite(SelectionKey key) throws IOException {
