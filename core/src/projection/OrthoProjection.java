@@ -7,7 +7,7 @@ public class OrthoProjection {
 	private Matrix4 projection;
 
     public OrthoProjection() {
-        setProjection(-5f, 5f, -5f, 5f, 0.1f, 25f);
+        setProjection(-5f, 5f, -5f, 5f, -10.0f, 25f);
     }
 	
 	// Ver pagina 91 del libro
