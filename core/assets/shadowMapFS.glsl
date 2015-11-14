@@ -1,7 +1,8 @@
 varying vec4 ShadowCoord;
 vec4 packFloatToVec4i(const float value);
 void main() {
-    gl_FragColor = packFloatToVec4i(ShadowCoord.z);
+	vec3 convertedShadowCoord = (ShadowCoord.xyz + vec3(1,1,1)) / 2.0;
+    gl_FragColor = packFloatToVec4i(convertedShadowCoord.z);
 }
 
 vec4 packFloatToVec4i(const float value)

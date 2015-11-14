@@ -20,11 +20,11 @@ void main() {
 	float bias = 0.01;
     float visibility = 1.0;
     //Solamente hay que calcularlo si esta adentro del shadowMap
-    vec2 convertedShadowCoord = (ShadowCoord.xy + vec2(1,1)) / 2.0;
-    float diffCoordMap = unpackFloatFromVec4i(texture2D(u_shadowMap, convertedShadowCoord)) - ShadowCoord.z;
+    vec3 convertedShadowCoord = (ShadowCoord.xyz + vec3(1,1,1)) / 2.0;
+    float diffCoordMap = unpackFloatFromVec4i(texture2D(u_shadowMap, convertedShadowCoord.xy)) - ShadowCoord.z;
     if(ShadowCoord.x <= 1.0 && ShadowCoord.x >= -1.0 && ShadowCoord.y <= 1.0 && ShadowCoord.y >= -1.0){
 
-        if ( ShadowCoord.z - bias> unpackFloatFromVec4i(texture2D(u_shadowMap, convertedShadowCoord)) ){
+        if ( convertedShadowCoord.z - bias> unpackFloatFromVec4i(texture2D(u_shadowMap, convertedShadowCoord.xy)) ){
             visibility = 0.1;
         }
     }
