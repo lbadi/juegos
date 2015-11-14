@@ -1,90 +1,78 @@
-package server;
-
+package ar.edu.itba.pdc.nio;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
-import java.net.SocketException;
 import java.nio.ByteBuffer;
-import java.nio.CharBuffer;
 import java.nio.channels.DatagramChannel;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
-import java.nio.charset.Charset;
 import java.util.Iterator;
 
-public class Server {
-    static int BUF_SZ = 1024;
+class Server {
+    private static final int TIMEOUT = 3000; // Wait timeout (milliseconds) 
+    private static final int ECHOMAX = 255; // Maximum size of echo datagram 
 
-    class Con {
-        ByteBuffer req;
-        ByteBuffer resp;
-        SocketAddress sa;
+    public static void main(String[] args) throws IOException {
+        if (args.length != 1) // Test for correct argument list
+        throw new IllegalArgumentException("Parameter(s): <Port>");
 
-        public Con() {
-            req = ByteBuffer.allocate(BUF_SZ);
-        }
-    }
+        int servPort = Integer.parseInt(args[0]);
+        // Create a selector to multiplex client connections.
+        Selector selector = Selector.open();
 
-    static int port = 1234;
-    private void process() {
-        try {
-            Selector selector = Selector.open();
-            DatagramChannel channel = DatagramChannel.open();
-            InetSocketAddress isa = new InetSocketAddress(port);
-            channel.socket().bind(isa);
-            channel.configureBlocking(false);
-            SelectionKey clientKey = channel.register(selector, SelectionKey.OP_READ);
-            clientKey.attach(new Con());
-            while (true) {
-                try {
-                    selector.select();
-                    Iterator selectedKeys = selector.selectedKeys().iterator();
-                    while (selectedKeys.hasNext()) {
-                        try {
-                            SelectionKey key = (SelectionKey) selectedKeys.next();
-                            selectedKeys.remove();
+        DatagramChannel channel = DatagramChannel.open();
+        channel.configureBlocking(false);
+        channel.socket().bind(new InetSocketAddress(servPort));
+        channel.register(selector, SelectionKey.OP_READ, new ClientRecord());
 
-                            if (!key.isValid()) {
-                                continue;
-                            }
-
-                            if (key.isReadable()) {
-                                read(key);
-                                key.interestOps(SelectionKey.OP_WRITE);
-                            } else if (key.isWritable()) {
-                                write(key);
-                                key.interestOps(SelectionKey.OP_READ);
-                            }
-                        } catch (IOException e) {
-                            System.err.println("glitch, continuing... " +(e.getMessage()!=null?e.getMessage():""));
-                        }
-                    }
-                } catch (IOException e) {
-                    System.err.println("glitch, continuing... " +(e.getMessage()!=null?e.getMessage():""));
-                }
+        while (true) { // Run forever, receiving and echoing datagrams
+            // Wait for task or until timeout expires
+            if (selector.select(TIMEOUT) == 0) {
+                System.out.print(".");
+                continue;
             }
-        } catch (IOException e) {
-            System.err.println("network error: " + (e.getMessage()!=null?e.getMessage():""));
+
+            // Get iterator on set of keys with I/O to process
+            Iterator<SelectionKey> keyIter = selector.selectedKeys().iterator();
+            while (keyIter.hasNext()) {
+                SelectionKey key = keyIter.next(); // Key is bit mask
+
+                // Client socket channel has pending data?
+                if (key.isReadable()) handleRead(key);
+
+                // Client socket channel is available for writing and
+                // key is valid (i.e., channel not closed).
+                if (key.isValid() && key.isWritable()) handleWrite(key);
+                keyIter.remove();
+            }
         }
     }
 
-    private void read(SelectionKey key) throws IOException {
-        DatagramChannel chan = (DatagramChannel)key.channel();
-        Con con = (Con)key.attachment();
-        con.sa = chan.receive(con.req);
-        System.out.println(new String(con.req.array(), "UTF-8"));
-        con.resp = Charset.forName("UTF-8").newEncoder().encode(CharBuffer.wrap("send the same string"));
+    public static void handleRead(SelectionKey key) throws IOException {
+        DatagramChannel channel = (DatagramChannel) key.channel();
+        ClientRecord clntRec = (ClientRecord) key.attachment();
+        clntRec.buffer.clear(); // Prepare buffer for receiving
+        clntRec.clientAddress = channel.receive(clntRec.buffer);
+        if (clntRec.clientAddress != null) { // Did we receive something?
+            // Register write with the selector
+            key.interestOps(SelectionKey.OP_WRITE);
+        }
     }
 
-    private void write(SelectionKey key) throws IOException {
-        DatagramChannel chan = (DatagramChannel)key.channel();
-        Con con = (Con)key.attachment();
-        chan.send(con.resp, con.sa);
+    public static void handleWrite(SelectionKey key) throws IOException {
+        DatagramChannel channel = (DatagramChannel) key.channel();
+        ClientRecord clntRec = (ClientRecord) key.attachment();
+        clntRec.buffer.flip(); // Prepare buffer for sending
+        int bytesSent = channel.send(clntRec.buffer, clntRec.clientAddress);
+        if (bytesSent != 0) { // Buffer completely written?
+            // No longer interested in writes
+            key.interestOps(SelectionKey.OP_READ);
+        }
     }
 
-    static public void main(String[] args) {
-        Server svr = new Server();
-        svr.process();
+    static class ClientRecord {
+        public SocketAddress clientAddress;
+        public ByteBuffer buffer = ByteBuffer.allocate(ECHOMAX);
     }
 }
