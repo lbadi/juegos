@@ -35,7 +35,7 @@ public class SpotLight extends PointLight {
         setRotationX(lightRotation.x);
         setRotationY(lightRotation.y);
         perspectiveProjection = new PerspectiveProjection();
-        perspectiveProjection.setProjection(0.2f, 100, 60, 60);
+        perspectiveProjection.setProjection(10f, 1000, 30, 30);
         initShader();
     }
     
@@ -153,9 +153,12 @@ public class SpotLight extends PointLight {
 			shader.end();
     	}
     }
+
     @Override
     public Matrix4 getProjectionMatrix() {
-        return perspectiveProjection.getProjectionMatrix();
+//        return perspectiveProjection.getProjectionMatrix();
+//        return new Matrix4().setToProjection(5f, 1000, 30, 4/3);
+        return new Matrix4().setToOrtho(-25,25,-25,25,-10,100);
     }
     
     public Matrix4 getViewMatrix(){
