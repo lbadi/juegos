@@ -1,51 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/core/src/com/mygdx/game/light/SpotLight.java" line="19" />
-  </component>
   <component name="ChangeListManager">
     <list default="true" id="fbdc2ca4-e0da-4afd-aa22-b96a1937dd63" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/character_fs.glsl" afterPath="$PROJECT_DIR$/core/assets/shaders/animation/character_fs.glsl" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/character_vs.glsl" afterPath="$PROJECT_DIR$/core/assets/shaders/animation/character_vs.glsl" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/defaultFS.glsl" afterPath="$PROJECT_DIR$/core/assets/shaders/lights/defaultFS.glsl" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/defaultVS.glsl" afterPath="$PROJECT_DIR$/core/assets/shaders/lights/defaultVS.glsl" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/directional_fs.glsl" afterPath="$PROJECT_DIR$/core/assets/shaders/lights/directional/directional_fs.glsl" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/Body 1.png" afterPath="$PROJECT_DIR$/core/assets/models/f15/Body 1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/Body 2.png" afterPath="$PROJECT_DIR$/core/assets/models/f15/Body 2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/Body 3.png" afterPath="$PROJECT_DIR$/core/assets/models/f15/Body 3.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/Body 4.png" afterPath="$PROJECT_DIR$/core/assets/models/f15/Body 4.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/Body 5.png" afterPath="$PROJECT_DIR$/core/assets/models/f15/Body 5.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/Body 6.png" afterPath="$PROJECT_DIR$/core/assets/models/f15/Body 6.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/F-15C_Eagle.3ds" afterPath="$PROJECT_DIR$/core/assets/models/f15/F-15C_Eagle.3ds" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/F-15C_Eagle.c4d" afterPath="$PROJECT_DIR$/core/assets/models/f15/F-15C_Eagle.c4d" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/F-15C_Eagle.dae" afterPath="$PROJECT_DIR$/core/assets/models/f15/F-15C_Eagle.dae" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/F-15C_Eagle.fbx" afterPath="$PROJECT_DIR$/core/assets/models/f15/F-15C_Eagle.fbx" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/F-15C_Eagle.obj" afterPath="$PROJECT_DIR$/core/assets/models/f15/F-15C_Eagle.obj" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/F15C.jpg" afterPath="$PROJECT_DIR$/core/assets/models/f15/F15C.jpg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/F15C.pz3" afterPath="$PROJECT_DIR$/core/assets/models/f15/F15C.pz3" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/Glass.png" afterPath="$PROJECT_DIR$/core/assets/models/f15/Glass.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/Parts 1.png" afterPath="$PROJECT_DIR$/core/assets/models/f15/Parts 1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/Thumbs.db" afterPath="$PROJECT_DIR$/core/assets/models/f15/Thumbs.db" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/intpanel.png" afterPath="$PROJECT_DIR$/core/assets/models/f15/intpanel.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/panel.png" afterPath="$PROJECT_DIR$/core/assets/models/f15/panel.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/panel1.png" afterPath="$PROJECT_DIR$/core/assets/models/f15/panel1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/panel2.png" afterPath="$PROJECT_DIR$/core/assets/models/f15/panel2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/pilot.png" afterPath="$PROJECT_DIR$/core/assets/models/f15/pilot.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/weapons.png" afterPath="$PROJECT_DIR$/core/assets/models/f15/weapons.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/pointLightFS.glsl" afterPath="$PROJECT_DIR$/core/assets/shaders/lights/point/pointLightFS.glsl" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/renderShadowMapFS.glsl" afterPath="$PROJECT_DIR$/core/assets/shaders/shadows/renderShadowMapFS.glsl" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/renderShadowVs.glsl" afterPath="$PROJECT_DIR$/core/assets/shaders/shadows/renderShadowMapVS.glsl" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/shadowMapFS.glsl" afterPath="$PROJECT_DIR$/core/assets/shaders/shadows/shadowMapFS.glsl" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/shadowVs.glsl" afterPath="$PROJECT_DIR$/core/assets/shaders/shadows/shadowMapVS.glsl" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/spirit/B-2_Spirit.mtl" afterPath="$PROJECT_DIR$/core/assets/models/spirit/B-2_Spirit.mtl" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/spirit/B-2_Spirit.obj" afterPath="$PROJECT_DIR$/core/assets/models/spirit/B-2_Spirit.obj" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/spirit/B-2_Spirit_P01.png" afterPath="$PROJECT_DIR$/core/assets/models/spirit/B-2_Spirit_P01.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/spotLightFS.glsl" afterPath="$PROJECT_DIR$/core/assets/shaders/lights/spot/spotLightFS.glsl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/com/mygdx/game/AnimationGame.java" afterPath="$PROJECT_DIR$/core/src/com/mygdx/game/AnimationGame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/com/mygdx/game/light/DirectionalLight.java" afterPath="$PROJECT_DIR$/core/src/com/mygdx/game/light/DirectionalLight.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/com/mygdx/game/GenericObject.java" afterPath="$PROJECT_DIR$/core/src/com/mygdx/game/GenericObject.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/com/mygdx/game/light/PointLight.java" afterPath="$PROJECT_DIR$/core/src/com/mygdx/game/light/PointLight.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/com/mygdx/game/controller/SimpleInputController.java" afterPath="$PROJECT_DIR$/core/src/com/mygdx/game/controller/SimpleInputController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mars.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/com/mygdx/game/MyGdxGame.java" afterPath="$PROJECT_DIR$/core/src/com/mygdx/game/MyGdxGame.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/com/mygdx/game/light/SpotLight.java" afterPath="$PROJECT_DIR$/core/src/com/mygdx/game/light/SpotLight.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -80,11 +38,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MyGdxGame.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MyGdxGame.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/MyGdxGame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="120" column="28" selection-start-line="120" selection-start-column="28" selection-end-line="120" selection-end-column="28" />
+            <state vertical-scroll-proportion="0.5970425">
+              <caret line="111" column="40" selection-start-line="111" selection-start-column="40" selection-end-line="111" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -96,8 +54,26 @@
         <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/light/SpotLight.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="132" column="39" selection-start-line="132" selection-start-column="39" selection-end-line="132" selection-end-column="39" />
-              <folding />
+              <caret line="74" column="51" selection-start-line="74" selection-start-column="51" selection-end-line="74" selection-end-column="51" />
+              <folding>
+                <element signature="e#2878#2879#0" expanded="true" />
+                <element signature="e#2946#2947#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Math.java" pinned="false" current-in-tab="false">
+        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/src.zip!/java/lang/Math.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="234" column="25" selection-start-line="234" selection-start-column="25" selection-end-line="234" selection-end-column="25" />
+              <folding>
+                <element signature="e#5875#5876#0" expanded="true" />
+                <element signature="e#5956#5957#0" expanded="true" />
+                <element signature="e#9016#9017#0" expanded="true" />
+                <element signature="e#9058#9059#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -105,28 +81,36 @@
       <file leaf-file-name="GenericObject.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/GenericObject.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="156" column="22" selection-start-line="156" selection-start-column="22" selection-end-line="156" selection-end-column="22" />
+            <state vertical-scroll-proportion="-37.77778">
+              <caret line="100" column="19" selection-start-line="100" selection-start-column="19" selection-end-line="100" selection-end-column="19" />
               <folding>
-                <element signature="e#1026#1027#0" expanded="true" />
-                <element signature="e#1046#1047#0" expanded="true" />
-                <element signature="e#1693#1694#0" expanded="true" />
-                <element signature="e#1716#1717#0" expanded="true" />
-                <element signature="e#1847#1848#0" expanded="true" />
-                <element signature="e#1886#1887#0" expanded="true" />
-                <element signature="e#2011#2012#0" expanded="true" />
-                <element signature="e#2044#2045#0" expanded="true" />
+                <element signature="e#1563#1564#0" expanded="true" />
+                <element signature="e#1607#1608#0" expanded="true" />
                 <element signature="e#2075#2076#0" expanded="true" />
                 <element signature="e#2098#2099#0" expanded="true" />
                 <element signature="e#2143#2144#0" expanded="true" />
                 <element signature="e#2176#2177#0" expanded="true" />
-                <element signature="e#2209#2210#0" expanded="true" />
-                <element signature="e#2269#2270#0" expanded="true" />
-                <element signature="e#4143#4144#0" expanded="true" />
-                <element signature="e#4180#4181#0" expanded="true" />
-                <element signature="e#4633#4634#0" expanded="true" />
-                <element signature="e#4676#4677#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DirectionalLight.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/light/DirectionalLight.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Light.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/light/Light.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="9" column="38" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -135,27 +119,7 @@
         <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/light/PointLight.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="28" column="46" selection-start-line="28" selection-start-column="46" selection-end-line="28" selection-end-column="46" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Vector3.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx/1.6.4/cecef47b1a565819c3991ec13d967d685605c5c0/gdx-1.6.4-sources.jar!/com/badlogic/gdx/math/Vector3.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="441" column="19" selection-start-line="441" selection-start-column="19" selection-end-line="441" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="renderShadowMapFS.glsl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/assets/shaders/shadows/renderShadowMapFS.glsl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+              <caret line="21" column="15" selection-start-line="21" selection-start-column="15" selection-end-line="21" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -171,31 +135,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AnimationGame.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/AnimationGame.java">
+      <file leaf-file-name="directional_fs.glsl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/assets/shaders/lights/directional/directional_fs.glsl">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="33" column="20" selection-start-line="33" selection-start-column="20" selection-end-line="33" selection-end-column="20" />
+              <caret line="37" column="58" selection-start-line="37" selection-start-column="58" selection-end-line="37" selection-end-column="58" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SimpleInputController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SimpleInputController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/controller/SimpleInputController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.142857">
-              <caret line="57" column="42" selection-start-line="57" selection-start-column="42" selection-end-line="57" selection-end-column="42" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Cam.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/Cam.java">
-          <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+              <caret line="73" column="39" selection-start-line="73" selection-start-column="39" selection-end-line="73" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -964,8 +918,6 @@
         <option value="$PROJECT_DIR$/core/src/com/mygdx/game/networking/Server.java" />
         <option value="$PROJECT_DIR$/core/src/com/mygdx/game/networking/Client.java" />
         <option value="$PROJECT_DIR$/core/src/projection/OrthoProjection.java" />
-        <option value="$PROJECT_DIR$/core/src/com/mygdx/game/light/Light.java" />
-        <option value="$PROJECT_DIR$/core/src/com/mygdx/game/MyGdxGame.java" />
         <option value="$PROJECT_DIR$/core/assets/directional_fs.glsl" />
         <option value="$PROJECT_DIR$/core/assets/defaultVS.glsl" />
         <option value="$PROJECT_DIR$/core/assets/spotLightFS.glsl" />
@@ -973,9 +925,11 @@
         <option value="$PROJECT_DIR$/core/src/com/mygdx/game/light/DirectionalLight.java" />
         <option value="$PROJECT_DIR$/core/src/com/mygdx/game/light/PointLight.java" />
         <option value="$PROJECT_DIR$/core/src/com/mygdx/game/AnimationGame.java" />
-        <option value="$PROJECT_DIR$/core/src/com/mygdx/game/light/SpotLight.java" />
         <option value="$PROJECT_DIR$/core/src/com/mygdx/game/GenericObject.java" />
         <option value="$PROJECT_DIR$/core/src/com/mygdx/game/controller/SimpleInputController.java" />
+        <option value="$PROJECT_DIR$/core/src/com/mygdx/game/light/Light.java" />
+        <option value="$PROJECT_DIR$/core/src/com/mygdx/game/light/SpotLight.java" />
+        <option value="$PROJECT_DIR$/core/src/com/mygdx/game/MyGdxGame.java" />
       </list>
     </option>
   </component>
@@ -1241,66 +1195,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="spot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="juegos" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="juegos" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shaders" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lights" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="point" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="juegos" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="juegos" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shaders" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lights" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="directional" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -1391,11 +1285,11 @@
       <recent name="$PROJECT_DIR$/core/assets/shaders/directional" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/core/assets" />
+      <recent name="$PROJECT_DIR$/core/assets/shaders" />
       <recent name="$PROJECT_DIR$/core/assets/shaders/animation" />
       <recent name="$PROJECT_DIR$/core/assets/shaders/light/spot" />
       <recent name="$PROJECT_DIR$/core/assets/shaders/light/point" />
-      <recent name="$PROJECT_DIR$/core/assets/shaders/light/directional" />
-      <recent name="$PROJECT_DIR$/core/assets/shaders/light" />
     </key>
   </component>
   <component name="RunManager" selected="Application.DesktopLauncher">
@@ -1710,44 +1604,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/core/assets/shaders/lights/spot/spotLightFS.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="32" column="4" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/light/PointLight.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="27" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/assets/shaders/lights/point/pointLightFS.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/assets/shaders/lights/defaultVS.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/light/DirectionalLight.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="36" column="37" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/light/Light.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1787,6 +1643,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="362" column="19" selection-start-line="362" selection-start-column="19" selection-end-line="362" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1826,11 +1683,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/assets/uv_dave_mapeo.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/assets/dave_uv.jpg">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
@@ -1885,7 +1737,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="47" column="20" selection-start-line="47" selection-start-column="20" selection-end-line="47" selection-end-column="20" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1894,6 +1746,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding>
+            <element signature="e#356#357#0" expanded="false" />
+            <element signature="e#431#432#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1901,16 +1757,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="41" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/light/Light.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
           <folding>
-            <element signature="e#709#710#0" expanded="true" />
-            <element signature="e#761#762#0" expanded="true" />
+            <element signature="e#151#152#0" expanded="false" />
+            <element signature="e#215#216#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1967,13 +1816,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/assets/shaders/lights/directional/directional_fs.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="24" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/assets/shaders/lights/spot/spotLightFS.glsl">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1985,16 +1827,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/light/DirectionalLight.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="34" column="31" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2010,7 +1842,84 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="441" column="19" selection-start-line="441" selection-start-column="19" selection-end-line="441" selection-end-column="19" />
-          <folding />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1850#1851#0" expanded="false" />
+            <element signature="e#1874#1875#0" expanded="false" />
+            <element signature="e#1992#1993#0" expanded="false" />
+            <element signature="e#2015#2016#0" expanded="false" />
+            <element signature="e#2177#2178#0" expanded="false" />
+            <element signature="e#2225#2226#0" expanded="false" />
+            <element signature="e#2401#2402#0" expanded="false" />
+            <element signature="e#2439#2440#0" expanded="false" />
+            <element signature="e#2783#2784#0" expanded="false" />
+            <element signature="e#2835#2836#0" expanded="false" />
+            <element signature="e#3034#3035#0" expanded="false" />
+            <element signature="e#3089#3090#0" expanded="false" />
+            <element signature="e#3307#3308#0" expanded="false" />
+            <element signature="e#3352#3353#0" expanded="false" />
+            <element signature="e#3389#3390#0" expanded="false" />
+            <element signature="e#3420#3421#0" expanded="false" />
+            <element signature="e#3477#3478#0" expanded="false" />
+            <element signature="e#3529#3530#0" expanded="false" />
+            <element signature="e#3813#3814#0" expanded="false" />
+            <element signature="e#3871#3872#0" expanded="false" />
+            <element signature="e#4046#4047#0" expanded="false" />
+            <element signature="e#4119#4120#0" expanded="false" />
+            <element signature="e#4175#4176#0" expanded="false" />
+            <element signature="e#4224#4225#0" expanded="false" />
+            <element signature="e#4516#4517#0" expanded="false" />
+            <element signature="e#4574#4575#0" expanded="false" />
+            <element signature="e#4748#4749#0" expanded="false" />
+            <element signature="e#4818#4819#0" expanded="false" />
+            <element signature="e#4867#4868#0" expanded="false" />
+            <element signature="e#4940#4941#0" expanded="false" />
+            <element signature="e#4996#4997#0" expanded="false" />
+            <element signature="e#5057#5058#0" expanded="false" />
+            <element signature="e#5261#5262#0" expanded="false" />
+            <element signature="e#5322#5323#0" expanded="false" />
+            <element signature="e#5863#5864#0" expanded="false" />
+            <element signature="e#5916#5917#0" expanded="false" />
+            <element signature="e#6036#6037#0" expanded="false" />
+            <element signature="e#6071#6072#0" expanded="false" />
+            <element signature="e#6107#6108#0" expanded="false" />
+            <element signature="e#6142#6143#0" expanded="false" />
+            <element signature="e#6283#6284#0" expanded="false" />
+            <element signature="e#6344#6345#0" expanded="false" />
+            <element signature="e#8457#8458#0" expanded="false" />
+            <element signature="e#8513#8514#0" expanded="false" />
+            <element signature="e#8804#8805#0" expanded="false" />
+            <element signature="e#8854#8855#0" expanded="false" />
+            <element signature="e#12281#12282#0" expanded="false" />
+            <element signature="e#12315#12316#0" expanded="false" />
+            <element signature="e#16721#16722#0" expanded="false" />
+            <element signature="e#16755#16756#0" expanded="false" />
+            <element signature="e#16813#16814#0" expanded="false" />
+            <element signature="e#16857#16858#0" expanded="false" />
+            <element signature="e#16897#16898#0" expanded="false" />
+            <element signature="e#16937#16938#0" expanded="false" />
+            <element signature="e#16995#16996#0" expanded="false" />
+            <element signature="e#17024#17025#0" expanded="false" />
+            <element signature="e#17588#17589#0" expanded="false" />
+            <element signature="e#17644#17645#0" expanded="false" />
+            <element signature="e#17860#17861#0" expanded="false" />
+            <element signature="e#17920#17921#0" expanded="false" />
+            <element signature="e#17983#17984#0" expanded="false" />
+            <element signature="e#18026#18027#0" expanded="false" />
+            <element signature="e#18104#18105#0" expanded="false" />
+            <element signature="e#18156#18157#0" expanded="false" />
+            <element signature="e#18220#18221#0" expanded="false" />
+            <element signature="e#18249#18250#0" expanded="false" />
+            <element signature="e#18317#18318#0" expanded="false" />
+            <element signature="e#18346#18347#0" expanded="false" />
+            <element signature="e#19787#19788#0" expanded="false" />
+            <element signature="e#19836#19837#0" expanded="false" />
+            <element signature="e#19887#19888#0" expanded="false" />
+            <element signature="e#19922#19923#0" expanded="false" />
+            <element signature="e#20138#20139#0" expanded="false" />
+            <element signature="e#20175#20176#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2026,7 +1935,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="33" column="20" selection-start-line="33" selection-start-column="20" selection-end-line="33" selection-end-column="20" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#2749#2761#0" expanded="false" />
+            <element signature="e#2901#2902#0" expanded="false" />
+            <element signature="e#2964#2965#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2046,47 +1960,64 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/MyGdxGame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="120" column="28" selection-start-line="120" selection-start-column="28" selection-end-line="120" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
+    <entry file="file://$PROJECT_DIR$/core/assets/mars.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/light/SpotLight.java">
+    <entry file="file://$PROJECT_DIR$/core/assets/grass.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/assets/default.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/assets/dave_uv.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/assets/white.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/assets/shaders/lights/directional/directional_fs.glsl">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="132" column="39" selection-start-line="132" selection-start-column="39" selection-end-line="132" selection-end-column="39" />
+          <caret line="37" column="58" selection-start-line="37" selection-start-column="58" selection-end-line="37" selection-end-column="58" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/GenericObject.java">
+    <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/controller/SimpleInputController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="156" column="22" selection-start-line="156" selection-start-column="22" selection-end-line="156" selection-end-column="22" />
+          <caret line="73" column="39" selection-start-line="73" selection-start-column="39" selection-end-line="73" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/light/DirectionalLight.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/src.zip!/java/lang/Math.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="234" column="25" selection-start-line="234" selection-start-column="25" selection-end-line="234" selection-end-column="25" />
           <folding>
-            <element signature="e#1026#1027#0" expanded="true" />
-            <element signature="e#1046#1047#0" expanded="true" />
-            <element signature="e#1693#1694#0" expanded="true" />
-            <element signature="e#1716#1717#0" expanded="true" />
-            <element signature="e#1847#1848#0" expanded="true" />
-            <element signature="e#1886#1887#0" expanded="true" />
-            <element signature="e#2011#2012#0" expanded="true" />
-            <element signature="e#2044#2045#0" expanded="true" />
-            <element signature="e#2075#2076#0" expanded="true" />
-            <element signature="e#2098#2099#0" expanded="true" />
-            <element signature="e#2143#2144#0" expanded="true" />
-            <element signature="e#2176#2177#0" expanded="true" />
-            <element signature="e#2209#2210#0" expanded="true" />
-            <element signature="e#2269#2270#0" expanded="true" />
-            <element signature="e#4143#4144#0" expanded="true" />
-            <element signature="e#4180#4181#0" expanded="true" />
-            <element signature="e#4633#4634#0" expanded="true" />
-            <element signature="e#4676#4677#0" expanded="true" />
+            <element signature="e#5875#5876#0" expanded="true" />
+            <element signature="e#5956#5957#0" expanded="true" />
+            <element signature="e#9016#9017#0" expanded="true" />
+            <element signature="e#9058#9059#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2094,16 +2025,52 @@
     <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/light/PointLight.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="46" selection-start-line="28" selection-start-column="46" selection-end-line="28" selection-end-column="46" />
+          <caret line="21" column="15" selection-start-line="21" selection-start-column="15" selection-end-line="21" selection-end-column="15" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/controller/SimpleInputController.java">
+    <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/light/Light.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.142857">
-          <caret line="57" column="42" selection-start-line="57" selection-start-column="42" selection-end-line="57" selection-end-column="42" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="38" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/light/SpotLight.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="74" column="51" selection-start-line="74" selection-start-column="51" selection-end-line="74" selection-end-column="51" />
+          <folding>
+            <element signature="e#2878#2879#0" expanded="true" />
+            <element signature="e#2946#2947#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/GenericObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-37.77778">
+          <caret line="100" column="19" selection-start-line="100" selection-start-column="19" selection-end-line="100" selection-end-column="19" />
+          <folding>
+            <element signature="e#1563#1564#0" expanded="true" />
+            <element signature="e#1607#1608#0" expanded="true" />
+            <element signature="e#2075#2076#0" expanded="true" />
+            <element signature="e#2098#2099#0" expanded="true" />
+            <element signature="e#2143#2144#0" expanded="true" />
+            <element signature="e#2176#2177#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/MyGdxGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5970425">
+          <caret line="111" column="40" selection-start-line="111" selection-start-column="40" selection-end-line="111" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -16,8 +16,8 @@ import com.mygdx.game.GenericObject;
 
 
 public class SpotLight extends PointLight {
-    private float innerAngle = 26;
-    private float outterAngle = 30;
+    private float innerAngle = (float) Math.toRadians(45.4f);
+    private float outterAngle = (float) Math.toRadians(50f);
     private ShaderProgram shader;
     private ShaderProgram shadowShader;
     private ShaderProgram renderShadowShader;
@@ -69,11 +69,11 @@ public class SpotLight extends PointLight {
     }
 
     public void setInnerAngle(float innerAngle) {
-        this.innerAngle = innerAngle;
+        this.innerAngle = (float) Math.toRadians(innerAngle);
     }
 
     public void setOutterAngle(float outterAngle) {
-        this.outterAngle = outterAngle;
+        this.outterAngle = (float) Math.toRadians(outterAngle);;
     }
 
     public float getInnerAngle() {

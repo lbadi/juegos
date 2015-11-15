@@ -24,6 +24,7 @@ public class MyGdxGame extends ApplicationAdapter {
 	Texture img;
 	Texture img2;
 	Mesh spaceshipMesh;
+	private GenericObject mainShip;
 	ShaderProgram shaderProgram;
 	Scene env ;
 	boolean firstTime = true;
@@ -54,13 +55,13 @@ public class MyGdxGame extends ApplicationAdapter {
 			scene.addObject(new GenericObject(new Vector3(i * 2 - 4, 0.4f, 0), spaceshipMesh, img));
 		}
 		//		/*Definimos la posicion del objeto principal*/
-		GenericObject mainShip = new GenericObject(new Vector3(0,-0.5f, -2), spaceshipMesh, img);
+		mainShip = new GenericObject(new Vector3(0,-1f, -4), spaceshipMesh, img);
 		mainShip.setRotationY((float) Math.PI);
 		mainShip.setRotationX(-(float) Math.PI / 12);
-		mainShip.setScaleVector(1, 1, 1);
+//		mainShip.setScaleVector(0.5f, 0.5f, 0.5f);
 		scene.addObject("MainShip", mainShip);
 
-		img2 = new Texture("white.jpg");
+		img2 = new Texture("mars.jpg");
 		data = loader.loadModelData(Gdx.files.internal("cube.obj"));
 		Mesh mesh = new Mesh(true,
 				data.meshes.get(0).vertices.length,
@@ -69,7 +70,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		mesh.setVertices(data.meshes.get(0).vertices);
 		mesh.setIndices(data.meshes.get(0).parts[0].indices);
 		GenericObject backgroundSpace = new GenericObject(new Vector3(0,-3,0),mesh,img2);
-		backgroundSpace.setScaleVector(100f, 2f, 100f);
+		backgroundSpace.setScaleVector(100f, 1f, 100f);
 //		backgroundSpace.setRotationX(+(float) Math.PI);
 		scene.addObject("SpaceBackground", backgroundSpace);
 		
@@ -90,12 +91,17 @@ public class MyGdxGame extends ApplicationAdapter {
 //		env.addLight("directional", new DirectionalLight(new Vector3(0, 15, 0), new Vector3(0, 1, 0), new Color(1, 1, 1, 1)));
 //        env.addLight("point", new PointLight(new Vector3(1.5f,0,0), new Color(1, 1, 1, 1)));
 //		env.addLight("light", new DirectionalLight(new Vector3(0, 15, 0), new Vector3(0, 1, 0), new Color(1, 1, 1, 1)));
-		
-        env.addLight("light", new SpotLight(new Vector3(2, 15, 0),new Vector3((float)(Math.PI * 1.5f),0, 0),new Color(1,1,1,1)));
-        env.addCam("camera", cam);
+        env.addLight("light", new SpotLight(new Vector3(2, 50, 0), new Vector3((float) (Math.PI * 1.5f), 0, 0), new Color(1, 1, 1, 1)));
+		env.addCam("camera", cam);
 		Gdx.input.setInputProcessor(new SimpleInputController());
         env.setDefaultLight("light");
-//		env.getDefaultLight().setRotationX(-(float) Math.PI/2);
+
+		env.addLight("mainShipLight", new SpotLight(new Vector3(2, 50, 0), new Vector3((float) (Math.PI * 1.5f), 0, 0), new Color(1, 1, 1, 1)));
+		SpotLight l = (SpotLight) env.getLight("mainShipLight");
+		l.setInnerAngle(45.4f);
+		l.setOutterAngle(48f);
+
+//		env.getDefaultLight().setRotationX(-(float) Math.PI / 2);
     }
 //GL
     @Override
@@ -106,6 +112,13 @@ public class MyGdxGame extends ApplicationAdapter {
 //		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 		//Aca activo el blending para hacer muchas luces
+
+		SpotLight l = (SpotLight) env.getLight("mainShipLight");
+		l.setPosition(env.getCurrentCam().getPosition());
+		l.setRotationY(env.getCurrentCam().getRotationY());
+		l.setRotationX(env.getCurrentCam().getRotationX() - 0.2f);
+		l.setRotationZ(env.getCurrentCam().getRotationZ());
+
 
 		Gdx.gl.glEnable(GL20.GL_DEPTH_TEST);
 		Gdx.gl.glDepthFunc(GL20.GL_LEQUAL);
