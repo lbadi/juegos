@@ -49,12 +49,12 @@ public class SpotLight extends PointLight {
     }
 
     private void initShader() {
-        String vs = Gdx.files.internal("defaultVS.glsl").readString();
-        String fs = Gdx.files.internal("spotLightFS.glsl").readString();
-        String shadowVs = Gdx.files.internal("shadowVs.glsl").readString();
-        String shadowFs = Gdx.files.internal("shadowMapFS.glsl").readString();
-        String renderShadowVs = Gdx.files.internal("renderShadowVs.glsl").readString();
-        String renderShadowFs = Gdx.files.internal("renderShadowMapFS.glsl").readString();
+        String vs = Gdx.files.internal("shaders/lights/defaultVS.glsl").readString();
+        String fs = Gdx.files.internal("shaders/lights/spot/spotLightFS.glsl").readString();
+        String shadowVs = Gdx.files.internal("shaders/shadows/shadowMapVS.glsl").readString();
+        String shadowFs = Gdx.files.internal("shaders/shadows/shadowMapFS.glsl").readString();
+        String renderShadowVs = Gdx.files.internal("shaders/shadows/renderShadowMapVS.glsl").readString();
+        String renderShadowFs = Gdx.files.internal("shaders/shadows/renderShadowMapFS.glsl").readString();
         shader = new ShaderProgram(vs, fs);
         shadowShader = new ShaderProgram(shadowVs, shadowFs);
         renderShadowShader = new ShaderProgram(renderShadowVs, renderShadowFs);
@@ -128,8 +128,8 @@ public class SpotLight extends PointLight {
        	 object.getImg().bind(0);
 			Vector3 position = cam.getPosition();
 			shader.begin();
-//			shader.setUniformMatrix("u_worldView", cam.getProjectionMatrix().mul(cam.getViewMatrix()).mul(object.getTRS())); //aca trabajar
-            shader.setUniformMatrix("u_worldView",  getProjectionMatrix().mul(getViewMatrix()).mul(object.getTRS())); //ver el bias
+			shader.setUniformMatrix("u_worldView", cam.getProjectionMatrix().mul(cam.getViewMatrix()).mul(object.getTRS())); //aca trabajar
+//            shader.setUniformMatrix("u_worldView",  getProjectionMatrix().mul(getViewMatrix()).mul(object.getTRS())); //ver el bias
             shader.setUniformMatrix("u_worldMatrix", object.getTRS()); //aca trabajar
 			//Debug code
 			//

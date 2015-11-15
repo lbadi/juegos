@@ -34,17 +34,29 @@ public class SimpleInputController extends InputAdapter{
 		 switch (keycode)
 	        {
 	        case Keys.LEFT:
-	    		cam.setHorizontalSpeed(-1);
+				cam.setRotationYSpeed(0.01f);
 	            break;
 	        case Keys.RIGHT:
-	        	cam.setHorizontalSpeed(1);
+				cam.setRotationYSpeed(-0.01f);
 	            break;
 	        case Keys.UP:
-	        	cam.setFowardSpeed(1);
+	        	cam.setFowardSpeed(4);
 	            break;
 	        case Keys.DOWN:
-	        	cam.setFowardSpeed(-1);
+	        	cam.setFowardSpeed(-4);
 	            break;
+			case Keys.A:
+				cam.setRotationZSpeed(0.01f);
+				break;
+			case Keys.D:
+				cam.setRotationZSpeed(-0.01f );
+				break;
+			case Keys.W:
+				cam.setRotationXSpeed(-0.01f );
+				break;
+			case Keys.S:
+				cam.setRotationXSpeed(0.01f );
+				break;
 	        case Keys.R:
 	        	light.setLightColor(light.getLightColor().add(0.2f, -0.1f, -0.1f, 0));
 	        	break;
@@ -92,10 +104,10 @@ public class SimpleInputController extends InputAdapter{
 		switch (keycode)
         {
         case Keys.LEFT:
-    		cam.setHorizontalSpeed(0);
+			cam.setRotationYSpeed(0);
             break;
         case Keys.RIGHT:
-        	cam.setHorizontalSpeed(0);
+			cam.setRotationYSpeed(0);
             break;
         case Keys.UP:
         	cam.setFowardSpeed(0);
@@ -103,7 +115,20 @@ public class SimpleInputController extends InputAdapter{
         case Keys.DOWN:
         	cam.setFowardSpeed(0);
             break;
+		case Keys.A:
+			cam.setRotationZSpeed(0);
+			break;
+		case Keys.D:
+			cam.setRotationZSpeed(0);
+			break;
+		case Keys.W:
+			cam.setRotationXSpeed(0);
+			break;
+		case Keys.S:
+			cam.setRotationXSpeed(0);
+			break;
         }
+
 		return false;
 	}
 

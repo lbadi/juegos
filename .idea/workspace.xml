@@ -5,17 +5,48 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fbdc2ca4-e0da-4afd-aa22-b96a1937dd63" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/com/mygdx/game/networking/Client.java" afterPath="$PROJECT_DIR$/core/src/com/mygdx/game/networking/Client.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/character_fs.glsl" afterPath="$PROJECT_DIR$/core/assets/shaders/animation/character_fs.glsl" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/character_vs.glsl" afterPath="$PROJECT_DIR$/core/assets/shaders/animation/character_vs.glsl" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/defaultFS.glsl" afterPath="$PROJECT_DIR$/core/assets/shaders/lights/defaultFS.glsl" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/defaultVS.glsl" afterPath="$PROJECT_DIR$/core/assets/shaders/lights/defaultVS.glsl" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/directional_fs.glsl" afterPath="$PROJECT_DIR$/core/assets/shaders/lights/directional/directional_fs.glsl" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/Body 1.png" afterPath="$PROJECT_DIR$/core/assets/models/f15/Body 1.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/Body 2.png" afterPath="$PROJECT_DIR$/core/assets/models/f15/Body 2.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/Body 3.png" afterPath="$PROJECT_DIR$/core/assets/models/f15/Body 3.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/Body 4.png" afterPath="$PROJECT_DIR$/core/assets/models/f15/Body 4.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/Body 5.png" afterPath="$PROJECT_DIR$/core/assets/models/f15/Body 5.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/Body 6.png" afterPath="$PROJECT_DIR$/core/assets/models/f15/Body 6.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/F-15C_Eagle.3ds" afterPath="$PROJECT_DIR$/core/assets/models/f15/F-15C_Eagle.3ds" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/F-15C_Eagle.c4d" afterPath="$PROJECT_DIR$/core/assets/models/f15/F-15C_Eagle.c4d" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/F-15C_Eagle.dae" afterPath="$PROJECT_DIR$/core/assets/models/f15/F-15C_Eagle.dae" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/F-15C_Eagle.fbx" afterPath="$PROJECT_DIR$/core/assets/models/f15/F-15C_Eagle.fbx" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/F-15C_Eagle.obj" afterPath="$PROJECT_DIR$/core/assets/models/f15/F-15C_Eagle.obj" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/F15C.jpg" afterPath="$PROJECT_DIR$/core/assets/models/f15/F15C.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/F15C.pz3" afterPath="$PROJECT_DIR$/core/assets/models/f15/F15C.pz3" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/Glass.png" afterPath="$PROJECT_DIR$/core/assets/models/f15/Glass.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/Parts 1.png" afterPath="$PROJECT_DIR$/core/assets/models/f15/Parts 1.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/Thumbs.db" afterPath="$PROJECT_DIR$/core/assets/models/f15/Thumbs.db" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/intpanel.png" afterPath="$PROJECT_DIR$/core/assets/models/f15/intpanel.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/panel.png" afterPath="$PROJECT_DIR$/core/assets/models/f15/panel.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/panel1.png" afterPath="$PROJECT_DIR$/core/assets/models/f15/panel1.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/panel2.png" afterPath="$PROJECT_DIR$/core/assets/models/f15/panel2.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/pilot.png" afterPath="$PROJECT_DIR$/core/assets/models/f15/pilot.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/f15/weapons.png" afterPath="$PROJECT_DIR$/core/assets/models/f15/weapons.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/pointLightFS.glsl" afterPath="$PROJECT_DIR$/core/assets/shaders/lights/point/pointLightFS.glsl" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/renderShadowMapFS.glsl" afterPath="$PROJECT_DIR$/core/assets/shaders/shadows/renderShadowMapFS.glsl" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/renderShadowVs.glsl" afterPath="$PROJECT_DIR$/core/assets/shaders/shadows/renderShadowMapVS.glsl" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/shadowMapFS.glsl" afterPath="$PROJECT_DIR$/core/assets/shaders/shadows/shadowMapFS.glsl" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/shadowVs.glsl" afterPath="$PROJECT_DIR$/core/assets/shaders/shadows/shadowMapVS.glsl" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/spirit/B-2_Spirit.mtl" afterPath="$PROJECT_DIR$/core/assets/models/spirit/B-2_Spirit.mtl" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/spirit/B-2_Spirit.obj" afterPath="$PROJECT_DIR$/core/assets/models/spirit/B-2_Spirit.obj" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/spirit/B-2_Spirit_P01.png" afterPath="$PROJECT_DIR$/core/assets/models/spirit/B-2_Spirit_P01.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/spotLightFS.glsl" afterPath="$PROJECT_DIR$/core/assets/shaders/lights/spot/spotLightFS.glsl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/com/mygdx/game/AnimationGame.java" afterPath="$PROJECT_DIR$/core/src/com/mygdx/game/AnimationGame.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/com/mygdx/game/light/DirectionalLight.java" afterPath="$PROJECT_DIR$/core/src/com/mygdx/game/light/DirectionalLight.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/com/mygdx/game/light/Light.java" afterPath="$PROJECT_DIR$/core/src/com/mygdx/game/light/Light.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/com/mygdx/game/MyGdxGame.java" afterPath="$PROJECT_DIR$/core/src/com/mygdx/game/MyGdxGame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/projection/OrthoProjection.java" afterPath="$PROJECT_DIR$/core/src/projection/OrthoProjection.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/com/mygdx/game/GenericObject.java" afterPath="$PROJECT_DIR$/core/src/com/mygdx/game/GenericObject.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/com/mygdx/game/light/PointLight.java" afterPath="$PROJECT_DIR$/core/src/com/mygdx/game/light/PointLight.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/com/mygdx/game/controller/SimpleInputController.java" afterPath="$PROJECT_DIR$/core/src/com/mygdx/game/controller/SimpleInputController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/com/mygdx/game/light/SpotLight.java" afterPath="$PROJECT_DIR$/core/src/com/mygdx/game/light/SpotLight.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/defaultVS.glsl" afterPath="$PROJECT_DIR$/core/assets/defaultVS.glsl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/directional_fs.glsl" afterPath="$PROJECT_DIR$/core/assets/directional_fs.glsl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/shadowVs.glsl" afterPath="$PROJECT_DIR$/core/assets/shadowVs.glsl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/spotLightFS.glsl" afterPath="$PROJECT_DIR$/core/assets/spotLightFS.glsl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="juegos.iws" />
@@ -49,48 +80,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SpotLight.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/light/SpotLight.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.54285717">
-              <caret line="107" column="0" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
-              <folding>
-                <element signature="e#2721#2722#0" expanded="true" />
-                <element signature="e#2765#2766#0" expanded="true" />
-                <element signature="e#2970#2971#0" expanded="true" />
-                <element signature="e#3004#3005#0" expanded="true" />
-                <element signature="e#6293#6294#0" expanded="true" />
-                <element signature="e#6327#6328#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="renderShadowMapFS.glsl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/assets/renderShadowMapFS.glsl">
+      <file leaf-file-name="MyGdxGame.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/MyGdxGame.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="renderShadowVs.glsl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/assets/renderShadowVs.glsl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DirectionalLight.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/light/DirectionalLight.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="41" column="25" selection-start-line="41" selection-start-column="25" selection-end-line="41" selection-end-column="25" />
+              <caret line="120" column="28" selection-start-line="120" selection-start-column="28" selection-end-line="120" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -98,51 +92,110 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="defaultVS.glsl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/assets/defaultVS.glsl">
+      <file leaf-file-name="SpotLight.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/light/SpotLight.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="21" column="12" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="12" />
+              <caret line="132" column="39" selection-start-line="132" selection-start-column="39" selection-end-line="132" selection-end-column="39" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="spotLightFS.glsl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/assets/spotLightFS.glsl">
+      <file leaf-file-name="GenericObject.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/GenericObject.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.111111">
-              <caret line="24" column="27" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="156" column="22" selection-start-line="156" selection-start-column="22" selection-end-line="156" selection-end-column="22" />
+              <folding>
+                <element signature="e#1026#1027#0" expanded="true" />
+                <element signature="e#1046#1047#0" expanded="true" />
+                <element signature="e#1693#1694#0" expanded="true" />
+                <element signature="e#1716#1717#0" expanded="true" />
+                <element signature="e#1847#1848#0" expanded="true" />
+                <element signature="e#1886#1887#0" expanded="true" />
+                <element signature="e#2011#2012#0" expanded="true" />
+                <element signature="e#2044#2045#0" expanded="true" />
+                <element signature="e#2075#2076#0" expanded="true" />
+                <element signature="e#2098#2099#0" expanded="true" />
+                <element signature="e#2143#2144#0" expanded="true" />
+                <element signature="e#2176#2177#0" expanded="true" />
+                <element signature="e#2209#2210#0" expanded="true" />
+                <element signature="e#2269#2270#0" expanded="true" />
+                <element signature="e#4143#4144#0" expanded="true" />
+                <element signature="e#4180#4181#0" expanded="true" />
+                <element signature="e#4633#4634#0" expanded="true" />
+                <element signature="e#4676#4677#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PointLight.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/light/PointLight.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="28" column="46" selection-start-line="28" selection-start-column="46" selection-end-line="28" selection-end-column="46" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="directional_fs.glsl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/assets/directional_fs.glsl">
+      <file leaf-file-name="Vector3.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx/1.6.4/cecef47b1a565819c3991ec13d967d685605c5c0/gdx-1.6.4-sources.jar!/com/badlogic/gdx/math/Vector3.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="4" column="24" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="24" />
+              <caret line="441" column="19" selection-start-line="441" selection-start-column="19" selection-end-line="441" selection-end-column="19" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="shadowMapFS.glsl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/assets/shadowMapFS.glsl">
+      <file leaf-file-name="renderShadowMapFS.glsl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/assets/shaders/shadows/renderShadowMapFS.glsl">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="shadowVs.glsl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/assets/shadowVs.glsl">
+      <file leaf-file-name="pointLightFS.glsl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/assets/shaders/lights/point/pointLightFS.glsl">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+              <caret line="16" column="61" selection-start-line="16" selection-start-column="50" selection-end-line="16" selection-end-column="61" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AnimationGame.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/AnimationGame.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="33" column="20" selection-start-line="33" selection-start-column="20" selection-end-line="33" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SimpleInputController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/controller/SimpleInputController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-3.142857">
+              <caret line="57" column="42" selection-start-line="57" selection-start-column="42" selection-end-line="57" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Cam.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/Cam.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -902,27 +955,27 @@
         <option value="$PROJECT_DIR$/core/assets/defaultFS.glsl" />
         <option value="$PROJECT_DIR$/core/assets/shaders/directional/defaultFS.glsl" />
         <option value="$PROJECT_DIR$/core/assets/shaders/directional/directional_fs.glsl" />
-        <option value="$PROJECT_DIR$/core/src/com/mygdx/game/GenericObject.java" />
         <option value="$PROJECT_DIR$/core/src/projection/PerspectiveProjection.java" />
         <option value="$PROJECT_DIR$/core/src/com/mygdx/game/Scene.java" />
-        <option value="$PROJECT_DIR$/core/src/com/mygdx/game/controller/SimpleInputController.java" />
         <option value="$PROJECT_DIR$/desktop/src/com/mygdx/game/desktop/DesktopLauncher.java" />
         <option value="$PROJECT_DIR$/core/assets/character_fs.glsl" />
         <option value="$PROJECT_DIR$/core/assets/character_vs.glsl" />
-        <option value="$PROJECT_DIR$/core/src/com/mygdx/game/AnimationGame.java" />
         <option value="$PROJECT_DIR$/server/src/server/Server.java" />
         <option value="$PROJECT_DIR$/core/src/com/mygdx/game/networking/Server.java" />
         <option value="$PROJECT_DIR$/core/src/com/mygdx/game/networking/Client.java" />
         <option value="$PROJECT_DIR$/core/src/projection/OrthoProjection.java" />
         <option value="$PROJECT_DIR$/core/src/com/mygdx/game/light/Light.java" />
-        <option value="$PROJECT_DIR$/core/src/com/mygdx/game/light/PointLight.java" />
         <option value="$PROJECT_DIR$/core/src/com/mygdx/game/MyGdxGame.java" />
-        <option value="$PROJECT_DIR$/core/src/com/mygdx/game/light/DirectionalLight.java" />
         <option value="$PROJECT_DIR$/core/assets/directional_fs.glsl" />
         <option value="$PROJECT_DIR$/core/assets/defaultVS.glsl" />
         <option value="$PROJECT_DIR$/core/assets/spotLightFS.glsl" />
         <option value="$PROJECT_DIR$/core/assets/shadowVs.glsl" />
+        <option value="$PROJECT_DIR$/core/src/com/mygdx/game/light/DirectionalLight.java" />
+        <option value="$PROJECT_DIR$/core/src/com/mygdx/game/light/PointLight.java" />
+        <option value="$PROJECT_DIR$/core/src/com/mygdx/game/AnimationGame.java" />
         <option value="$PROJECT_DIR$/core/src/com/mygdx/game/light/SpotLight.java" />
+        <option value="$PROJECT_DIR$/core/src/com/mygdx/game/GenericObject.java" />
+        <option value="$PROJECT_DIR$/core/src/com/mygdx/game/controller/SimpleInputController.java" />
       </list>
     </option>
   </component>
@@ -963,6 +1016,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -978,42 +1032,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="juegos" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="juegos" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="juegos" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="desktop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="juegos" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="juegos" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="desktop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="desktop" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1097,7 +1115,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="networking" />
+              <option name="myItemId" value="light" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1123,7 +1141,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="light" />
+              <option name="myItemId" value="controller" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1145,10 +1163,199 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="juegos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="juegos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="shaders" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="shadows" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="juegos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="juegos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="shaders" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lights" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="juegos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="juegos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="shaders" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lights" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="juegos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="juegos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="shaders" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lights" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="point" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="juegos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="juegos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="shaders" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lights" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="directional" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="juegos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="juegos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="shaders" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="animation" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="juegos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="juegos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -1184,8 +1391,11 @@
       <recent name="$PROJECT_DIR$/core/assets/shaders/directional" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/core/src/com/mygdx/game/networking" />
-      <recent name="$PROJECT_DIR$/core/assets" />
+      <recent name="$PROJECT_DIR$/core/assets/shaders/animation" />
+      <recent name="$PROJECT_DIR$/core/assets/shaders/light/spot" />
+      <recent name="$PROJECT_DIR$/core/assets/shaders/light/point" />
+      <recent name="$PROJECT_DIR$/core/assets/shaders/light/directional" />
+      <recent name="$PROJECT_DIR$/core/assets/shaders/light" />
     </key>
   </component>
   <component name="RunManager" selected="Application.DesktopLauncher">
@@ -1438,7 +1648,6 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24964234" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32891566" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24964234" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1450,6 +1659,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32891566" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1500,46 +1710,7 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/core/src/projection/OrthoProjection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/MyGdxGame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/controller/SimpleInputController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="79" column="13" selection-start-line="79" selection-start-column="13" selection-end-line="79" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/light/SpotLight.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding>
-            <element signature="e#2721#2722#0" expanded="true" />
-            <element signature="e#2765#2766#0" expanded="true" />
-            <element signature="e#2970#2971#0" expanded="true" />
-            <element signature="e#3004#3005#0" expanded="true" />
-            <element signature="e#6293#6294#0" expanded="true" />
-            <element signature="e#6327#6328#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/assets/spotLightFS.glsl">
+    <entry file="file://$PROJECT_DIR$/core/assets/shaders/lights/spot/spotLightFS.glsl">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="32" column="4" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
@@ -1553,14 +1724,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/assets/pointLightFS.glsl">
+    <entry file="file://$PROJECT_DIR$/core/assets/shaders/lights/point/pointLightFS.glsl">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/assets/defaultVS.glsl">
+    <entry file="file://$PROJECT_DIR$/core/assets/shaders/lights/defaultVS.glsl">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
@@ -1591,13 +1762,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/Cam.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="27" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx/1.6.4/cecef47b1a565819c3991ec13d967d685605c5c0/gdx-1.6.4-sources.jar!/com/badlogic/gdx/Gdx.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.29037267">
@@ -1623,7 +1787,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="362" column="19" selection-start-line="362" selection-start-column="19" selection-end-line="362" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1662,13 +1825,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/assets/character_fs.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="50" selection-start-line="4" selection-start-column="50" selection-end-line="4" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/assets/uv_dave_mapeo.jpg">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -1686,13 +1842,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/controller/SimpleInputController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="49" selection-start-line="20" selection-start-column="49" selection-end-line="20" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx/1.6.4/cecef47b1a565819c3991ec13d967d685605c5c0/gdx-1.6.4-sources.jar!/com/badlogic/gdx/graphics/glutils/GLFrameBuffer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1700,21 +1849,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/assets/character_vs.glsl">
+    <entry file="file://$PROJECT_DIR$/core/assets/shaders/animation/character_vs.glsl">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="26" column="1" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/AnimationGame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#2713#2725#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1722,10 +1860,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="4523" column="7" selection-start-line="4523" selection-start-column="7" selection-end-line="4523" selection-end-column="7" />
-          <folding>
-            <element signature="e#151504#151505#0" expanded="false" />
-            <element signature="e#151538#151539#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1733,7 +1867,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="397" column="34" selection-start-line="397" selection-start-column="34" selection-end-line="397" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1761,10 +1894,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding>
-            <element signature="e#356#357#0" expanded="false" />
-            <element signature="e#431#432#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1772,10 +1901,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="41" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
-          <folding>
-            <element signature="e#151#152#0" expanded="false" />
-            <element signature="e#215#216#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1790,69 +1915,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/light/PointLight.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="33" column="34" selection-start-line="33" selection-start-column="34" selection-end-line="33" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/assets/pointLightFS.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="61" selection-start-line="16" selection-start-column="50" selection-end-line="16" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/assets/defaultFS.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/MyGdxGame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="93" column="34" selection-start-line="93" selection-start-column="34" selection-end-line="93" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/GenericObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="145" column="19" selection-start-line="145" selection-start-column="19" selection-end-line="145" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/assets/shadowMapFS.glsl">
+    <entry file="file://$PROJECT_DIR$/core/assets/shaders/shadows/shadowMapFS.glsl">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/assets/directional_fs.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="24" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/assets/shadowVs.glsl">
+    <entry file="file://$PROJECT_DIR$/core/assets/shaders/shadows/shadowMapVS.glsl">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1861,60 +1934,176 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/assets/renderShadowMapFS.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/assets/renderShadowVs.glsl">
+    <entry file="file://$PROJECT_DIR$/core/assets/shaders/shadows/renderShadowMapVS.glsl">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/assets/defaultVS.glsl">
+    <entry file="file://$PROJECT_DIR$/core/assets/shaders/lights/defaultVS.glsl">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="21" column="12" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="12" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/assets/models/f15/F15C.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/assets/models/spirit/B-2_Spirit.mtl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/assets/shaders/lights/defaultFS.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/assets/shaders/lights/directional/directional_fs.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4" column="24" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/assets/shaders/lights/spot/spotLightFS.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="24" column="27" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/assets/blackFS.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/light/DirectionalLight.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="41" column="25" selection-start-line="41" selection-start-column="25" selection-end-line="41" selection-end-column="25" />
+          <caret line="34" column="31" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/assets/spotLightFS.glsl">
+    <entry file="file://$PROJECT_DIR$/core/assets/shaders/animation/character_fs.glsl">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.111111">
-          <caret line="24" column="27" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx/1.6.4/cecef47b1a565819c3991ec13d967d685605c5c0/gdx-1.6.4-sources.jar!/com/badlogic/gdx/math/Vector3.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="441" column="19" selection-start-line="441" selection-start-column="19" selection-end-line="441" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/Cam.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/AnimationGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="33" column="20" selection-start-line="33" selection-start-column="20" selection-end-line="33" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/assets/shaders/shadows/renderShadowMapFS.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/assets/shaders/lights/point/pointLightFS.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="61" selection-start-line="16" selection-start-column="50" selection-end-line="16" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/MyGdxGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="120" column="28" selection-start-line="120" selection-start-column="28" selection-end-line="120" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/light/SpotLight.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.54285717">
-          <caret line="107" column="0" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="132" column="39" selection-start-line="132" selection-start-column="39" selection-end-line="132" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/GenericObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="156" column="22" selection-start-line="156" selection-start-column="22" selection-end-line="156" selection-end-column="22" />
           <folding>
-            <element signature="e#2721#2722#0" expanded="true" />
-            <element signature="e#2765#2766#0" expanded="true" />
-            <element signature="e#2970#2971#0" expanded="true" />
-            <element signature="e#3004#3005#0" expanded="true" />
-            <element signature="e#6293#6294#0" expanded="true" />
-            <element signature="e#6327#6328#0" expanded="true" />
+            <element signature="e#1026#1027#0" expanded="true" />
+            <element signature="e#1046#1047#0" expanded="true" />
+            <element signature="e#1693#1694#0" expanded="true" />
+            <element signature="e#1716#1717#0" expanded="true" />
+            <element signature="e#1847#1848#0" expanded="true" />
+            <element signature="e#1886#1887#0" expanded="true" />
+            <element signature="e#2011#2012#0" expanded="true" />
+            <element signature="e#2044#2045#0" expanded="true" />
+            <element signature="e#2075#2076#0" expanded="true" />
+            <element signature="e#2098#2099#0" expanded="true" />
+            <element signature="e#2143#2144#0" expanded="true" />
+            <element signature="e#2176#2177#0" expanded="true" />
+            <element signature="e#2209#2210#0" expanded="true" />
+            <element signature="e#2269#2270#0" expanded="true" />
+            <element signature="e#4143#4144#0" expanded="true" />
+            <element signature="e#4180#4181#0" expanded="true" />
+            <element signature="e#4633#4634#0" expanded="true" />
+            <element signature="e#4676#4677#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/light/PointLight.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="28" column="46" selection-start-line="28" selection-start-column="46" selection-end-line="28" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/com/mygdx/game/controller/SimpleInputController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.142857">
+          <caret line="57" column="42" selection-start-line="57" selection-start-column="42" selection-end-line="57" selection-end-column="42" />
+          <folding />
         </state>
       </provider>
     </entry>

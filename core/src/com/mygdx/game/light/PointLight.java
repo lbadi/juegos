@@ -20,8 +20,8 @@ public class PointLight extends Light{
 	public PointLight(Vector3 position,Color lightColor){
 		this.lightColor = lightColor;
 		setPosition(position);
-		String vs = Gdx.files.internal("defaultVS.glsl").readString();
-		String fs = Gdx.files.internal("pointLightFS.glsl").readString();
+		String vs = Gdx.files.internal("shaders/lights/defaultVS.glsl").readString();
+		String fs = Gdx.files.internal("shaders/lights/point/pointLightFS.glsl").readString();
 		shader = new ShaderProgram(vs, fs);
         System.out.println(shader.getLog());
 	}

@@ -66,6 +66,7 @@ public class GenericObject {
 	public void setPosition(Vector3 position) {
 		this.position = new Vector3(position);
 	}
+
 	public float getRotationX() {
 		return rotationX;
 	}
@@ -142,9 +143,22 @@ public class GenericObject {
 		Matrix4 matrix = new Matrix4(values);
 		return matrix;
 	}
+
+	public Matrix4 getRz() {
+		float cosZ =(float) Math.cos(getRotationZ());
+		float sinZ =(float) Math.sin(getRotationZ());
+		float[] values = {
+				cosZ,sinZ,0,0,
+				-sinZ,cosZ,0,0,
+				0,0,1,0,
+				0,0,0,1
+		};
+		Matrix4 matrix = new Matrix4(values);
+		return matrix;
+	}
 	
 	public Matrix4 getTRS() {
-		Matrix4 rot = getRy().mul(getRx());
+		Matrix4 rot = getRz().mul(getRy().mul(getRx()));
 		Matrix4 fatherTRS = new Matrix4();
 		if(father != null){
 			fatherTRS = father.getTRS();
@@ -171,7 +185,25 @@ public class GenericObject {
 	public void setHorizontalSpeed(float horizontalSpeed) {
 		this.horizontalSpeed = horizontalSpeed;
 	}
-	
+
+	private float rotationXSpeed;
+
+	public void setRotationXSpeed(float rotationXSpeed) {
+		this.rotationXSpeed = rotationXSpeed;
+	}
+
+	private float rotationYSpeed;
+
+	public void setRotationYSpeed(float rotationYSpeed) {
+		this.rotationYSpeed = rotationYSpeed;
+	}
+
+	private float rotationZSpeed;
+
+	public void setRotationZSpeed(float rotationZSpeed) {
+		this.rotationZSpeed = rotationZSpeed;
+	}
+
 	public Vector3 getFowardDirection() {
 		return new Vector3(fowardDirection);
 	}
@@ -188,6 +220,9 @@ public class GenericObject {
 				fowardSpeed * Gdx.graphics.getDeltaTime()));
 		position.add(getLeftDirection().mul(getRy().mul(getRx())).nor().scl(
 				horizontalSpeed * Gdx.graphics.getDeltaTime()));
+		setRotationX(rotationX + rotationXSpeed);
+		setRotationY(rotationY + rotationYSpeed);
+		setRotationZ(rotationZ + rotationZSpeed);
 	}
 	
 	

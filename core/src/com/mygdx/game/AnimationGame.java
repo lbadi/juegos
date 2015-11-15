@@ -23,8 +23,8 @@ public class AnimationGame extends ApplicationAdapter {
 
     private static final String MODEL_PATH = "Dave.g3db";
     private static final String TEXTURE_PATH = "dave_uv.jpg";
-    private static final String VS_PATH = "character_vs.glsl";
-    private static final String FS_PATH = "character_fs.glsl";
+    private static final String VS_PATH = "shaders/animation/character_vs.glsl";
+    private static final String FS_PATH = "shaders/animation/character_fs.glsl";
 
     private AnimationController animationController;
     private ModelInstance characterInstance;

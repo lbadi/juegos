@@ -33,12 +33,12 @@ public class DirectionalLight extends Light{
 	}
 
 	private void initShader() {
-		String vs = Gdx.files.internal("defaultVS.glsl").readString();
-		String fs = Gdx.files.internal("directional_fs.glsl").readString();
-		String shadowVs = Gdx.files.internal("shadowVs.glsl").readString();
-		String shadowFs = Gdx.files.internal("shadowMapFS.glsl").readString();
-		String renderShadowVs = Gdx.files.internal("renderShadowVs.glsl").readString();
-		String renderShadowFs = Gdx.files.internal("renderShadowMapFS.glsl").readString();
+		String vs = Gdx.files.internal("shaders/lights/defaultVS.glsl").readString();
+		String fs = Gdx.files.internal("shaders/lights/directional/directional_fs.glsl").readString();
+		String shadowVs = Gdx.files.internal("shaders/shadows/shadowMapVS.glsl").readString();
+		String shadowFs = Gdx.files.internal("shaders/shadows/shadowMapFS.glsl").readString();
+		String renderShadowVs = Gdx.files.internal("shaders/shadows/renderShadowMapVS.glsl").readString();
+		String renderShadowFs = Gdx.files.internal("shaders/shadows/renderShadowMapFS.glsl").readString();
 		shader = new ShaderProgram(vs, fs);
 		shadowShader = new ShaderProgram(shadowVs, shadowFs);
 		renderShadowShader = new ShaderProgram(renderShadowVs, renderShadowFs);
