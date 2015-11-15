@@ -26,9 +26,8 @@ public class PointLight extends Light{
         System.out.println(shader.getLog());
 	}
 
-	@Override
 	public void render(GenericObject object) {
-		
+
 		object.getImg().bind();
         Scene scene = Scene.getCurrentScene();
 		Cam cam = scene.getCurrentCam();
@@ -50,7 +49,7 @@ public class PointLight extends Light{
 
 		shader.end();
 	}
-	
+
 
 	@Override
 	public ShadowMap getShadowMap() {

@@ -3,10 +3,13 @@ varying vec2 v_texCoords;
 varying vec4 normal;
 varying vec4 v_position;
 varying vec4 ShadowCoord;
-uniform vec4 light_color;
+
 uniform vec4 light_position;
+uniform vec4 light_color;
+
 uniform sampler2D u_texture;
 uniform sampler2D u_shadowMap;
+
 uniform vec4 eye;
 uniform vec4 specular_color;
 uniform vec4 ambient_color;
@@ -18,16 +21,18 @@ float unpackFloatFromVec4i(const vec4 value);
 
 void main() {
 
-	float  bias = 0.1;
-	float visibility = 1.0;
-	//Solamente hay que calcularlo si esta adentro del shadowMap
-	vec2 convertedShadowCoord = (ShadowCoord.xy + vec2(1,1)) / 2.0;
-    float diffCoordMap = unpackFloatFromVec4i(texture2D(u_shadowMap, convertedShadowCoord)) - ShadowCoord.z;
+	float bias = 0.01;
+    float visibility = 1.0;
+
+    //Solamente hay que calcularlo si esta adentro del shadowMap
+    vec3 convertedShadowCoord = (ShadowCoord.xyz + vec3(1,1,1)) / 2.0;
+    float diffCoordMap = unpackFloatFromVec4i(texture2D(u_shadowMap, convertedShadowCoord.xy)) - ShadowCoord.z;
     if(ShadowCoord.x <= 1.0 && ShadowCoord.x >= -1.0 && ShadowCoord.y <= 1.0 && ShadowCoord.y >= -1.0){
-        if ( ShadowCoord.z - bias> unpackFloatFromVec4i(texture2D(u_shadowMap, convertedShadowCoord)) ){
+        if ( convertedShadowCoord.z - bias> unpackFloatFromVec4i(texture2D(u_shadowMap, convertedShadowCoord.xy)) ){
             visibility = 0.1;
         }
     }
+
 	//vec4 light_vector = normalize(light_position - v_position);
 	vec4 light_vector = normalize(v_position - light_position);
 	float cosine_light = dot(light_vector,normalize(light_direction));
@@ -50,24 +55,16 @@ void main() {
     vec4 m_ambient = vec4(0.0001,0.0001,0.0001,1); //Material ambiente
     vec4 ambient_irradiance = m_ambient * ambient_color;
     
-    //Phone 
+    //Phone
     gl_FragColor =  diffusal_irradiance + specular_irradiance + ambient_irradiance;
     //Shadows
     gl_FragColor = vec4(gl_FragColor.xyz * visibility,gl_FragColor.a);
+
+//    gl_FragColor = vec4(0, 0, 0.5, 1);
     //gl_FragColor = gl_FragColor * visibility * 0.000001 + vec4(ShadowCoord.x,0,0,1);
-    
 }
 
-float unpackFloatFromVec4i(const vec4 value)
-{
-  const vec4 bitSh = vec4(1.0/(256.0*256.0*256.0), 1.0/(256.0*256.0), 1.0/256.0, 1.0);
-  return(dot(value, bitSh));
-}
-vec4 packFloatToVec4i(const float value)
-{
-  const vec4 bitSh = vec4(256.0*256.0*256.0, 256.0*256.0, 256.0, 1.0);
-  const vec4 bitMsk = vec4(0.0, 1.0/256.0, 1.0/256.0, 1.0/256.0);
-  vec4 res = fract(value * bitSh);
-  res -= res.xxyz * bitMsk;
-  return res;
+float unpackFloatFromVec4i(const vec4 value) {
+    const vec4 bitSh = vec4(1.0/(256.0*256.0*256.0), 1.0/(256.0*256.0), 1.0/256.0, 1.0);
+    return(dot(value, bitSh));
 }

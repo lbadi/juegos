@@ -89,13 +89,13 @@ public class MyGdxGame extends ApplicationAdapter {
 		env = Scene.getCurrentScene();
 //		env.addLight("directional", new DirectionalLight(new Vector3(0, 15, 0), new Vector3(0, 1, 0), new Color(1, 1, 1, 1)));
 //        env.addLight("point", new PointLight(new Vector3(1.5f,0,0), new Color(1, 1, 1, 1)));
-//		env.addLight("spot", new DirectionalLight(new Vector3(0, 15, 0), new Vector3(0, 1, 0), new Color(1, 1, 1, 1)));
+//		env.addLight("light", new DirectionalLight(new Vector3(0, 15, 0), new Vector3(0, 1, 0), new Color(1, 1, 1, 1)));
 		
-        env.addLight("spot", new SpotLight(new Vector3(2, 15, 0),new Vector3((float)(Math.PI * 1.5f),0, 0),new Color(1,1,1,1)));
+        env.addLight("light", new SpotLight(new Vector3(2, 15, 0),new Vector3((float)(Math.PI * 1.5f),0, 0),new Color(1,1,1,1)));
         env.addCam("camera", cam);
 		Gdx.input.setInputProcessor(new SimpleInputController());
-        env.setDefaultLight("spot");
-		env.getDefaultLight().setRotationX(-(float) Math.PI/2);
+        env.setDefaultLight("light");
+//		env.getDefaultLight().setRotationX(-(float) Math.PI/2);
     }
 //GL
     @Override

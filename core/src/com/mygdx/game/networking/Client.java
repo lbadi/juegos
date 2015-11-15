@@ -17,7 +17,7 @@ public class Client {
     private DatagramChannel channel;
     private ByteBuffer readBuffer;
     private ByteBuffer writeBuffer;
-    private SocketAddress server;
+    private SocketAddress remote;
 
     public Client(int port) throws IOException {
         InetSocketAddress isa = new InetSocketAddress(port);
@@ -29,15 +29,15 @@ public class Client {
     }
 
     private void connect(String hostname, int port) throws IOException {
-        server = new InetSocketAddress(InetAddress.getByName(hostname), port);
-        channel.connect(server);
+        remote = new InetSocketAddress(InetAddress.getByName(hostname), port);
+        channel.connect(remote);
     }
 
     private void send(byte[] bytes) throws IOException {
         writeBuffer.clear();
         writeBuffer.put(bytes);
         writeBuffer.flip();
-        channel.send(writeBuffer, server);
+        channel.send(writeBuffer, remote);
     }
 
     private byte[] receive() throws IOException {
@@ -56,6 +56,8 @@ public class Client {
             byte[] bytes = c.receive();
             if(bytes != null) {
                 System.out.println(new String(bytes, "UTF-8"));
+            } else {
+                System.out.println("Nothing");
             }
         }
     }

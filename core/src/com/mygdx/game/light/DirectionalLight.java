@@ -19,7 +19,9 @@ public class DirectionalLight extends Light{
 	ShaderProgram shader;
 	OrthoCam projectionCamera = new OrthoCam();
 	
-	public DirectionalLight() {	}
+	public DirectionalLight() {
+
+	}
 	
 	public DirectionalLight(Vector3 position, Vector3 lightVector, Color lightColor) {
 		setPosition(position);
@@ -30,13 +32,12 @@ public class DirectionalLight extends Light{
 
 	}
 
-
 	private void initShader() {
 		String vs = Gdx.files.internal("defaultVS.glsl").readString();
-		String shadowVs = Gdx.files.internal("shadowVs.glsl").readString();
-		String renderShadowVs = Gdx.files.internal("renderShadowVs.glsl").readString();
 		String fs = Gdx.files.internal("directional_fs.glsl").readString();
+		String shadowVs = Gdx.files.internal("shadowVs.glsl").readString();
 		String shadowFs = Gdx.files.internal("shadowMapFS.glsl").readString();
+		String renderShadowVs = Gdx.files.internal("renderShadowVs.glsl").readString();
 		String renderShadowFs = Gdx.files.internal("renderShadowMapFS.glsl").readString();
 		shader = new ShaderProgram(vs, fs);
 		shadowShader = new ShaderProgram(shadowVs, shadowFs);
@@ -51,40 +52,12 @@ public class DirectionalLight extends Light{
 		fullScreenQuad.setIndices(new short[]{0, 1, 2, 1, 2, 3});
 	}
 
-	
 	public Vector3 getLightVector() {
 		return new Vector3(lightVector);
 	}
 	
 	public void setLightVector(Vector3 lightVector) {
 		this.lightVector = new Vector3(lightVector);
-	}
-
-	@Override
-	public void render(GenericObject object) {
-		object.getImg().bind();
-        Scene scene = Scene.getCurrentScene();
-		Cam cam = scene.getCurrentCam();
-		Vector3 position = cam.getPosition();
-
-		//Para shadow Mapping:
-		//DepthBuffer sirva para rendir target final y para textura.
-		shader.begin();
-		shader.setUniformMatrix("u_worldView", cam.getProjectionMatrix().mul(cam.getViewMatrix()).mul(object.getTRS())); //aca trabajar
-		shader.setUniformMatrix("u_worldMatrix", object.getTRS()); //aca trabajar
-
-		shader.setUniformi("u_texture", 0);
-//			shaderProgram.setUniform4fv("u_specular_material", 0);
-		shader.setUniform4fv("light_color", new float[]{lightColor.r,lightColor.g,lightColor.b,lightColor.a}, 0, 4);
-		shader.setUniform4fv("light_vector", new float[]{lightVector.x,lightVector.y,lightVector.z,1}, 0, 4);
-		//Especular
-		shader.setUniform4fv("eye", new float[]{position.x,position.y,position.z,1}, 0, 4);
-		shader.setUniform4fv("specular_color", new float[]{specularColor.r,specularColor.g,specularColor.b,1}, 0, 4);
-		//Ambiente
-		shader.setUniform4fv("ambient_color", new float[]{0,0,1,1}, 0, 4);
-		object.getMesh().render(shader, GL20.GL_TRIANGLES);
-
-		shader.end();
 	}
 
 	@Override
@@ -143,7 +116,7 @@ public class DirectionalLight extends Light{
 			shader.begin();
 			shader.setUniformMatrix("u_worldView", cam.getProjectionMatrix().mul(cam.getViewMatrix()).mul(object.getTRS())); //aca trabajar
 			shader.setUniformMatrix("u_worldMatrix", object.getTRS()); //aca trabajar
-			shader.setUniformMatrix("u_lightMVP",  getProjectionMatrix().mul(getViewMatrix()).mul(object.getTRS()));
+			shader.setUniformMatrix("u_lightMVP", getProjectionMatrix().mul(getViewMatrix()).mul(object.getTRS()));
 
 //			shader.setUniformMatrix("u_worldView", getProjectionMatrix().mul(getViewMatrix()).mul(object.getTRS())); //aca trabajar
 			
@@ -153,8 +126,7 @@ public class DirectionalLight extends Light{
 
 //			shaderProgram.setUniform4fv("u_specular_material", 0);
 			shader.setUniform4fv("light_color", new float[]{lightColor.r,lightColor.g,lightColor.b,lightColor.a}, 0, 4);
-			shader.setUniform4fv("light_vector", new float[]{lightVector.x,lightVector.y,lightVector.z,1}, 0, 4);
-			System.out.println("LIGHTVECTOR : " +  lightVector);
+			shader.setUniform4fv("light_vector", new float[]{lightVector.x, lightVector.y, lightVector.z, 1}, 0, 4);
 			//Especular
 			shader.setUniform4fv("eye", new float[]{position.x,position.y,position.z,1}, 0, 4);
 			shader.setUniform4fv("specular_color", new float[]{specularColor.r,specularColor.g,specularColor.b,1}, 0, 4);

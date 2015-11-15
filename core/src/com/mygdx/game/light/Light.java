@@ -40,6 +40,5 @@ public abstract class Light extends GenericObject{
 	}
 	
     public abstract void render(Scene scene);
-	public abstract void render(GenericObject object);
 	public abstract Matrix4 getProjectionMatrix();
 }

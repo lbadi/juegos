@@ -3,8 +3,10 @@ varying vec2 v_texCoords;
 varying vec4 normal;
 varying vec4 v_position;
 varying vec4 ShadowCoord;
-uniform vec4 light_vector;
+
 uniform vec4 light_color;
+uniform vec4 light_vector;
+
 uniform sampler2D u_texture;
 uniform sampler2D u_shadowMap;
 
@@ -13,7 +15,6 @@ uniform vec4 specular_color;
 uniform vec4 ambient_color;
 
 float unpackFloatFromVec4i(const vec4 value);
-vec4 packFloatToVec4i(const float value);
 
 void main() {
 
@@ -66,14 +67,4 @@ float unpackFloatFromVec4i(const vec4 value)
   const vec4 bitSh = vec4(1.0/(256.0*256.0*256.0), 1.0/(256.0*256.0), 1.0/256.0, 1.0);
   return(dot(value, bitSh));
 }
-vec4 packFloatToVec4i(const float value)
-{
-  const vec4 bitSh = vec4(256.0*256.0*256.0, 256.0*256.0, 256.0, 1.0);
-  const vec4 bitMsk = vec4(0.0, 1.0/256.0, 1.0/256.0, 1.0/256.0);
-  vec4 res = fract(value * bitSh);
-  res -= res.xxyz * bitMsk;
-  return res;
-}
-
-
 
