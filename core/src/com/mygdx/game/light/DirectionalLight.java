@@ -7,10 +7,11 @@ import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector3;
-import com.mygdx.game.Cam;
-import com.mygdx.game.Scene;
-import com.mygdx.game.GenericObject;
-import com.mygdx.game.OrthoCam;
+import com.mygdx.game.cam.Cam;
+import com.mygdx.game.cam.OrthoCam;
+import com.mygdx.game.objects.GenericObject;
+import com.mygdx.game.objects.Scene;
+
 import projection.OrthoProjection;
 
 public class DirectionalLight extends Light{

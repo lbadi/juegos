@@ -15,10 +15,14 @@ import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.mygdx.game.cam.Cam;
+import com.mygdx.game.cam.PerspectiveCam;
 import com.mygdx.game.controller.SimpleInputController;
 import com.mygdx.game.light.DirectionalLight;
 import com.mygdx.game.light.Light;
 import com.mygdx.game.light.SpotLight;
+import com.mygdx.game.objects.GenericObject;
+import com.mygdx.game.objects.Scene;
 
 public class MyGdxGame extends ApplicationAdapter {
 	Texture img;

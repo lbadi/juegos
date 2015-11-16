@@ -4,10 +4,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.Color;
-import com.mygdx.game.Cam;
-import com.mygdx.game.Scene;
+import com.mygdx.game.cam.Cam;
 import com.mygdx.game.light.Light;
 import com.mygdx.game.light.SpotLight;
+import com.mygdx.game.objects.Scene;
 
 public class SimpleInputController extends InputAdapter{
 

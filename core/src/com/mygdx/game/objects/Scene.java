@@ -1,10 +1,11 @@
-package com.mygdx.game;
+package com.mygdx.game.objects;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.mygdx.game.cam.Cam;
 import com.mygdx.game.light.Light;
 
 public class Scene {
