@@ -101,7 +101,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		l.setInnerAngle(45.4f);
 		l.setOutterAngle(48f);
 
-//		env.getDefaultLight().setRotationX(-(float) Math.PI / 2);
+		env.getDefaultLight().setRotationX(-(float) Math.PI / 2);
     }
 //GL
     @Override

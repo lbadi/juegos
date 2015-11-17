@@ -157,7 +157,7 @@ public class SpotLight extends PointLight {
     @Override
     public Matrix4 getProjectionMatrix() {
 //        return perspectiveProjection.getProjectionMatrix();
-//        return new Matrix4().setToProjection(5f, 1000, 30, 4/3);
+//        return new Matrix4().setToProjection(10f, 100, 30, 4/3);
         return new Matrix4().setToOrtho(-25,25,-25,25,-10,100);
     }
     

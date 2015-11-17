@@ -2,28 +2,40 @@ package com.mygdx.game.networking;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.net.SocketAddress;
+import java.net.SocketOption;
+import java.net.StandardSocketOptions;
 import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
+import java.util.Arrays;
 import java.util.Iterator;
 
-class Server {
+public class Server {
+
     private static final int TIMEOUT = 3000; // Wait timeout (milliseconds) 
-    private static final int ECHOMAX = 255; // Maximum size of echo datagram 
+    private static final int BUFFER_SIZE = 1024;
 
-    public static void main(String[] args) throws IOException {
+    private Selector selector;
+    private DataHandler dataHandler;
 
-        int servPort = 1234;
+    private class ClientRecord {
+        public InetSocketAddress clientAddress;
+        public ByteBuffer readBuffer = ByteBuffer.allocate(BUFFER_SIZE);
+        public ByteBuffer writeBuffer = ByteBuffer.allocate(BUFFER_SIZE);
+    }
+
+    public Server(int port, DataHandler dataHandler) throws IOException {
+        this.dataHandler = dataHandler;
         // Create a selector to multiplex client connections.
-        Selector selector = Selector.open();
-
+        selector = Selector.open();
         DatagramChannel channel = DatagramChannel.open();
         channel.configureBlocking(false);
-        channel.socket().bind(new InetSocketAddress(servPort));
-        channel.register(selector, SelectionKey.OP_READ, new ClientRecord());
+        channel.socket().bind(new InetSocketAddress(port));
+        channel.register(selector, SelectionKey.OP_READ | SelectionKey.OP_WRITE, new ClientRecord());
+    }
 
+    public void run() throws IOException {
         while (true) { // Run forever, receiving and echoing datagrams
             // Wait for task or until timeout expires
             if (selector.select(TIMEOUT) == 0) {
@@ -32,9 +44,9 @@ class Server {
             }
 
             // Get iterator on set of keys with I/O to process
-            Iterator<SelectionKey> keyIter = selector.selectedKeys().iterator();
-            while (keyIter.hasNext()) {
-                SelectionKey key = keyIter.next(); // Key is bit mask
+            Iterator<SelectionKey> keyIterator = selector.selectedKeys().iterator();
+            while (keyIterator.hasNext()) {
+                SelectionKey key = keyIterator.next(); // Key is bit mask
 
                 // Client socket channel has pending data?
                 if (key.isReadable()) {
@@ -46,42 +58,32 @@ class Server {
                 if (key.isValid() && key.isWritable()) {
                     handleWrite(key);
                 }
-                keyIter.remove();
+                keyIterator.remove();
             }
         }
     }
 
-    public static void handleRead(SelectionKey key) throws IOException {
+    public void handleRead(SelectionKey key) throws IOException {
         DatagramChannel channel = (DatagramChannel) key.channel();
-        ClientRecord clntRec = (ClientRecord) key.attachment();
-
-        clntRec.buffer.clear(); // Prepare buffer for receiving
-        clntRec.clientAddress = channel.receive(clntRec.buffer);
-        if (clntRec.clientAddress != null) { // Did we receive something?
-            // Register write with the selector
-            key.interestOps(SelectionKey.OP_WRITE);
-        }
-
-        byte[] buffer = clntRec.buffer.array();
-        for (int i = 0; i < clntRec.buffer.position(); i ++) {
-            System.out.print(new String(new byte[] {buffer[i]}, "UTF-8"));
-        }
-        System.out.println();
+        ClientRecord client = (ClientRecord) key.attachment();
+        client.readBuffer.clear(); // Prepare buffer for receiving
+        client.clientAddress = (InetSocketAddress) channel.receive(client.readBuffer);
+        dataHandler.onDataReceived(Arrays.copyOfRange(client.readBuffer.array(), 0, client.readBuffer.position()),
+                client.clientAddress.getHostName(), client.clientAddress.getPort());
     }
 
-    public static void handleWrite(SelectionKey key) throws IOException {
+    public void handleWrite(SelectionKey key) throws IOException {
         DatagramChannel channel = (DatagramChannel) key.channel();
-        ClientRecord clntRec = (ClientRecord) key.attachment();
-        clntRec.buffer.flip(); // Prepare buffer for sending
-        int bytesSent = channel.send(clntRec.buffer, clntRec.clientAddress);
-        if (bytesSent != 0) { // Buffer completely written?
-            // No longer interested in writes
-            key.interestOps(SelectionKey.OP_READ);
+        ClientRecord client = (ClientRecord) key.attachment();
+        if(client.clientAddress != null) {
+            byte[] data = dataHandler.onReadyToSend(client.clientAddress.getHostName(), client.clientAddress.getPort());
+            if (data != null) {
+                client.writeBuffer.clear();
+                client.writeBuffer.put(data);
+                client.writeBuffer.flip();
+                channel.send(client.writeBuffer, client.clientAddress);
+            }
         }
     }
 
-    static class ClientRecord {
-        public SocketAddress clientAddress;
-        public ByteBuffer buffer = ByteBuffer.allocate(ECHOMAX);
-    }
 }
