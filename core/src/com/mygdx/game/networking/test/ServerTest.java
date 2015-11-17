@@ -2,7 +2,7 @@ package com.mygdx.game.networking.test;
 
 import com.mygdx.game.networking.DataHandler;
 import com.mygdx.game.networking.NetworkAddress;
-import com.mygdx.game.networking.Server;
+import com.mygdx.game.networking.server.Server;
 
 import java.io.IOException;
 import java.util.HashMap;

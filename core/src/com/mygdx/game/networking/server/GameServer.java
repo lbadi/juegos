@@ -1,7 +1,12 @@
-package com.mygdx.game.networking;
+package com.mygdx.game.networking.server;
 
-import java.io.IOException;
+import com.badlogic.gdx.math.Vector3;
+import com.mygdx.game.networking.*;
+
+import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -49,13 +54,16 @@ public class GameServer implements DataHandler {
     }
 
     private byte[] computeState() {
+        List<NetworkObject> objects = new ArrayList<NetworkObject>();
+        Vector3 position = new Vector3(0,-1f, -4);
+        Vector3 rotation = new Vector3(-(float) Math.PI / 12, (float) Math.PI, 0);
+        Vector3 scale = new Vector3(1, 1, 1);
+        NetworkObject object = new NetworkObject(1, position, rotation, scale);
+        objects.add(object);
+        GameState gs = new GameState(objects);
         try {
-            String s = "";
-            for(ClientData cd: clientsData.values()) {
-                s += new String(cd.data, "UTF-8");
-            }
-            return s.getBytes();
-        } catch (Exception e) {
+            return Serializer.serialize(gs);
+        } catch (IOException e) {
             return null;
         }
     }
@@ -73,4 +81,5 @@ public class GameServer implements DataHandler {
         GameServer st = new GameServer(1234);
         st.run();
     }
+
 }

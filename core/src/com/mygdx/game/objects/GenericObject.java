@@ -1,5 +1,6 @@
 package com.mygdx.game.objects;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,8 +10,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector3;
+import com.mygdx.game.networking.NetworkObject;
 
-public class GenericObject {
+public class GenericObject implements Serializable {
 
 	private Vector3 position = new Vector3();
 	private Vector3 scaleVector = new Vector3(1,1,1);
@@ -35,7 +37,6 @@ public class GenericObject {
 		setMesh(mesh);
 		setImg(img);
 	}
-	
 	
 	public GenericObject getFather() {
 		return father;

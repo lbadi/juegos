@@ -1,4 +1,6 @@
-package com.mygdx.game.networking;
+package com.mygdx.game.networking.server;
+
+import com.mygdx.game.networking.DataHandler;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
