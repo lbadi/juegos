@@ -1,20 +1,23 @@
 package com.mygdx.game.light;
 
 
-import com.badlogic.gdx.graphics.*;
-
 import projection.PerspectiveProjection;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Pixmap.Format;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Mesh;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.VertexAttribute;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Matrix4;
+import com.badlogic.gdx.math.Quaternion;
 import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.cam.Cam;
+import com.mygdx.game.objects.CustomCubemap;
 import com.mygdx.game.objects.GenericObject;
 import com.mygdx.game.objects.Scene;
-
 
 public class SpotLight extends PointLight {
     private float innerAngle = (float) Math.toRadians(45.4f);
@@ -22,7 +25,9 @@ public class SpotLight extends PointLight {
     private ShaderProgram shader;
     private ShaderProgram shadowShader;
     private ShaderProgram renderShadowShader;
+    
     private PerspectiveProjection perspectiveProjection;
+    CustomCubemap envCubemap = new CustomCubemap(new Pixmap(Gdx.files.internal("cubemap.png")));
 
     private Mesh fullScreenQuad;
 
@@ -107,24 +112,21 @@ public class SpotLight extends PointLight {
     public void render(Scene scene) {
         generateShadowMap(scene);
 
-        renderShadowMap();
+//        renderShadowMap();
         //-----------------
-//        renderObjects(scene);
+        renderObjects(scene);
+        //-----------------
+//        renderCubeMap(scene);
     }
     //Test code
-    private void renderCubeMap(){
-    	shadowMapBuffer.getColorBufferTexture().bind();
-        renderShadowShader.begin(); {
-            renderShadowShader.setUniformi("u_texture", 0);
-            fullScreenQuad.render(renderShadowShader, GL20.GL_TRIANGLES);
-        }
-        renderShadowShader.end();
+    private void renderCubeMap(Scene scene){
+    	envCubemap.cubeMapRender();
     }
     
     private void renderShadowMap(){
     shadowMapBuffer.getColorBufferTexture().bind();
       renderShadowShader.begin(); {
-          renderShadowShader.setUniformi("u_texture", 0);
+          renderShadowShader.setUniformi("u_cubemap", 0);
           fullScreenQuad.render(renderShadowShader, GL20.GL_TRIANGLES);
       }
       renderShadowShader.end();
