@@ -32,7 +32,7 @@ public class Server {
         DatagramChannel channel = DatagramChannel.open();
         channel.configureBlocking(false);
         channel.socket().bind(new InetSocketAddress(port));
-        channel.register(selector, SelectionKey.OP_READ | SelectionKey.OP_WRITE, new ClientRecord());
+        channel.register(selector, SelectionKey.OP_READ, new ClientRecord());
     }
 
     public void run() throws IOException {
@@ -68,8 +68,13 @@ public class Server {
         ClientRecord client = (ClientRecord) key.attachment();
         client.readBuffer.clear(); // Prepare buffer for receiving
         client.clientAddress = (InetSocketAddress) channel.receive(client.readBuffer);
-        dataHandler.onDataReceived(Arrays.copyOfRange(client.readBuffer.array(), 0, client.readBuffer.position()),
-                client.clientAddress.getHostName(), client.clientAddress.getPort());
+        if (client.clientAddress != null) {  // Did we receive something?
+            dataHandler.onDataReceived(Arrays.copyOfRange(client.readBuffer.array(), 0, client.readBuffer.position()),
+                    client.clientAddress.getHostName(), client.clientAddress.getPort());
+            // Register write with the selector
+            key.interestOps(SelectionKey.OP_WRITE);
+        }
+
     }
 
     public void handleWrite(SelectionKey key) throws IOException {
@@ -82,6 +87,7 @@ public class Server {
                 client.writeBuffer.put(data);
                 client.writeBuffer.flip();
                 channel.send(client.writeBuffer, client.clientAddress);
+                key.interestOps(SelectionKey.OP_READ);
             }
         }
     }
