@@ -3,8 +3,8 @@ package com.mygdx.game.light;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g3d.environment.ShadowMap;
 import com.badlogic.gdx.math.Matrix4;
-import com.mygdx.game.GenericObject;
-import com.mygdx.game.Scene;
+import com.mygdx.game.objects.GenericObject;
+import com.mygdx.game.objects.Scene;
 
 
 public abstract class Light extends GenericObject{

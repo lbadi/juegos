@@ -1,7 +1,8 @@
-package com.mygdx.game;
+package com.mygdx.game.cam;
 
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector3;
+import com.mygdx.game.objects.GenericObject;
 
 public abstract class Cam extends GenericObject {
 
