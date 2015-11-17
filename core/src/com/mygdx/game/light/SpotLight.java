@@ -107,9 +107,18 @@ public class SpotLight extends PointLight {
     public void render(Scene scene) {
         generateShadowMap(scene);
 
-//        renderShadowMap();
+        renderShadowMap();
         //-----------------
-        renderObjects(scene);
+//        renderObjects(scene);
+    }
+    //Test code
+    private void renderCubeMap(){
+    	shadowMapBuffer.getColorBufferTexture().bind();
+        renderShadowShader.begin(); {
+            renderShadowShader.setUniformi("u_texture", 0);
+            fullScreenQuad.render(renderShadowShader, GL20.GL_TRIANGLES);
+        }
+        renderShadowShader.end();
     }
     
     private void renderShadowMap(){

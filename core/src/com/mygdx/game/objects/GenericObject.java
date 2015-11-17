@@ -2,11 +2,11 @@ package com.mygdx.game.objects;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Mesh;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector3;
 
@@ -35,6 +35,7 @@ public class GenericObject {
 		setMesh(mesh);
 		setImg(img);
 	}
+	
 	
 	public GenericObject getFather() {
 		return father;
@@ -224,7 +225,5 @@ public class GenericObject {
 		setRotationY(rotationY + rotationYSpeed);
 		setRotationZ(rotationZ + rotationZSpeed);
 	}
-	
-	
 	
 }
