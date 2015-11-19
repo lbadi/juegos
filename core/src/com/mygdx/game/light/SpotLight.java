@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.*;
 import projection.PerspectiveProjection;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Matrix4;
@@ -107,9 +106,9 @@ public class SpotLight extends PointLight {
     public void render(Scene scene) {
         generateShadowMap(scene);
 
-        renderShadowMap();
+//        renderShadowMap();
         //-----------------
-//        renderObjects(scene);
+        renderObjects(scene);
     }
     //Test code
     private void renderCubeMap(){

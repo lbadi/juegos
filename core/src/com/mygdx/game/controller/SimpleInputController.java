@@ -7,18 +7,22 @@ import com.badlogic.gdx.graphics.Color;
 import com.mygdx.game.cam.Cam;
 import com.mygdx.game.light.Light;
 import com.mygdx.game.light.SpotLight;
+import com.mygdx.game.networking.Input;
+import com.mygdx.game.networking.Inputs;
 import com.mygdx.game.objects.Scene;
 
 public class SimpleInputController extends InputAdapter{
 
 	Scene enviroment;
-	
-	
+
 	private float mouseSensibility = 1f;
-	
-	public  SimpleInputController() {
+
+	private Inputs currentInputs;
+
+	public  SimpleInputController(Inputs currentInputs) {
 		super();
 		this.enviroment = Scene.getCurrentScene();
+		this.currentInputs = currentInputs;
 	}
 
 	public float getMouseSensibility() {
@@ -35,27 +39,35 @@ public class SimpleInputController extends InputAdapter{
 	        {
 	        case Keys.LEFT:
 				cam.setRotationYSpeed(0.01f);
+				currentInputs.addInput(Input.YAW_LEFT_PRESSED);
 	            break;
 	        case Keys.RIGHT:
 				cam.setRotationYSpeed(-0.01f);
+				currentInputs.addInput(Input.YAW_RIGHT_PRESSED);
 	            break;
 	        case Keys.UP:
-	        	cam.setFowardSpeed(4);
+//	        	cam.setFowardSpeed(4);
+				currentInputs.addInput(Input.MOVE_FORWARD_PRESSED);
 	            break;
 	        case Keys.DOWN:
 	        	cam.setFowardSpeed(-4);
+				currentInputs.addInput(Input.MOVE_BACKWARD_PRESSED);
 	            break;
 			case Keys.A:
 				cam.setRotationZSpeed(0.01f);
+				currentInputs.addInput(Input.ROLL_LEFT_PRESSED);
 				break;
 			case Keys.D:
 				cam.setRotationZSpeed(-0.01f );
+				currentInputs.addInput(Input.ROLL_RIGHT_PRESSED);
 				break;
 			case Keys.W:
 				cam.setRotationXSpeed(-0.01f );
+				currentInputs.addInput(Input.PITCH_DOWN_PRESSED);
 				break;
 			case Keys.S:
 				cam.setRotationXSpeed(0.01f );
+				currentInputs.addInput(Input.PITCH_UP_PRESSED);
 				break;
 	        case Keys.R:
 	        	light.setLightColor(light.getLightColor().add(0.2f, -0.1f, -0.1f, 0));
@@ -105,27 +117,35 @@ public class SimpleInputController extends InputAdapter{
         {
         case Keys.LEFT:
 			cam.setRotationYSpeed(0);
+			currentInputs.addInput(Input.YAW_LEFT_RELEASED);
             break;
         case Keys.RIGHT:
 			cam.setRotationYSpeed(0);
+			currentInputs.addInput(Input.YAW_RIGHT_RELEASED);
             break;
         case Keys.UP:
         	cam.setFowardSpeed(0);
+			currentInputs.addInput(Input.MOVE_FORWARD_RELEASED);
             break;
         case Keys.DOWN:
         	cam.setFowardSpeed(0);
+			currentInputs.addInput(Input.MOVE_BACKWARD_RELEASED);
             break;
 		case Keys.A:
 			cam.setRotationZSpeed(0);
+			currentInputs.addInput(Input.ROLL_LEFT_RELEASED);
 			break;
 		case Keys.D:
 			cam.setRotationZSpeed(0);
+			currentInputs.addInput(Input.ROLL_RIGHT_RELEASED);
 			break;
 		case Keys.W:
 			cam.setRotationXSpeed(0);
+			currentInputs.addInput(Input.PITCH_DOWN_RELEASED);
 			break;
 		case Keys.S:
 			cam.setRotationXSpeed(0);
+			currentInputs.addInput(Input.PITCH_UP_RELEASED);
 			break;
         }
 

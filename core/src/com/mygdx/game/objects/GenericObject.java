@@ -7,13 +7,12 @@ import java.util.List;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Mesh;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector3;
-import com.mygdx.game.networking.NetworkObject;
 
 public class GenericObject implements Serializable {
 
+	private int id;
 	private Vector3 position = new Vector3();
 	private Vector3 scaleVector = new Vector3(1,1,1);
 	private float rotationX = 0;
@@ -23,6 +22,8 @@ public class GenericObject implements Serializable {
 	private Texture img;
 	public GenericObject father;
 	public List<GenericObject> childs = new ArrayList<GenericObject>();
+
+	private static int lastId = 0;
 	
 	//Movimiento
 	private Vector3 fowardDirection = new Vector3(0,0,-1);
@@ -30,14 +31,32 @@ public class GenericObject implements Serializable {
 	private float fowardSpeed = 0;
 	private float horizontalSpeed = 0;
 	
-	public GenericObject() {}
+	public GenericObject() {
+
+	}
 	
 	public GenericObject(Vector3 position, Mesh mesh, Texture img){
+		id = ++lastId;
 		setPosition(position);
 		setMesh(mesh);
 		setImg(img);
 	}
-	
+
+	public GenericObject(int id, Vector3 position, Mesh mesh, Texture img){
+		this.id = id;
+		setPosition(position);
+		setMesh(mesh);
+		setImg(img);
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public GenericObject getFather() {
 		return father;
 	}

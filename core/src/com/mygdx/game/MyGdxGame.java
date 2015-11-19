@@ -18,11 +18,17 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.mygdx.game.cam.Cam;
 import com.mygdx.game.cam.PerspectiveCam;
 import com.mygdx.game.controller.SimpleInputController;
-import com.mygdx.game.light.DirectionalLight;
 import com.mygdx.game.light.Light;
 import com.mygdx.game.light.SpotLight;
+import com.mygdx.game.networking.GameState;
+import com.mygdx.game.networking.Inputs;
+import com.mygdx.game.networking.NetworkAddress;
+import com.mygdx.game.networking.NetworkObject;
+import com.mygdx.game.networking.client.GameClient;
 import com.mygdx.game.objects.GenericObject;
 import com.mygdx.game.objects.Scene;
+
+import java.io.IOException;
 
 public class MyGdxGame extends ApplicationAdapter {
 	Texture img;
@@ -32,6 +38,8 @@ public class MyGdxGame extends ApplicationAdapter {
 	ShaderProgram shaderProgram;
 	Scene env ;
 	boolean firstTime = true;
+
+	private GameClient client;
 
 	private Scene scene = Scene.newScene("space");
 	
@@ -59,10 +67,10 @@ public class MyGdxGame extends ApplicationAdapter {
 			scene.addObject(new GenericObject(new Vector3(i * 2 - 4, 0.4f, 0), spaceshipMesh, img));
 		}
 		//		/*Definimos la posicion del objeto principal*/
-		mainShip = new GenericObject(new Vector3(0,-1f, -4), spaceshipMesh, img);
+		mainShip = new GenericObject(20, new Vector3(0,-1f, -4), spaceshipMesh, img);
 		mainShip.setRotationY((float) Math.PI);
 		mainShip.setRotationX(-(float) Math.PI / 12);
-//		mainShip.setScaleVector(0.5f, 0.5f, 0.5f);
+		mainShip.setScaleVector(1f, 1f, 1f);
 		scene.addObject("MainShip", mainShip);
 
 		img2 = new Texture("mars.jpg");
@@ -87,6 +95,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
 
         Cam cam = new PerspectiveCam();
+		cam.setId(15);
         cam.setPosition(new Vector3(0, 5, 4));
 		cam.setRotationX(-(float) Math.PI / 4);
         mainShip.setFather(cam);
@@ -97,7 +106,8 @@ public class MyGdxGame extends ApplicationAdapter {
 //		env.addLight("light", new DirectionalLight(new Vector3(0, 15, 0), new Vector3(0, 1, 0), new Color(1, 1, 1, 1)));
         env.addLight("light", new SpotLight(new Vector3(2, 50, 0), new Vector3((float) (Math.PI * 1.5f), 0, 0), new Color(1, 1, 1, 1)));
 		env.addCam("camera", cam);
-		Gdx.input.setInputProcessor(new SimpleInputController());
+		currentInputs = new Inputs();
+		Gdx.input.setInputProcessor(new SimpleInputController(currentInputs));
         env.setDefaultLight("light");
 
 		env.addLight("mainShipLight", new SpotLight(new Vector3(2, 50, 0), new Vector3((float) (Math.PI * 1.5f), 0, 0), new Color(1, 1, 1, 1)));
@@ -106,11 +116,20 @@ public class MyGdxGame extends ApplicationAdapter {
 		l.setOutterAngle(48f);
 
 		env.getDefaultLight().setRotationX(-(float) Math.PI / 2);
-    }
+
+		try {
+			client = new GameClient(2345);
+			client.connect(new NetworkAddress("localhost", 1234));
+		} catch (IOException e) {
+			client = null;
+		}
+	}
 //GL
     @Override
 	public void render() {
-    	firstTime = true;
+		sendInputs();
+		updateState();
+		firstTime = true;
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		//Si hago un fondo blanco, cuando hago blend se rompe todo
 //		Gdx.gl.glClearColor(1, 1, 1, 1);
@@ -141,6 +160,35 @@ public class MyGdxGame extends ApplicationAdapter {
 //		batch.begin();
 //        stage.draw();
 //        batch.end();
+		currentInputs.clear();
+	}
+
+	private GameState latestGameState;
+	private Inputs currentInputs;
+
+	private void sendInputs() {
+		if(client != null && currentInputs != null) {
+			client.sendInputs(currentInputs);
+		}
+	}
+
+	private void updateState() {
+		if(client != null) {
+			latestGameState = client.updateState();
+			if(latestGameState != null) {
+				for(NetworkObject no: latestGameState.getObjects()) {
+					for(GenericObject go: scene.getSceneAsObjects()) {
+						if(no.id == go.getId()) {
+							go.setPosition(no.position);
+							go.setRotationX(no.rotation.x);
+							go.setRotationY(no.rotation.y);
+							go.setRotationZ(no.rotation.z);
+							go.setScaleVector(no.scale.x, no.scale.y, no.scale.z);
+						}
+					}
+				}
+			}
+		}
 	}
 
 }

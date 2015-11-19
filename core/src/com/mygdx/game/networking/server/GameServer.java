@@ -1,13 +1,11 @@
 package com.mygdx.game.networking.server;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.networking.*;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 public class GameServer implements DataHandler {
@@ -16,11 +14,11 @@ public class GameServer implements DataHandler {
     private int clientsCount;
     private boolean dataHasChanged;
 
-    private Map<NetworkAddress, ClientData> clientsData;
+    private Map<NetworkAddress, Inputs> clientInputs;
 
     public GameServer(int port) throws IOException {
         server = new Server(port, this);
-        clientsData = new HashMap<NetworkAddress, ClientData>();
+        clientInputs = new HashMap<NetworkAddress, Inputs>();
         dataHasChanged = false;
     }
 
@@ -32,33 +30,65 @@ public class GameServer implements DataHandler {
     @Override
     public void onDataReceived(byte[] data, String hostname, int port) {
         NetworkAddress c = new NetworkAddress(hostname, port);
-        if(!clientsData.containsKey(c)) {
+        if(!clientInputs.containsKey(c)) {
             clientsCount++;
             System.out.println("New client. Total clients: " + clientsCount);
         }
         dataHasChanged = true;
-        clientsData.put(c, new ClientData(data));
+        try {
+            Inputs inputs = (Inputs) Serializer.deserialize(data);
+            for(Input i: inputs.getInputs()) {
+                System.out.println(i);
+            }
+            clientInputs.put(c, inputs);
+        } catch (Exception e) {
+            return;
+        }
     }
 
     @Override
     public byte[] onReadyToSend(String hostname, int port) {
-        NetworkAddress c = new NetworkAddress(hostname, port);
-        if(!clientsData.containsKey(c)) {
-            clientsCount++;
-        }
-        if(dataHasChanged) {
-            dataHasChanged = false;
-            return computeState();
-        }
-        return null;
+        return computeState();
     }
 
+    Vector3 position = new Vector3(0, 5, 4);
+    Vector3 rotation = new Vector3(-(float) Math.PI / 4, 0, 0);
+    Vector3 scale = new Vector3(1, 1, 1);
+
+    private boolean movingForward;
+    private boolean movingBackward;
+
     private byte[] computeState() {
+
+        for(Inputs is: clientInputs.values()) {
+            for(Input i: is.getInputs()) {
+                switch (i) {
+                    case MOVE_FORWARD_PRESSED:
+                        movingForward = true;
+                        position.add(new Vector3(0, 0, -0.05f));
+                        break;
+                    case MOVE_FORWARD_RELEASED:
+                        movingForward = false;
+                        break;
+                    case MOVE_BACKWARD_PRESSED:
+                        movingBackward = true;
+                        position.add(new Vector3(0, 0, 0.05f));
+                        break;
+                    case MOVE_BACKWARD_RELEASED:
+                        movingBackward = false;
+                        break;
+                }
+            }
+        }
+
+        if(movingForward) {
+            position.add(new Vector3(0, 0, -0.05f));
+        } else if(movingBackward) {
+            position.add(new Vector3(0, 0, 0.05f));
+        }
+
         List<NetworkObject> objects = new ArrayList<NetworkObject>();
-        Vector3 position = new Vector3(0,-1f, -4);
-        Vector3 rotation = new Vector3(-(float) Math.PI / 12, (float) Math.PI, 0);
-        Vector3 scale = new Vector3(1, 1, 1);
-        NetworkObject object = new NetworkObject(1, position, rotation, scale);
+        NetworkObject object = new NetworkObject(15, position, rotation, scale);
         objects.add(object);
         GameState gs = new GameState(objects);
         try {
@@ -66,7 +96,9 @@ public class GameServer implements DataHandler {
         } catch (IOException e) {
             return null;
         }
+
     }
+
 
     private class ClientData {
         public byte[] data;

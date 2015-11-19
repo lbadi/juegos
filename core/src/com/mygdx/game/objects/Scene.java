@@ -1,9 +1,6 @@
 package com.mygdx.game.objects;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import com.mygdx.game.cam.Cam;
 import com.mygdx.game.light.Light;
@@ -19,6 +16,7 @@ public class Scene {
 	private Map<String, Light> lights;
 	private Map<String, Cam> cams;
     private Map<String, GenericObject> objects;
+
 
     private long objectsCount;
 
@@ -120,6 +118,14 @@ public class Scene {
 
     public Collection<GenericObject> getAllObjects() {
         return objects.values();
+    }
+
+    public Set<GenericObject> getSceneAsObjects() {
+        Set<GenericObject> allObjects = new HashSet<GenericObject>();
+        allObjects.addAll(lights.values());
+        allObjects.addAll(cams.values());
+        allObjects.addAll(objects.values());
+        return allObjects;
     }
 
 }

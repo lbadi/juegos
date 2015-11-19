@@ -1,8 +1,6 @@
 package com.mygdx.game.networking.client;
 
-import com.mygdx.game.networking.GameState;
-import com.mygdx.game.networking.NetworkAddress;
-import com.mygdx.game.networking.Serializer;
+import com.mygdx.game.networking.*;
 
 import java.io.IOException;
 
@@ -21,7 +19,7 @@ public class GameClient {
         client.connect(server.getHostname(), server.getPort());
     }
 
-    public GameState updateState(NetworkAddress server) {
+    public GameState updateState() {
         try {
             byte[] data = client.receive();
             if(data != null) {
@@ -31,6 +29,22 @@ public class GameClient {
             }
         } catch (Exception e) {
             return null;
+        }
+    }
+
+    public void sendHeartbeat() {
+        try {
+            client.send(".".getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void sendInputs(Inputs inputs) {
+        try {
+            client.send(Serializer.serialize(inputs));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
