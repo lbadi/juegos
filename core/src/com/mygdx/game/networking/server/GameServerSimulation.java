@@ -71,8 +71,8 @@ public class GameServerSimulation implements Runnable {
             GenericObject player;
             if(!players.containsKey(inputs.getPlayerId())) {
                 player = new GenericObject();
-                player.setPosition(new Vector3(0, 5, 4));
-                player.setRotation(new Vector3(-(float) Math.PI / 4, 0, 0));
+                player.setPosition(new Vector3(0, 2, 4));
+                player.setRotation(new Vector3(0, 0, 0));
                 player.setScaleVector(1, 1, 1);
                 players.put(inputs.getPlayerId(), player);
             } else {

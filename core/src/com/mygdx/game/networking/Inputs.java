@@ -12,8 +12,14 @@ public class Inputs implements Serializable {
     private List<Input> inputs;
     private int playerId;
 
-    public Inputs(List<Input> inputs) {
+    public Inputs(int playerId) {
+        inputs = new ArrayList<Input>();
+        this.playerId = playerId;
+    }
+
+    public Inputs(List<Input> inputs, int playerId) {
         this.inputs = inputs;
+        this.playerId = playerId;
     }
 
     public int getPlayerId() {

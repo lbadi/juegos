@@ -23,7 +23,7 @@ public class GenericObject implements Serializable {
 	public GenericObject father;
 	public List<GenericObject> childs = new ArrayList<GenericObject>();
 
-	private static int lastId = 0;
+	private static int lastId = 100;
 	
 	//Movimiento
 	private Vector3 fowardDirection = new Vector3(0,0,-1);
