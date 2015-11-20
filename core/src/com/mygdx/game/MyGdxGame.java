@@ -56,7 +56,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		System.out.println("Ingrese id: ");
 //		Scanner in = new Scanner(System.in);
 //		int id = in.nextInt();
-		int id = 0;
+		int id = 1;
 
 		img = new Texture("ship.png");
 		ModelLoader loader = new ObjLoader();
@@ -138,7 +138,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
 		try {
 			client = new GameClient(2345 + id);
-			client.connect(new NetworkAddress("localhost", 1234));
+			client.connect(new NetworkAddress("localhost", 9001));
 		} catch (IOException e) {
 			client = null;
 		}
