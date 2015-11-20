@@ -36,7 +36,7 @@ public class GenericObject implements Serializable {
 	}
 	
 	public GenericObject(Vector3 position, Mesh mesh, Texture img){
-		id = ++lastId;
+		id = lastId++;
 		setPosition(position);
 		setMesh(mesh);
 		setImg(img);
@@ -246,12 +246,14 @@ public class GenericObject implements Serializable {
 	public void move() {
 		//TODO arreglar cuando el padre esta rotado
 		position.add(getFowardDirection().mul(getRy().mul(getRx())).nor().scl(
-				fowardSpeed * Gdx.graphics.getDeltaTime()));
-		position.add(getLeftDirection().mul(getRy().mul(getRx())).nor().scl(
-				horizontalSpeed * Gdx.graphics.getDeltaTime()));
-		setRotationX(rotationX + rotationXSpeed);
-		setRotationY(rotationY + rotationYSpeed);
-		setRotationZ(rotationZ + rotationZSpeed);
+				fowardSpeed));
+		if(fowardSpeed != 0)
+			System.out.println(fowardSpeed);
+//		position.add(getLeftDirection().mul(getRy().mul(getRx())).nor().scl(
+//				horizontalSpeed * Gdx.graphics.getDeltaTime()));
+		rotationX = rotationX + pitchSpeed;
+		rotationY = rotationY + yawSpeed;
+		rotationZ = rotationZ + rollSpeed;
 	}
 
 	public float getFowardSpeed() {

@@ -53,9 +53,10 @@ public class MyGdxGame extends ApplicationAdapter {
 //		batch = new SpriteBatch();
 //        skin = new Skin(Gdx.files.internal("ui.json"));
 //        stage = new Stage();
-		System.out.println("Ingrese id: ");
-		Scanner in = new Scanner(System.in);
-		int id = in.nextInt();
+//		System.out.println("Ingrese id: ");
+//		Scanner in = new Scanner(System.in);
+//		int id = in.nextInt();
+		int id = 0;
 
 		img = new Texture("ship.png");
 		ModelLoader loader = new ObjLoader();
@@ -102,35 +103,38 @@ public class MyGdxGame extends ApplicationAdapter {
 
 
         Cam cam = new PerspectiveCam();
-//		cam.setRotationY(-(float) Math.PI / 4);
 		cam.setId(10);
-		cam.setPosition(new Vector3(0, 0, 15));
-//		cam.setRotationX(-(float) Math.PI / 4);
+		cam.setRotation(new Vector3(-(float) Math.PI/6, (float) Math.PI, 0));
+		cam.setPosition(new Vector3(0, 2, -4));
+
+		mainShip.setRotationX(-(float) Math.PI / 12);
+		mainShip.setRotationY((float) Math.PI);
+
 		cam.setFather(mainShip);
 
 		//TODO Arreglar lo de padre e hijo y completar los casos que faltan.
 		env = Scene.getCurrentScene();
 //		env.addLight("directional", new DirectionalLight(new Vector3(0, 15, 0), new Vector3(0, 1, 0), new Color(1, 1, 1, 1)));
 //        env.addLight("point", new PointLight(new Vector3(1.5f,0,0), new Color(1, 1, 1, 1)));
-//		env.addLight("light", new DirectionalLight(new Vector3(0, 15, 0), new Vector3(0, 1, 0), new Color(1, 1, 1, 1)));
-		SpotLight light = new SpotLight(new Vector3(2, 50, 0), new Vector3((float) (Math.PI * 1.5f), 0, 0), new Color(1, 1, 1, 1));
-		env.addLight("light", light);
-		light.setInnerAngle(50f);
-		light.setOutterAngle(65f);
+		env.addLight("light", new DirectionalLight(new Vector3(0, 15, 0), new Vector3(0, 1, 0), new Color(1, 1, 1, 1)));
+//		SpotLight light = new SpotLight(new Vector3(2, 50, 0), new Vector3((float) (Math.PI * 1.5f), 0, 0), new Color(1, 1, 1, 1));
+//		env.addLight("light", light);
+//		light.setInnerAngle(50f);
+//		light.setOutterAngle(65f);
 		env.addCam("camera", cam);
 		currentInputs = new Inputs(id);
 		Gdx.input.setInputProcessor(new SimpleInputController(currentInputs));
         env.setDefaultLight("light");
 
-		env.addLight("mainShipLight", new SpotLight(new Vector3(2, 50, 0), new Vector3((float) (Math.PI * 1.5f), 0, 0), new Color(1, 1, 1, 1)));
-		SpotLight l = (SpotLight) env.getLight("mainShipLight");
-		l.setInnerAngle(45.4f);
-		l.setOutterAngle(48f);
+//		env.addLight("mainShipLight", new SpotLight(new Vector3(2, 50, 0), new Vector3((float) (Math.PI * 1.5f), 0, 0), new Color(1, 1, 1, 1)));
+//		SpotLight l = (SpotLight) env.getLight("mainShipLight");
+//		l.setInnerAngle(45.4f);
+//		l.setOutterAngle(48f);
 
-		env.getDefaultLight().setRotationX(-(float) Math.PI / 2);
+//		env.getDefaultLight().setRotationX(-(float) Math.PI / 2);
 
 		try {
-			client = new GameClient(2345);
+			client = new GameClient(2345 + id);
 			client.connect(new NetworkAddress("localhost", 1234));
 		} catch (IOException e) {
 			client = null;
@@ -148,11 +152,11 @@ public class MyGdxGame extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 		//Aca activo el blending para hacer muchas luces
 
-		SpotLight l = (SpotLight) env.getLight("mainShipLight");
-		l.setPosition(mainShip.getPosition());
-		l.setRotationY(mainShip.getRotationY());
-		l.setRotationX(mainShip.getRotationX() - 0.2f);
-		l.setRotationZ(mainShip.getRotationZ());
+//		SpotLight l = (SpotLight) env.getLight("mainShipLight");
+//		l.setPosition(mainShip.getPosition());
+//		l.setRotationY(mainShip.getRotationY());
+//		l.setRotationX(mainShip.getRotationX() - 0.2f);
+//		l.setRotationZ(mainShip.getRotationZ());
 
 
 		Gdx.gl.glEnable(GL20.GL_DEPTH_TEST);
@@ -165,10 +169,9 @@ public class MyGdxGame extends ApplicationAdapter {
 			light.render(Scene.getCurrentScene());
 			firstTime = false;
 		}
-		Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA,GL20.GL_ONE_MINUS_SRC_ALPHA);
+		Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 		mainShip.move();
-		scene.getCurrentCam().setFather(mainShip);
-		scene.getCurrentCam().setPosition(new Vector3(0, 2, 5));
+//		scene.getCurrentCam().setPosition(new Vector3(0, 2, 5));
 //		scene.getCurrentCam().setRotation(new Vector3((float) Math.PI / 12, 0, 0));
 
 		//UI

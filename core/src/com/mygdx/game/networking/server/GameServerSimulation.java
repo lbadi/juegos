@@ -32,11 +32,13 @@ public class GameServerSimulation implements Runnable {
 
     @Override
     public void run() {
-        new Timer().schedule(simulation, 0, 15);
+        new Timer().schedule(simulation, 0, 10);
     }
 
     public void enqueue(Inputs inputs) {
-        this.inputs.offer(inputs);
+        if(inputs != null && inputs.getInputs().size() > 0) {
+            this.inputs.offer(inputs);
+        }
     }
 
     public GameState getGameState() {
@@ -142,6 +144,7 @@ public class GameServerSimulation implements Runnable {
             } else {
                 player.rollSpeed = 0f;
             }
+//            player.move();
             player.betaMove();
         }
 
