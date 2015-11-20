@@ -114,13 +114,13 @@ public class SpotLight extends PointLight {
 
 //        renderShadowMap();
         //-----------------
+        renderCubeMap(scene);
         renderObjects(scene);
         //-----------------
-//        renderCubeMap(scene);
     }
     //Test code
     private void renderCubeMap(Scene scene){
-    	envCubemap.cubeMapRender();
+    	envCubemap.cubeMapRender(scene.getCurrentCam().getDirection());
     }
     
     private void renderShadowMap(){
