@@ -143,6 +143,7 @@ public class CustomCubemap implements Disposable{
     	
     	
     	Quaternion quat  = new Quaternion(direction.x, direction.y, direction.z, 0);
+//    	quat.setEulerAngles(direction.y, direction.x, direction.z);
     	worldTrans.rotate(quat);
 //        worldTrans.rotate(new Quaternion(new Vector3(0,1,0), a));
 	    renderCubeShader.begin(); 
