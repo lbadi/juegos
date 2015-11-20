@@ -20,10 +20,7 @@ import com.mygdx.game.cam.PerspectiveCam;
 import com.mygdx.game.controller.SimpleInputController;
 import com.mygdx.game.light.Light;
 import com.mygdx.game.light.SpotLight;
-import com.mygdx.game.networking.GameState;
-import com.mygdx.game.networking.Inputs;
-import com.mygdx.game.networking.NetworkAddress;
-import com.mygdx.game.networking.NetworkObject;
+import com.mygdx.game.networking.*;
 import com.mygdx.game.networking.client.GameClient;
 import com.mygdx.game.objects.GenericObject;
 import com.mygdx.game.objects.Scene;
@@ -95,7 +92,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
 
         Cam cam = new PerspectiveCam();
-		cam.setId(15);
+		cam.setId(0);
         cam.setPosition(new Vector3(0, 5, 4));
 		cam.setRotationX(-(float) Math.PI / 4);
         mainShip.setFather(cam);
@@ -168,6 +165,10 @@ public class MyGdxGame extends ApplicationAdapter {
 
 	private void sendInputs() {
 		if(client != null && currentInputs != null) {
+			if(scene.getCurrentCam().movingForward)
+				currentInputs.addInput(Input.MOVE_FORWARD);
+			if(scene.getCurrentCam().movingBackward)
+				currentInputs.addInput(Input.MOVE_BACKWARD);
 			client.sendInputs(currentInputs);
 		}
 	}

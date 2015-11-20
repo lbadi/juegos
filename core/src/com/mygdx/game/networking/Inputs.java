@@ -10,9 +10,14 @@ import java.util.List;
 public class Inputs implements Serializable {
 
     private List<Input> inputs;
+    private int playerId;
 
     public Inputs(List<Input> inputs) {
         this.inputs = inputs;
+    }
+
+    public int getPlayerId() {
+        return playerId;
     }
 
     public Inputs() {

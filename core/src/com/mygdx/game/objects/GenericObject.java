@@ -229,7 +229,15 @@ public class GenericObject implements Serializable {
 		return new Vector3(fowardDirection);
 	}
 
+	public Vector3 getRotation() {
+		return new Vector3(rotationX, rotationY, rotationZ);
+	}
 
+	public void setRotation(Vector3 rotation) {
+		setRotationX(rotation.x);
+		setRotationY(rotation.y);
+		setRotationZ(rotation.z);
+	}
 
 	public Vector3 getLeftDirection() {
 		return new Vector3(leftDirection);
@@ -245,5 +253,16 @@ public class GenericObject implements Serializable {
 		setRotationY(rotationY + rotationYSpeed);
 		setRotationZ(rotationZ + rotationZSpeed);
 	}
+
+	public float getFowardSpeed() {
+		return fowardSpeed;
+	}
+
+	public void betaMove() {
+		position.add(new Vector3(0, 0, fowardSpeed));
+	}
+
+	public boolean movingBackward;
+	public boolean movingForward;
 	
 }

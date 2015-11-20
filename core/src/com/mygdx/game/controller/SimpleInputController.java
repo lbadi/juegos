@@ -39,35 +39,35 @@ public class SimpleInputController extends InputAdapter{
 	        {
 	        case Keys.LEFT:
 				cam.setRotationYSpeed(0.01f);
-				currentInputs.addInput(Input.YAW_LEFT_PRESSED);
+//				currentInputs.addInput(Input.YAW_LEFT_PRESSED);
 	            break;
 	        case Keys.RIGHT:
 				cam.setRotationYSpeed(-0.01f);
-				currentInputs.addInput(Input.YAW_RIGHT_PRESSED);
+//				currentInputs.addInput(Input.YAW_RIGHT_PRESSED);
 	            break;
 	        case Keys.UP:
 //	        	cam.setFowardSpeed(4);
-				currentInputs.addInput(Input.MOVE_FORWARD_PRESSED);
+				cam.movingForward = true;
 	            break;
 	        case Keys.DOWN:
-	        	cam.setFowardSpeed(-4);
-				currentInputs.addInput(Input.MOVE_BACKWARD_PRESSED);
+//	        	cam.setFowardSpeed(-4);
+				cam.movingBackward = true;
 	            break;
 			case Keys.A:
 				cam.setRotationZSpeed(0.01f);
-				currentInputs.addInput(Input.ROLL_LEFT_PRESSED);
+//				currentInputs.addInput(Input.ROLL_LEFT_PRESSED);
 				break;
 			case Keys.D:
-				cam.setRotationZSpeed(-0.01f );
-				currentInputs.addInput(Input.ROLL_RIGHT_PRESSED);
+				cam.setRotationZSpeed(-0.01f);
+//				currentInputs.addInput(Input.ROLL_RIGHT_PRESSED);
 				break;
 			case Keys.W:
-				cam.setRotationXSpeed(-0.01f );
-				currentInputs.addInput(Input.PITCH_DOWN_PRESSED);
+				cam.setRotationXSpeed(-0.01f);
+//				currentInputs.addInput(Input.PITCH_DOWN_PRESSED);
 				break;
 			case Keys.S:
-				cam.setRotationXSpeed(0.01f );
-				currentInputs.addInput(Input.PITCH_UP_PRESSED);
+				cam.setRotationXSpeed(0.01f);
+//				currentInputs.addInput(Input.PITCH_UP_PRESSED);
 				break;
 	        case Keys.R:
 	        	light.setLightColor(light.getLightColor().add(0.2f, -0.1f, -0.1f, 0));
@@ -117,35 +117,37 @@ public class SimpleInputController extends InputAdapter{
         {
         case Keys.LEFT:
 			cam.setRotationYSpeed(0);
-			currentInputs.addInput(Input.YAW_LEFT_RELEASED);
+//			currentInputs.addInput(Input.YAW_LEFT_RELEASED);
             break;
         case Keys.RIGHT:
 			cam.setRotationYSpeed(0);
-			currentInputs.addInput(Input.YAW_RIGHT_RELEASED);
+//			currentInputs.addInput(Input.YAW_RIGHT_RELEASED);
             break;
         case Keys.UP:
-        	cam.setFowardSpeed(0);
-			currentInputs.addInput(Input.MOVE_FORWARD_RELEASED);
+//        	cam.setFowardSpeed(0);
+//			currentInputs.addInput(Input.MOVE_FORWARD_RELEASED);
+			cam.movingForward = false;
             break;
         case Keys.DOWN:
-        	cam.setFowardSpeed(0);
-			currentInputs.addInput(Input.MOVE_BACKWARD_RELEASED);
+//        	cam.setFowardSpeed(0);
+//			currentInputs.addInput(Input.MOVE_BACKWARD_RELEASED);
+			cam.movingBackward = false;
             break;
 		case Keys.A:
 			cam.setRotationZSpeed(0);
-			currentInputs.addInput(Input.ROLL_LEFT_RELEASED);
+//			currentInputs.addInput(Input.ROLL_LEFT_RELEASED);
 			break;
 		case Keys.D:
 			cam.setRotationZSpeed(0);
-			currentInputs.addInput(Input.ROLL_RIGHT_RELEASED);
+//			currentInputs.addInput(Input.ROLL_RIGHT_RELEASED);
 			break;
 		case Keys.W:
 			cam.setRotationXSpeed(0);
-			currentInputs.addInput(Input.PITCH_DOWN_RELEASED);
+//			currentInputs.addInput(Input.PITCH_DOWN_RELEASED);
 			break;
 		case Keys.S:
 			cam.setRotationXSpeed(0);
-			currentInputs.addInput(Input.PITCH_UP_RELEASED);
+//			currentInputs.addInput(Input.PITCH_UP_RELEASED);
 			break;
         }
 
