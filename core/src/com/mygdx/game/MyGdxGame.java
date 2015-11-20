@@ -138,8 +138,9 @@ public class MyGdxGame extends ApplicationAdapter {
 
 		try {
 			client = new GameClient(2345 + id);
-			client.connect(new NetworkAddress("localhost", 1234));
+			client.connect(new NetworkAddress("192.168.2.5", 9001));
 		} catch (IOException e) {
+			e.printStackTrace();
 			client = null;
 		}
 	}
