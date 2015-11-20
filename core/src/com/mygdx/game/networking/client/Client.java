@@ -1,4 +1,4 @@
-package com.mygdx.game.networking;
+package com.mygdx.game.networking.client;
 
 
 import java.io.IOException;

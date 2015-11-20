@@ -7,18 +7,23 @@ import com.badlogic.gdx.graphics.Color;
 import com.mygdx.game.cam.Cam;
 import com.mygdx.game.light.Light;
 import com.mygdx.game.light.SpotLight;
+import com.mygdx.game.networking.Input;
+import com.mygdx.game.networking.Inputs;
+import com.mygdx.game.objects.GenericObject;
 import com.mygdx.game.objects.Scene;
 
 public class SimpleInputController extends InputAdapter{
 
 	Scene enviroment;
-	
-	
+
 	private float mouseSensibility = 1f;
-	
-	public  SimpleInputController() {
+
+	private Inputs currentInputs;
+
+	public  SimpleInputController(Inputs currentInputs) {
 		super();
 		this.enviroment = Scene.getCurrentScene();
+		this.currentInputs = currentInputs;
 	}
 
 	public float getMouseSensibility() {
@@ -29,33 +34,33 @@ public class SimpleInputController extends InputAdapter{
 	}
 	@Override
 	public boolean keyDown(int keycode) {
-		Cam cam = enviroment.getCurrentCam();
+		GenericObject player = enviroment.getObject("MainShip");
 		Light light = enviroment.getDefaultLight();
 		 switch (keycode)
 	        {
 	        case Keys.LEFT:
-				cam.setRotationYSpeed(0.01f);
+				player.yawingLeft = true;
 	            break;
 	        case Keys.RIGHT:
-				cam.setRotationYSpeed(-0.01f);
+				player.yawingRight = true;
 	            break;
 	        case Keys.UP:
-	        	cam.setFowardSpeed(4);
+				player.movingForward = true;
 	            break;
 	        case Keys.DOWN:
-	        	cam.setFowardSpeed(-4);
+				player.movingBackward = true;
 	            break;
 			case Keys.A:
-				cam.setRotationZSpeed(0.01f);
+				player.rollingLeft = true;
 				break;
 			case Keys.D:
-				cam.setRotationZSpeed(-0.01f );
+				player.rollingRight = true;
 				break;
 			case Keys.W:
-				cam.setRotationXSpeed(-0.01f );
+				player.pitchingDown = true;
 				break;
 			case Keys.S:
-				cam.setRotationXSpeed(0.01f );
+				player.pitchingUp = true;
 				break;
 	        case Keys.R:
 	        	light.setLightColor(light.getLightColor().add(0.2f, -0.1f, -0.1f, 0));
@@ -99,33 +104,33 @@ public class SimpleInputController extends InputAdapter{
 
 	@Override
 	public boolean keyUp(int keycode) {
-		Cam cam = enviroment.getCurrentCam();
+		GenericObject player = enviroment.getObject("MainShip");
 
 		switch (keycode)
         {
         case Keys.LEFT:
-			cam.setRotationYSpeed(0);
+			player.yawingLeft = false;
             break;
         case Keys.RIGHT:
-			cam.setRotationYSpeed(0);
+			player.yawingRight = false;
             break;
         case Keys.UP:
-        	cam.setFowardSpeed(0);
+			player.movingForward = false;
             break;
         case Keys.DOWN:
-        	cam.setFowardSpeed(0);
+			player.movingBackward = false;
             break;
 		case Keys.A:
-			cam.setRotationZSpeed(0);
+			player.rollingLeft = false;
 			break;
 		case Keys.D:
-			cam.setRotationZSpeed(0);
+			player.rollingRight = false;
 			break;
 		case Keys.W:
-			cam.setRotationXSpeed(0);
+			player.pitchingDown = false;
 			break;
 		case Keys.S:
-			cam.setRotationXSpeed(0);
+			player.pitchingUp = false;
 			break;
         }
 
@@ -158,32 +163,32 @@ public class SimpleInputController extends InputAdapter{
 
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
-		Cam cam = enviroment.getCurrentCam();
-		float xMovement = (float)screenX  / Gdx.graphics.getWidth();
-		float yMovement = (float)screenY  / Gdx.graphics.getHeight();
-		//TODO HACER QUE NO SEA DISCRETO EL MOVIMIENTO; QUE SEA CONTINUO
-		float quantityMovement = 0.05f * getMouseSensibility();
-		float yQuantityMovement = yMovement * quantityMovement;
-		float xQuantityMovement = xMovement * quantityMovement;
-		if(xMovement < 0.499){
-			cam.setRotationY(cam.getRotationY() +  xQuantityMovement );
-		}
-		else if(xMovement > 0.501){
-			cam.setRotationY(cam.getRotationY() - xQuantityMovement);
-		}
-		
-		if(yMovement < 0.499){
-			cam.setRotationX(cam.getRotationX() + yQuantityMovement);
-		}
-		else if(yMovement > 0.501){
-			cam.setRotationX(cam.getRotationX() - yQuantityMovement);
-		}
-		Gdx.input.setCursorPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
-
-		
-		
-//		cam.lookAt(target);
-		// TODO Auto-generated method stub
+//		Cam cam = enviroment.getCurrentCam();
+//		float xMovement = (float)screenX  / Gdx.graphics.getWidth();
+//		float yMovement = (float)screenY  / Gdx.graphics.getHeight();
+//		//TODO HACER QUE NO SEA DISCRETO EL MOVIMIENTO; QUE SEA CONTINUO
+//		float quantityMovement = 0.05f * getMouseSensibility();
+//		float yQuantityMovement = yMovement * quantityMovement;
+//		float xQuantityMovement = xMovement * quantityMovement;
+//		if(xMovement < 0.499){
+//			cam.setRotationY(cam.getRotationY() +  xQuantityMovement );
+//		}
+//		else if(xMovement > 0.501){
+//			cam.setRotationY(cam.getRotationY() - xQuantityMovement);
+//		}
+//
+//		if(yMovement < 0.499){
+//			cam.setRotationX(cam.getRotationX() + yQuantityMovement);
+//		}
+//		else if(yMovement > 0.501){
+//			cam.setRotationX(cam.getRotationX() - yQuantityMovement);
+//		}
+//		Gdx.input.setCursorPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
+//
+//
+//
+////		cam.lookAt(target);
+//		// TODO Auto-generated method stub
 		return false;
 	}
 

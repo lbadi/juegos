@@ -1,6 +1,6 @@
 package com.mygdx.game.networking.test;
 
-import com.mygdx.game.networking.Client;
+import com.mygdx.game.networking.client.Client;
 
 import java.io.IOException;
 import java.util.Random;

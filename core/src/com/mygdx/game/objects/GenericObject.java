@@ -1,17 +1,18 @@
 package com.mygdx.game.objects;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Mesh;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector3;
 
-public class GenericObject {
+public class GenericObject implements Serializable {
 
+	private int id;
 	private Vector3 position = new Vector3();
 	private Vector3 scaleVector = new Vector3(1,1,1);
 	private float rotationX = 0;
@@ -21,6 +22,8 @@ public class GenericObject {
 	private Texture img;
 	public GenericObject father;
 	public List<GenericObject> childs = new ArrayList<GenericObject>();
+
+	private static int lastId = 100;
 	
 	//Movimiento
 	private Vector3 fowardDirection = new Vector3(0,0,-1);
@@ -28,15 +31,32 @@ public class GenericObject {
 	private float fowardSpeed = 0;
 	private float horizontalSpeed = 0;
 	
-	public GenericObject() {}
+	public GenericObject() {
+
+	}
 	
 	public GenericObject(Vector3 position, Mesh mesh, Texture img){
+		id = lastId++;
 		setPosition(position);
 		setMesh(mesh);
 		setImg(img);
 	}
-	
-	
+
+	public GenericObject(int id, Vector3 position, Mesh mesh, Texture img){
+		this.id = id;
+		setPosition(position);
+		setMesh(mesh);
+		setImg(img);
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public GenericObject getFather() {
 		return father;
 	}
@@ -209,7 +229,15 @@ public class GenericObject {
 		return new Vector3(fowardDirection);
 	}
 
+	public Vector3 getRotation() {
+		return new Vector3(rotationX, rotationY, rotationZ);
+	}
 
+	public void setRotation(Vector3 rotation) {
+		setRotationX(rotation.x);
+		setRotationY(rotation.y);
+		setRotationZ(rotation.z);
+	}
 
 	public Vector3 getLeftDirection() {
 		return new Vector3(leftDirection);
@@ -218,12 +246,38 @@ public class GenericObject {
 	public void move() {
 		//TODO arreglar cuando el padre esta rotado
 		position.add(getFowardDirection().mul(getRy().mul(getRx())).nor().scl(
-				fowardSpeed * Gdx.graphics.getDeltaTime()));
+				fowardSpeed));
+		if(fowardSpeed != 0)
+			System.out.println(fowardSpeed);
 		position.add(getLeftDirection().mul(getRy().mul(getRx())).nor().scl(
 				horizontalSpeed * Gdx.graphics.getDeltaTime()));
-		setRotationX(rotationX + rotationXSpeed);
-		setRotationY(rotationY + rotationYSpeed);
-		setRotationZ(rotationZ + rotationZSpeed);
+		rotationX = rotationX + pitchSpeed;
+		rotationY = rotationY + yawSpeed;
+		rotationZ = rotationZ + rollSpeed;
 	}
+
+	public float getFowardSpeed() {
+		return fowardSpeed;
+	}
+
+	public float pitchSpeed;
+	public float yawSpeed;
+	public float rollSpeed;
+
+	public void betaMove() {
+		position.add(new Vector3(0, 0, fowardSpeed));
+		rotationX = rotationX + pitchSpeed;
+		rotationY = rotationY + yawSpeed;
+		rotationZ = rotationZ + rollSpeed;
+	}
+
+	public boolean movingBackward;
+	public boolean movingForward;
+	public boolean pitchingUp;
+	public boolean pitchingDown;
+	public boolean yawingRight;
+	public boolean yawingLeft;
+	public boolean rollingRight;
+	public boolean rollingLeft;
 	
 }

@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 
-public class ReflectiveObject extends GenericObject{
+public class ReflectiveObject extends GenericObject {
 
 	
 	String vs = Gdx.files.internal("shaders/lights/defaultVS.glsl").readString();
