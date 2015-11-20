@@ -249,8 +249,8 @@ public class GenericObject implements Serializable {
 				fowardSpeed));
 		if(fowardSpeed != 0)
 			System.out.println(fowardSpeed);
-//		position.add(getLeftDirection().mul(getRy().mul(getRx())).nor().scl(
-//				horizontalSpeed * Gdx.graphics.getDeltaTime()));
+		position.add(getLeftDirection().mul(getRy().mul(getRx())).nor().scl(
+				horizontalSpeed * Gdx.graphics.getDeltaTime()));
 		rotationX = rotationX + pitchSpeed;
 		rotationY = rotationY + yawSpeed;
 		rotationZ = rotationZ + rollSpeed;

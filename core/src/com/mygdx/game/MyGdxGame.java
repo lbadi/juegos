@@ -53,10 +53,10 @@ public class MyGdxGame extends ApplicationAdapter {
 //		batch = new SpriteBatch();
 //        skin = new Skin(Gdx.files.internal("ui.json"));
 //        stage = new Stage();
-//		System.out.println("Ingrese id: ");
-//		Scanner in = new Scanner(System.in);
-//		int id = in.nextInt();
-		int id = 0;
+		System.out.println("Ingrese id: ");
+		Scanner in = new Scanner(System.in);
+		int id = in.nextInt();
+//		int id = 0;
 
 		img = new Texture("ship.png");
 		ModelLoader loader = new ObjLoader();
@@ -104,7 +104,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
         Cam cam = new PerspectiveCam();
 		cam.setId(10);
-		cam.setRotation(new Vector3(-(float) Math.PI/6, (float) Math.PI, 0));
+		cam.setRotation(new Vector3(-(float) Math.PI / 6, (float) Math.PI, 0));
 		cam.setPosition(new Vector3(0, 2, -4));
 
 		mainShip.setRotationX(-(float) Math.PI / 12);
@@ -116,12 +116,14 @@ public class MyGdxGame extends ApplicationAdapter {
 		env = Scene.getCurrentScene();
 //		env.addLight("directional", new DirectionalLight(new Vector3(0, 15, 0), new Vector3(0, 1, 0), new Color(1, 1, 1, 1)));
 //        env.addLight("point", new PointLight(new Vector3(1.5f,0,0), new Color(1, 1, 1, 1)));
-		env.addLight("light", new DirectionalLight(new Vector3(0, 15, 0), new Vector3(0, 1, 0), new Color(1, 1, 1, 1)));
-//		SpotLight light = new SpotLight(new Vector3(2, 50, 0), new Vector3((float) (Math.PI * 1.5f), 0, 0), new Color(1, 1, 1, 1));
-//		env.addLight("light", light);
-//		light.setInnerAngle(50f);
-//		light.setOutterAngle(65f);
+//		env.addLight("light", new DirectionalLight(new Vector3(0, 15, 0), new Vector3(0, 1, 0), new Color(1, 1, 1, 1)));
+		SpotLight light = new SpotLight(new Vector3(2, 50, 0), new Vector3((float) (Math.PI * 1.5f), 0, 0), new Color(1, 1, 1, 1));
+		env.addLight("light", light);
+		light.setInnerAngle(50f);
+		light.setOutterAngle(65f);
+		light.setId(12345);
 		env.addCam("camera", cam);
+
 		currentInputs = new Inputs(id);
 		Gdx.input.setInputProcessor(new SimpleInputController(currentInputs));
         env.setDefaultLight("light");
@@ -170,7 +172,7 @@ public class MyGdxGame extends ApplicationAdapter {
 			firstTime = false;
 		}
 		Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
-		mainShip.move();
+//		mainShip.move();
 //		scene.getCurrentCam().setPosition(new Vector3(0, 2, 5));
 //		scene.getCurrentCam().setRotation(new Vector3((float) Math.PI / 12, 0, 0));
 
