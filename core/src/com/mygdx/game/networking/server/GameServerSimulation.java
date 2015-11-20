@@ -80,6 +80,12 @@ public class GameServerSimulation implements Runnable {
             }
             boolean moveForward = false;
             boolean moveBackward = false;
+            boolean pitchDown = false;
+            boolean pitchUp = false;
+            boolean yawRight = false;
+            boolean yawLeft = false;
+            boolean rollRight = false;
+            boolean rollLeft = false;
             for(Input input: inputs.getInputs()) {
                 switch (input) {
                     case MOVE_FORWARD:
@@ -87,6 +93,24 @@ public class GameServerSimulation implements Runnable {
                         break;
                     case MOVE_BACKWARD:
                         moveBackward = true;
+                        break;
+                    case PITCH_DOWN:
+                        pitchDown = true;
+                        break;
+                    case PITCH_UP:
+                        pitchUp = true;
+                        break;
+                    case YAW_LEFT:
+                        yawLeft = true;
+                        break;
+                    case YAW_RIGHT:
+                        yawRight = true;
+                        break;
+                    case ROLL_LEFT:
+                        rollLeft = true;
+                        break;
+                    case ROLL_RIGHT:
+                        rollRight = true;
                         break;
                 }
             }
@@ -96,6 +120,27 @@ public class GameServerSimulation implements Runnable {
                 player.setFowardSpeed(0.1f);
             } else {
                 player.setFowardSpeed(0);
+            }
+            if(yawRight) {
+                player.yawSpeed = -0.01f;
+            } else if(yawLeft) {
+                player.yawSpeed = 0.01f;
+            } else {
+                player.yawSpeed = 0f;
+            }
+            if(pitchUp) {
+                player.pitchSpeed = 0.01f;
+            } else if(pitchDown) {
+                player.pitchSpeed = -0.01f;
+            } else {
+                player.pitchSpeed = 0f;
+            }
+            if(rollLeft) {
+                player.rollSpeed = 0.01f;
+            } else if(rollRight) {
+                player.rollSpeed = -0.01f;
+            } else {
+                player.rollSpeed = 0f;
             }
             player.betaMove();
         }

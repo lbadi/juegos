@@ -165,12 +165,28 @@ public class MyGdxGame extends ApplicationAdapter {
 
 	private void sendInputs() {
 		if(client != null && currentInputs != null) {
-			if(scene.getCurrentCam().movingForward)
-				currentInputs.addInput(Input.MOVE_FORWARD);
-			if(scene.getCurrentCam().movingBackward)
-				currentInputs.addInput(Input.MOVE_BACKWARD);
+			addInputs();
 			client.sendInputs(currentInputs);
 		}
+	}
+
+	private void addInputs() {
+		if(scene.getCurrentCam().movingForward)
+			currentInputs.addInput(Input.MOVE_FORWARD);
+		if(scene.getCurrentCam().movingBackward)
+			currentInputs.addInput(Input.MOVE_BACKWARD);
+		if(scene.getCurrentCam().pitchingDown)
+			currentInputs.addInput(Input.PITCH_DOWN);
+		if(scene.getCurrentCam().pitchingUp)
+			currentInputs.addInput(Input.PITCH_UP);
+		if(scene.getCurrentCam().yawingRight)
+			currentInputs.addInput(Input.YAW_RIGHT);
+		if(scene.getCurrentCam().yawingLeft)
+			currentInputs.addInput(Input.YAW_LEFT);
+		if(scene.getCurrentCam().rollingLeft)
+			currentInputs.addInput(Input.ROLL_LEFT);
+		if(scene.getCurrentCam().rollingRight)
+			currentInputs.addInput(Input.ROLL_RIGHT);
 	}
 
 	private void updateState() {

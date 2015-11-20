@@ -258,11 +258,24 @@ public class GenericObject implements Serializable {
 		return fowardSpeed;
 	}
 
+	public float pitchSpeed;
+	public float yawSpeed;
+	public float rollSpeed;
+
 	public void betaMove() {
 		position.add(new Vector3(0, 0, fowardSpeed));
+		rotationX = rotationX + pitchSpeed;
+		rotationY = rotationY + yawSpeed;
+		rotationZ = rotationZ + rollSpeed;
 	}
 
 	public boolean movingBackward;
 	public boolean movingForward;
+	public boolean pitchingUp;
+	public boolean pitchingDown;
+	public boolean yawingRight;
+	public boolean yawingLeft;
+	public boolean rollingRight;
+	public boolean rollingLeft;
 	
 }
