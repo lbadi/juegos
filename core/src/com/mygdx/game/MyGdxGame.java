@@ -56,7 +56,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		System.out.println("Ingrese id: ");
 //		Scanner in = new Scanner(System.in);
 //		int id = in.nextInt();
-		int id = 1;
+		int id = 2;
 
 		img = new Texture("ship.png");
 		ModelLoader loader = new ObjLoader();

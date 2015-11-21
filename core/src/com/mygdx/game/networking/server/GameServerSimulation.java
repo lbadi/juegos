@@ -1,6 +1,5 @@
 package com.mygdx.game.networking.server;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.networking.GameState;
 import com.mygdx.game.networking.Input;
@@ -118,11 +117,11 @@ public class GameServerSimulation implements Runnable {
                 }
             }
             if(moveForward) {
-                player.setFowardSpeed(-0.1f);
+                player.setForwardSpeed(-0.1f);
             } else if (moveBackward){
-                player.setFowardSpeed(0.1f);
+                player.setForwardSpeed(0.1f);
             } else {
-                player.setFowardSpeed(0);
+                player.setForwardSpeed(0);
             }
             if(yawRight) {
                 player.yawSpeed = -0.01f;
@@ -132,9 +131,9 @@ public class GameServerSimulation implements Runnable {
                 player.yawSpeed = 0f;
             }
             if(pitchUp) {
-                player.pitchSpeed = 0.01f;
-            } else if(pitchDown) {
                 player.pitchSpeed = -0.01f;
+            } else if(pitchDown) {
+                player.pitchSpeed = 0.01f;
             } else {
                 player.pitchSpeed = 0f;
             }

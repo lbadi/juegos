@@ -51,10 +51,10 @@ public class SimpleInputController extends InputAdapter{
 				player.movingBackward = true;
 	            break;
 			case Keys.A:
-				player.rollingLeft = true;
+//				player.rollingLeft = true;
 				break;
 			case Keys.D:
-				player.rollingRight = true;
+//				player.rollingRight = true;
 				break;
 			case Keys.W:
 				player.pitchingDown = true;

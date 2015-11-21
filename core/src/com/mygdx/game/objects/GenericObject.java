@@ -5,13 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Mesh;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector3;
 import org.jblas.FloatMatrix;
-import org.jblas.Geometry;
 
 public class GenericObject implements Serializable {
 
@@ -29,9 +27,9 @@ public class GenericObject implements Serializable {
 	private static int lastId = 100;
 	
 	//Movimiento
-	private Vector3 fowardDirection = new Vector3(0,0,-1);
+	private Vector3 forwardDirection = new Vector3(0,0,-1);
 	private Vector3 leftDirection = new Vector3(1,0,0);
-	private float fowardSpeed = 0;
+	private float forwardSpeed = 0;
 	private float horizontalSpeed = 0;
 	
 	public GenericObject() {
@@ -119,7 +117,7 @@ public class GenericObject implements Serializable {
 		this.rotationZ = rotationZ;
 	}
 	public Vector3 getDirection() {
-		return getFowardDirection().mul(getRy().mul(getRx()));
+		return getForwardDirection().mul(getRy().mul(getRx()));
 	}
 	
 	public Matrix4 getTranslationMatrix(){
@@ -203,8 +201,8 @@ public class GenericObject implements Serializable {
 	}
 	//TODO hacer el Rz()
 	
-	public void setFowardSpeed(float fowardSpeed) {
-		this.fowardSpeed = fowardSpeed;
+	public void setForwardSpeed(float forwardSpeed) {
+		this.forwardSpeed = forwardSpeed;
 	}
 
 	public void setHorizontalSpeed(float horizontalSpeed) {
@@ -229,8 +227,8 @@ public class GenericObject implements Serializable {
 		this.rotationZSpeed = rotationZSpeed;
 	}
 
-	public Vector3 getFowardDirection() {
-		return new Vector3(fowardDirection);
+	public Vector3 getForwardDirection() {
+		return new Vector3(forwardDirection);
 	}
 
 	public Vector3 getRotation() {
@@ -249,17 +247,17 @@ public class GenericObject implements Serializable {
 
 	public void move() {
 		//TODO arreglar cuando el padre esta rotado
-		position.add(getFowardDirection().mul(getRy().mul(getRx())).nor().scl(fowardSpeed));
-		if(fowardSpeed != 0)
-			System.out.println(fowardSpeed);
+		position.add(getForwardDirection().mul(getRy().mul(getRx())).nor().scl(forwardSpeed));
+		if(forwardSpeed != 0)
+			System.out.println(forwardSpeed);
 		position.add(getLeftDirection().mul(getRy().mul(getRx())).nor().scl(horizontalSpeed));
 		rotationX = rotationX + pitchSpeed;
 		rotationY = rotationY + yawSpeed;
 		rotationZ = rotationZ + rollSpeed;
 	}
 
-	public float getFowardSpeed() {
-		return fowardSpeed;
+	public float getForwardSpeed() {
+		return forwardSpeed;
 	}
 
 	public float pitchSpeed;
@@ -267,21 +265,37 @@ public class GenericObject implements Serializable {
 	public float rollSpeed;
 
 	public void betaMove() {
-//		position.add(new Vector3(0, 0, fowardSpeed));
-
-//		float directionX = (float) (Math.sin(Math.toRadians(rotationX) * Math.cos(Math.toRadians(rotationY))));
-//		float directiony = (float) (Math.sin(Math.toRadians(rotationX) * Math.sin(Math.toRadians(rotationY))));
-//		float directionz = (float) Math.cos(Math.toRadians(rotationX));
+//		position.add(new Vector3(0, 0, forwardSpeed));
+//		System.out.println("Rot " + rotationX + ", " + rotationY + ", " + rotationZ);
 
 
-		FloatMatrix direction = new FloatMatrix(new float[][]{{0,0,-1}});
-		direction = Geometry.normalize(direction);
-		FloatMatrix m = direction.mmul(rot()).mul(fowardSpeed);
-		position.add(m.get(0, 0), m.get(0, 1), m.get(0, 2));
+//		float moveX = - (float) (Math.sin(rotationY) * Math.cos(rotationX)) * forwardSpeed;
+		float moveX = - (float) Math.sin(rotationY) * forwardSpeed;
 
-//		position.add((float)fowardSpeed * directionX,
-//				(float)fowardSpeed * directiony,
-//				(float)fowardSpeed * directionz);
+//		float moveY = - (float) (Math.sin(rotationY) * Math.sin(rotationX)) * forwardSpeed;
+		float moveZ = - (float) Math.cos(rotationY) * forwardSpeed;
+//
+//		System.out.println(directionX + ", " + directiony + ", " + directionz);
+//
+		moveX = moveX * Math.abs((float) Math.cos(rotationX));
+		moveZ = moveZ * Math.abs((float) Math.cos(rotationX));
+
+
+		position.add(moveX, 0, moveZ);
+
+		float moveY = (float) Math.sin(rotationX) * forwardSpeed;
+
+		position.add(0, moveY, 0);
+
+//		FloatMatrix direction = new FloatMatrix(new float[][]{{0,0,-1}});
+//		direction = Geometry.normalize(direction);
+//		FloatMatrix m = direction.mmul(rot()).mul(forwardSpeed);
+//		System.out.println(m);
+//		position.add(m.get(0, 0), m.get(0, 1), m.get(0, 2));
+
+//		position.add((float)forwardSpeed * directionX,
+//				(float)forwardSpeed * directiony,
+//				(float)forwardSpeed * directionz);
 
 		rotationX = rotationX + pitchSpeed;
 		rotationY = rotationY + yawSpeed;
