@@ -4,11 +4,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Mesh;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector3;
+import org.jblas.FloatMatrix;
+import org.jblas.Geometry;
 
 public class GenericObject implements Serializable {
 
@@ -177,7 +180,8 @@ public class GenericObject implements Serializable {
 		Matrix4 matrix = new Matrix4(values);
 		return matrix;
 	}
-	
+
+
 	public Matrix4 getTRS() {
 		Matrix4 rot = getRz().mul(getRy().mul(getRx()));
 		Matrix4 fatherTRS = new Matrix4();
@@ -245,12 +249,10 @@ public class GenericObject implements Serializable {
 
 	public void move() {
 		//TODO arreglar cuando el padre esta rotado
-		position.add(getFowardDirection().mul(getRy().mul(getRx())).nor().scl(
-				fowardSpeed));
+		position.add(getFowardDirection().mul(getRy().mul(getRx())).nor().scl(fowardSpeed));
 		if(fowardSpeed != 0)
 			System.out.println(fowardSpeed);
-		position.add(getLeftDirection().mul(getRy().mul(getRx())).nor().scl(
-				horizontalSpeed * Gdx.graphics.getDeltaTime()));
+		position.add(getLeftDirection().mul(getRy().mul(getRx())).nor().scl(horizontalSpeed));
 		rotationX = rotationX + pitchSpeed;
 		rotationY = rotationY + yawSpeed;
 		rotationZ = rotationZ + rollSpeed;
@@ -265,10 +267,26 @@ public class GenericObject implements Serializable {
 	public float rollSpeed;
 
 	public void betaMove() {
-		position.add(new Vector3(0, 0, fowardSpeed));
+//		position.add(new Vector3(0, 0, fowardSpeed));
+
+//		float directionX = (float) (Math.sin(Math.toRadians(rotationX) * Math.cos(Math.toRadians(rotationY))));
+//		float directiony = (float) (Math.sin(Math.toRadians(rotationX) * Math.sin(Math.toRadians(rotationY))));
+//		float directionz = (float) Math.cos(Math.toRadians(rotationX));
+
+
+		FloatMatrix direction = new FloatMatrix(new float[][]{{0,0,-1}});
+		direction = Geometry.normalize(direction);
+		FloatMatrix m = direction.mmul(rot()).mul(fowardSpeed);
+		position.add(m.get(0, 0), m.get(0, 1), m.get(0, 2));
+
+//		position.add((float)fowardSpeed * directionX,
+//				(float)fowardSpeed * directiony,
+//				(float)fowardSpeed * directionz);
+
 		rotationX = rotationX + pitchSpeed;
 		rotationY = rotationY + yawSpeed;
 		rotationZ = rotationZ + rollSpeed;
+
 	}
 
 	public boolean movingBackward;
@@ -279,5 +297,41 @@ public class GenericObject implements Serializable {
 	public boolean yawingLeft;
 	public boolean rollingRight;
 	public boolean rollingLeft;
+
+
+	public FloatMatrix rot() {
+		return rotz().mul(roty()).mul(rotx());
+	}
+
+	public FloatMatrix rotx(){
+		float cosX =(float) Math.cos(getRotationX());
+		float sinX =(float) Math.sin(getRotationX());
+		float[][] values = {
+			{1, 0, 0},
+			{0, cosX, -sinX},
+			{0, sinX, cosX},
+		};
+		return new FloatMatrix(values);
+	}
+	public FloatMatrix roty(){
+		float cosY =(float) Math.cos(getRotationY());
+		float sinY =(float) Math.sin(getRotationY());
+		float[][] values = {
+			{cosY, 0, sinY},
+			{0, 1, 0},
+			{-sinY, 0, cosY},
+		};
+		return new FloatMatrix(values);
+	}
+	public FloatMatrix rotz() {
+		float cosZ =(float) Math.cos(getRotationZ());
+		float sinZ =(float) Math.sin(getRotationZ());
+		float[][] values = {
+				{cosZ, -sinZ, 0},
+				{sinZ, cosZ, 0},
+				{0, 0, 1},
+		};
+		return new FloatMatrix(values);
+	}
 	
 }
