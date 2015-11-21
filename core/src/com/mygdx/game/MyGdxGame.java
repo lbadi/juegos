@@ -56,7 +56,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		System.out.println("Ingrese id: ");
 //		Scanner in = new Scanner(System.in);
 //		int id = in.nextInt();
-		int id = 2;
+		int id = 3;
 
 		img = new Texture("ship.png");
 		ModelLoader loader = new ObjLoader();
@@ -105,7 +105,7 @@ public class MyGdxGame extends ApplicationAdapter {
         Cam cam = new PerspectiveCam();
 		cam.setId(10);
 		cam.setRotation(new Vector3(-(float) Math.PI / 6, (float) Math.PI, 0));
-		cam.setPosition(new Vector3(0, 2, -4));
+		cam.setPosition(new Vector3(0, 3, -4));
 
 		mainShip.setRotationX(-(float) Math.PI / 12);
 		mainShip.setRotationY((float) Math.PI);

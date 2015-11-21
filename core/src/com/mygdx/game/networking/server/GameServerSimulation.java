@@ -117,35 +117,35 @@ public class GameServerSimulation implements Runnable {
                 }
             }
             if(moveForward) {
-                player.setForwardSpeed(-0.1f);
+                player.setForwardSpeed(-0.15f);
             } else if (moveBackward){
-                player.setForwardSpeed(0.1f);
+                player.setForwardSpeed(0.15f);
             } else {
                 player.setForwardSpeed(0);
             }
             if(yawRight) {
-                player.yawSpeed = -0.01f;
+                player.yawSpeed = -0.015f;
             } else if(yawLeft) {
-                player.yawSpeed = 0.01f;
+                player.yawSpeed = 0.015f;
             } else {
                 player.yawSpeed = 0f;
             }
             if(pitchUp) {
-                player.pitchSpeed = -0.01f;
+                player.pitchSpeed = -0.015f;
             } else if(pitchDown) {
-                player.pitchSpeed = 0.01f;
+                player.pitchSpeed = 0.015f;
             } else {
                 player.pitchSpeed = 0f;
             }
             if(rollLeft) {
-                player.rollSpeed = 0.01f;
+                player.rollSpeed = 0.015f;
             } else if(rollRight) {
-                player.rollSpeed = -0.01f;
+                player.rollSpeed = -0.015f;
             } else {
                 player.rollSpeed = 0f;
             }
 //            player.move();
-            player.betaMove();
+            player.move();
         }
 
         private NetworkObject convertToNetworkObject(GenericObject object) {
