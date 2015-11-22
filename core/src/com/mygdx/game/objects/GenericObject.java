@@ -181,7 +181,7 @@ public class GenericObject implements Serializable {
 
 
 	public Matrix4 getTRS() {
-		Matrix4 rot = getRz().mul(getRy().mul(getRx()));
+		Matrix4 rot = getRy().mul(getRx());
 		Matrix4 fatherTRS = new Matrix4();
 		if(father != null){
 			fatherTRS = father.getTRS();

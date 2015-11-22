@@ -1,7 +1,6 @@
 package com.mygdx.game.networking.server;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.math.Vector3;
+
 import com.mygdx.game.networking.*;
 
 import java.io.*;
@@ -24,7 +23,7 @@ public class GameServer implements DataHandler {
 
     public void run() throws IOException {
         System.out.println("Server started.");
-        new Thread(simulation).run();
+        new Thread(simulation).start();
         server.run();
     }
 

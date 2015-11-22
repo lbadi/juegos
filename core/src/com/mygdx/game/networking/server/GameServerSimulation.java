@@ -22,16 +22,19 @@ public class GameServerSimulation implements Runnable {
 
     private GameState gameState;
 
+    private int framesProcessed;
+
 
     public GameServerSimulation() {
         simulation = new Simulation();
         inputs = new LinkedList<Inputs>();
         players = new HashMap<Integer, GenericObject>();
+        framesProcessed = 0;
     }
 
     @Override
     public void run() {
-        new Timer().schedule(simulation, 0, 10);
+        new Timer().schedule(simulation, 0, 15);
     }
 
     public void enqueue(Inputs inputs) {
@@ -43,8 +46,6 @@ public class GameServerSimulation implements Runnable {
     public GameState getGameState() {
         return gameState;
     }
-
-    private static long framesProcessed;
 
     private class Simulation extends TimerTask {
 
@@ -59,11 +60,7 @@ public class GameServerSimulation implements Runnable {
             for(GenericObject player: players.values()) {
                 objects.add(convertToNetworkObject(player));
             }
-            gameState = new GameState(objects);
-            framesProcessed++;
-            if(framesProcessed % 240 == 0) {
-                System.out.println("Frames procesados: " + framesProcessed);
-            }
+            gameState = new GameState(objects, ++framesProcessed);
         }
 
         private void applyInputs(Inputs inputs) {
@@ -144,7 +141,6 @@ public class GameServerSimulation implements Runnable {
             } else {
                 player.rollSpeed = 0f;
             }
-//            player.move();
             player.move();
         }
 

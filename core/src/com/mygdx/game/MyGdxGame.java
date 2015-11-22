@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g3d.loader.ObjLoader;
 import com.badlogic.gdx.graphics.g3d.model.data.ModelData;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -28,7 +29,7 @@ import com.mygdx.game.objects.GenericObject;
 import com.mygdx.game.objects.Scene;
 
 import java.io.IOException;
-import java.util.Scanner;
+import java.util.*;
 
 public class MyGdxGame extends ApplicationAdapter {
 	Texture img;
@@ -142,12 +143,53 @@ public class MyGdxGame extends ApplicationAdapter {
 		} catch (IOException e) {
 			client = null;
 		}
+
+		/* Cargo el buffer de snapshots con 2 o 3 frames antes de empezar a renderear */
+		int i = 0;
+		while(i < 5) {
+			client.sendHeartbeat();
+			GameState snapshot;
+			while((snapshot = client.updateState()) == null);
+			if(snapshot.getFrame() > lastFrame) {
+				if(i == 0) {
+					lastState = snapshot;
+				} else {
+					snapshots.addLast(snapshot);
+				}
+				lastFrame = snapshot.getFrame();
+				i++;
+			}
+		}
 	}
 //GL
-    @Override
+	private Deque<GameState> snapshots = new LinkedList<GameState>();
+
+	private int lastFrame;
+	private GameState lastState;
+
+	@Override
 	public void render() {
+
 		sendInputs();
-		updateState();
+		GameState snapshot = client.updateState();
+//		GameState currentSnapshot = lastState;
+//
+//		if(snapshot != null && snapshot.getFrame() > lastFrame) {
+//			lastFrame = snapshot.getFrame();
+//			snapshots.addLast(snapshot);
+//
+//			currentSnapshot = snapshots.removeFirst();
+//			if(currentSnapshot.getFrame() > lastState.getFrame() + 1) {
+//				currentSnapshot = interpolate(lastState, currentSnapshot);
+//			}
+//		}
+//
+//		updateState(currentSnapshot);
+//		lastState = currentSnapshot;
+
+		updateState(snapshot);
+
+
 		firstTime = true;
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		//Si hago un fondo blanco, cuando hago blend se rompe todo
@@ -182,7 +224,9 @@ public class MyGdxGame extends ApplicationAdapter {
 //        stage.draw();
 //        batch.end();
 		currentInputs.clear();
+
 	}
+
 
 	private GameState latestGameState;
 	private Inputs currentInputs;
@@ -213,23 +257,41 @@ public class MyGdxGame extends ApplicationAdapter {
 			currentInputs.addInput(Input.ROLL_RIGHT);
 	}
 
-	private void updateState() {
-		if(client != null) {
-			latestGameState = client.updateState();
-			if(latestGameState != null) {
-				for(NetworkObject no: latestGameState.getObjects()) {
-					for(GenericObject go: scene.getSceneAsObjects()) {
-						if(no.id == go.getId()) {
-							go.setPosition(no.position);
-							go.setRotationX(no.rotation.x);
-							go.setRotationY(no.rotation.y);
-							go.setRotationZ(no.rotation.z);
-							go.setScaleVector(no.scale.x, no.scale.y, no.scale.z);
-						}
+	private void updateState(GameState state) {
+		if(state != null) {
+			for(NetworkObject no: state.getObjects()) {
+				for(GenericObject go: scene.getSceneAsObjects()) {
+					if(no.id == go.getId()) {
+						go.setPosition(no.position);
+						go.setRotationX(no.rotation.x);
+						go.setRotationY(no.rotation.y);
+						go.setRotationZ(no.rotation.z);
+						go.setScaleVector(no.scale.x, no.scale.y, no.scale.z);
 					}
 				}
 			}
 		}
+	}
+
+	private GameState interpolate(GameState state1, GameState state2) {
+		GameState interpolated = new GameState(new ArrayList<NetworkObject>(), state1.getFrame() + 1);
+		List<NetworkObject> objects1 = state1.getObjects();
+		List<NetworkObject> objects2 = state2.getObjects();
+
+		for(NetworkObject no1: objects1) {
+			for (NetworkObject no2 : objects2) {
+				if (no1.id == no1.id) {
+					NetworkObject noi = new NetworkObject();
+					noi.id = no1.id;
+					noi.position = no1.position.interpolate(no2.position, 1, Interpolation.linear);
+					noi.rotation = no1.rotation.interpolate(no2.rotation, 1, Interpolation.linear);
+					noi.scale = no1.scale.interpolate(no2.scale, 1, Interpolation.linear);
+					interpolated.getObjects().add(noi);
+				}
+			}
+		}
+
+		return interpolated;
 	}
 
 }
