@@ -1,7 +1,6 @@
 package com.mygdx.game.networking.server;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.math.Vector3;
+
 import com.mygdx.game.networking.*;
 
 import java.io.*;

@@ -19,4 +19,8 @@ public class NetworkObject implements Serializable {
         this.scale = scale;
     }
 
+    public NetworkObject() {
+
+    }
+
 }

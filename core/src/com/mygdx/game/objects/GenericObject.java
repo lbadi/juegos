@@ -4,11 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.badlogic.gdx.Gdx;
+
 import com.badlogic.gdx.graphics.Mesh;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector3;
+import org.jblas.FloatMatrix;
 
 public class GenericObject implements Serializable {
 
@@ -26,9 +27,9 @@ public class GenericObject implements Serializable {
 	private static int lastId = 100;
 	
 	//Movimiento
-	private Vector3 fowardDirection = new Vector3(0,0,-1);
+	private Vector3 forwardDirection = new Vector3(0,0,-1);
 	private Vector3 leftDirection = new Vector3(1,0,0);
-	private float fowardSpeed = 0;
+	private float forwardSpeed = 0;
 	private float horizontalSpeed = 0;
 	
 	public GenericObject() {
@@ -116,7 +117,7 @@ public class GenericObject implements Serializable {
 		this.rotationZ = rotationZ;
 	}
 	public Vector3 getDirection() {
-		return getFowardDirection().mul(getRy().mul(getRx()));
+		return getForwardDirection().mul(getRy().mul(getRx()));
 	}
 	
 	public Matrix4 getTranslationMatrix(){
@@ -177,9 +178,10 @@ public class GenericObject implements Serializable {
 		Matrix4 matrix = new Matrix4(values);
 		return matrix;
 	}
-	
+
+
 	public Matrix4 getTRS() {
-		Matrix4 rot = getRz().mul(getRy().mul(getRx()));
+		Matrix4 rot = getRy().mul(getRx());
 		Matrix4 fatherTRS = new Matrix4();
 		if(father != null){
 			fatherTRS = father.getTRS();
@@ -197,10 +199,9 @@ public class GenericObject implements Serializable {
 		}
 		return fatherRS.mul(rot);
 	}
-	//TODO hacer el Rz()
-	
-	public void setFowardSpeed(float fowardSpeed) {
-		this.fowardSpeed = fowardSpeed;
+
+	public void setForwardSpeed(float forwardSpeed) {
+		this.forwardSpeed = forwardSpeed;
 	}
 
 	public void setHorizontalSpeed(float horizontalSpeed) {
@@ -225,8 +226,8 @@ public class GenericObject implements Serializable {
 		this.rotationZSpeed = rotationZSpeed;
 	}
 
-	public Vector3 getFowardDirection() {
-		return new Vector3(fowardDirection);
+	public Vector3 getForwardDirection() {
+		return new Vector3(forwardDirection);
 	}
 
 	public Vector3 getRotation() {
@@ -243,29 +244,26 @@ public class GenericObject implements Serializable {
 		return new Vector3(leftDirection);
 	}
 
-	public void move() {
-		//TODO arreglar cuando el padre esta rotado
-		position.add(getFowardDirection().mul(getRy().mul(getRx())).nor().scl(
-				fowardSpeed));
-		if(fowardSpeed != 0)
-			System.out.println(fowardSpeed);
-		position.add(getLeftDirection().mul(getRy().mul(getRx())).nor().scl(
-				horizontalSpeed * Gdx.graphics.getDeltaTime()));
-		rotationX = rotationX + pitchSpeed;
-		rotationY = rotationY + yawSpeed;
-		rotationZ = rotationZ + rollSpeed;
-	}
-
-	public float getFowardSpeed() {
-		return fowardSpeed;
+	public float getForwardSpeed() {
+		return forwardSpeed;
 	}
 
 	public float pitchSpeed;
 	public float yawSpeed;
 	public float rollSpeed;
 
-	public void betaMove() {
-		position.add(new Vector3(0, 0, fowardSpeed));
+	public void move() {
+		float absPitch = Math.abs((float) Math.cos(rotationX));
+		float sinYaw = (float) Math.sin(rotationY);
+		float cosYaw = (float) Math.cos(rotationY);
+		float sinPitch = (float) Math.sin(rotationX);
+
+		float moveX = - sinYaw * absPitch * forwardSpeed;
+		float moveZ = - cosYaw * absPitch * forwardSpeed;
+		float moveY = sinPitch * forwardSpeed;
+
+		position.add(moveX, moveY, moveZ);
+
 		rotationX = rotationX + pitchSpeed;
 		rotationY = rotationY + yawSpeed;
 		rotationZ = rotationZ + rollSpeed;
