@@ -16,7 +16,7 @@ import java.util.Iterator;
 public class Server {
 
     private static final int TIMEOUT = 3000; // Wait timeout (milliseconds) 
-    private static final int BUFFER_SIZE = 1024;
+    private static final int BUFFER_SIZE = 10000;
 
     private Selector selector;
     private DataHandler dataHandler;

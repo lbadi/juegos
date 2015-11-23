@@ -9,15 +9,15 @@ import java.util.List;
  */
 public class Inputs implements Serializable {
 
-    private List<Input> inputs;
+    private List<Integer> inputs;
     private int playerId;
 
     public Inputs(int playerId) {
-        inputs = new ArrayList<Input>();
+        inputs = new ArrayList<Integer>();
         this.playerId = playerId;
     }
 
-    public Inputs(List<Input> inputs, int playerId) {
+    public Inputs(List<Integer> inputs, int playerId) {
         this.inputs = inputs;
         this.playerId = playerId;
     }
@@ -27,14 +27,14 @@ public class Inputs implements Serializable {
     }
 
     public Inputs() {
-        inputs = new ArrayList<Input>();
+        inputs = new ArrayList<Integer>();
     }
 
-    public List<Input> getInputs() {
+    public List<Integer> getInputs() {
         return inputs;
     }
 
-    public void addInput(Input input) {
+    public void addInput(int input) {
         inputs.add(input);
     }
 

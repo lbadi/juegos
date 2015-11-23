@@ -24,7 +24,7 @@ public class GameServer implements DataHandler {
 
     public void run() throws IOException {
         System.out.println("Server started.");
-        new Thread(simulation).run();
+        new Thread(simulation).start();
         server.run();
     }
 
@@ -37,9 +37,6 @@ public class GameServer implements DataHandler {
         }
         try {
             Inputs inputs = (Inputs) Serializer.deserialize(data);
-            for(Input i: inputs.getInputs()) {
-                System.out.println(i);
-            }
             simulation.enqueue(inputs);
             clientInputs.put(c, inputs);
         } catch (Exception e) {
@@ -62,7 +59,7 @@ public class GameServer implements DataHandler {
     }
 
     static public void main(String[] args) throws IOException {
-        GameServer st = new GameServer(1234);
+        GameServer st = new GameServer(9001);
         st.run();
     }
 

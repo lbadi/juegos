@@ -3,19 +3,19 @@ package com.mygdx.game.networking;
 /**
  * Created by lucas on 11/17/15.
  */
-public enum Input {
+public class Input {
 
-    MOVE_FORWARD,
-    MOVE_BACKWARD,
+    public static final byte MOVE_FORWARD = 0;
+    public static final byte MOVE_BACKWARD = 1;
 
-    YAW_LEFT,
-    YAW_RIGHT,
+    public static final byte YAW_LEFT = 2;
+    public static final byte YAW_RIGHT = 3;
 
-    ROLL_LEFT,
-    ROLL_RIGHT,
+    public static final byte ROLL_LEFT = 4;
+    public static final byte ROLL_RIGHT = 5;
 
-    PITCH_DOWN,
-    PITCH_UP
+    public static final byte PITCH_DOWN = 6;
+    public static final byte PITCH_UP = 7;
 
 //    public static final byte MOVE_FORWARD_PRESSED = 1;
 //    public static final byte MOVE_BACKWARD_PRESSED = 2;

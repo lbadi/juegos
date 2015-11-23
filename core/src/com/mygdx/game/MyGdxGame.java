@@ -56,7 +56,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		System.out.println("Ingrese id: ");
 //		Scanner in = new Scanner(System.in);
 //		int id = in.nextInt();
-		int id = 0;
+		int id = 1;
 
 		img = new Texture("ship.png");
 		ModelLoader loader = new ObjLoader();
@@ -82,15 +82,15 @@ public class MyGdxGame extends ApplicationAdapter {
 		scene.addObject("MainShip", mainShip);
 
 		img2 = new Texture("mars.jpg");
-		data = loader.loadModelData(Gdx.files.internal("cube.obj"));
+		data = loader.loadModelData(Gdx.files.internal("sphere.obj"));
 		Mesh mesh = new Mesh(true,
 				data.meshes.get(0).vertices.length,
 				data.meshes.get(0).parts[0].indices.length,
 				VertexAttribute.Position(),VertexAttribute.Normal(), VertexAttribute.TexCoords(0));
 		mesh.setVertices(data.meshes.get(0).vertices);
 		mesh.setIndices(data.meshes.get(0).parts[0].indices);
-		GenericObject backgroundSpace = new GenericObject(new Vector3(0,-3,0),mesh,img2);
-		backgroundSpace.setScaleVector(100f, 1f, 100f);
+		GenericObject backgroundSpace = new GenericObject(new Vector3(0,-25,0),mesh,img2);
+		backgroundSpace.setScaleVector(50f, 50f, 50f);
 //		backgroundSpace.setRotationX(+(float) Math.PI);
 		scene.addObject("SpaceBackground", backgroundSpace);
 		
@@ -138,7 +138,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
 		try {
 			client = new GameClient(2345 + id);
-			client.connect(new NetworkAddress("192.168.2.5", 9001));
+			client.connect(new NetworkAddress("localhost", 9001));
 		} catch (IOException e) {
 			e.printStackTrace();
 			client = null;

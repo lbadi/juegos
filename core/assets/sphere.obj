@@ -4,8 +4,7 @@
 
 mtllib sphere.mtl
 
-g sphere_Main-Default_Material
-usemtl Default_Material
+
 v 0.048772580504 0.00480367989919 0.497592363336
 v 0.0490085701648 0 0.497592363336
 v 0 0 0.5

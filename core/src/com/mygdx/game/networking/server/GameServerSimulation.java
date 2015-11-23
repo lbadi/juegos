@@ -62,7 +62,7 @@ public class GameServerSimulation implements Runnable {
             }
             gameState = new GameState(objects);
             framesProcessed++;
-            if(framesProcessed % 60 == 0) {
+            if(framesProcessed % 240 == 0) {
                 System.out.println("Frames procesados: " + framesProcessed);
             }
         }
@@ -89,30 +89,30 @@ public class GameServerSimulation implements Runnable {
             boolean yawLeft = false;
             boolean rollRight = false;
             boolean rollLeft = false;
-            for(Input input: inputs.getInputs()) {
+            for(int input: inputs.getInputs()) {
                 switch (input) {
-                    case MOVE_FORWARD:
+                    case Input.MOVE_FORWARD:
                         moveForward = true;
                         break;
-                    case MOVE_BACKWARD:
+                    case Input.MOVE_BACKWARD:
                         moveBackward = true;
                         break;
-                    case PITCH_DOWN:
+                    case Input.PITCH_DOWN:
                         pitchDown = true;
                         break;
-                    case PITCH_UP:
+                    case Input.PITCH_UP:
                         pitchUp = true;
                         break;
-                    case YAW_LEFT:
+                    case Input.YAW_LEFT:
                         yawLeft = true;
                         break;
-                    case YAW_RIGHT:
+                    case Input.YAW_RIGHT:
                         yawRight = true;
                         break;
-                    case ROLL_LEFT:
+                    case Input.ROLL_LEFT:
                         rollLeft = true;
                         break;
-                    case ROLL_RIGHT:
+                    case Input.ROLL_RIGHT:
                         rollRight = true;
                         break;
                 }
