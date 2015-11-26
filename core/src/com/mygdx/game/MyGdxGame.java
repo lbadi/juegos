@@ -97,7 +97,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		backgroundSpace.setScaleVector(30f, 30f, 30f);
 //		backgroundSpace.setRotationX(+(float) Math.PI);
 		scene.addObject("SpaceBackground", backgroundSpace);
-		scene.setCubeMap("cubemap.png");
+		scene.setCubeMap("space2.jpg");
 		
 		
 //		String vs = Gdx.files.internal("defaultVS.glsl").readString();
