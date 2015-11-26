@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.Mesh;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector3;
-import org.jblas.FloatMatrix;
 
 public class GenericObject implements Serializable {
 

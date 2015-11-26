@@ -7,6 +7,7 @@ import com.badlogic.gdx.assets.loaders.ModelLoader;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Mesh;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.VertexAttribute;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -25,6 +26,7 @@ import com.mygdx.game.light.Light;
 import com.mygdx.game.light.SpotLight;
 import com.mygdx.game.networking.*;
 import com.mygdx.game.networking.client.GameClient;
+import com.mygdx.game.objects.CustomCubemap;
 import com.mygdx.game.objects.GenericObject;
 import com.mygdx.game.objects.Scene;
 
@@ -82,18 +84,21 @@ public class MyGdxGame extends ApplicationAdapter {
 //		mainShip.setId(id);
 		scene.addObject("MainShip", mainShip);
 
-		img2 = new Texture("mars.jpg");
-		data = loader.loadModelData(Gdx.files.internal("sphere.obj"));
+		
+		img2 = new Texture("mercurymap.jpg");
+		data = loader.loadModelData(Gdx.files.internal("deathstar.obj"));
 		Mesh mesh = new Mesh(true,
 				data.meshes.get(0).vertices.length,
 				data.meshes.get(0).parts[0].indices.length,
 				VertexAttribute.Position(),VertexAttribute.Normal(), VertexAttribute.TexCoords(0));
 		mesh.setVertices(data.meshes.get(0).vertices);
 		mesh.setIndices(data.meshes.get(0).parts[0].indices);
-		GenericObject backgroundSpace = new GenericObject(new Vector3(0,-25,0),mesh,img2);
-		backgroundSpace.setScaleVector(50f, 50f, 50f);
+		GenericObject backgroundSpace = new GenericObject(new Vector3(0,-50,0),mesh,img2);
+		backgroundSpace.setScaleVector(30f, 30f, 30f);
 //		backgroundSpace.setRotationX(+(float) Math.PI);
 		scene.addObject("SpaceBackground", backgroundSpace);
+		scene.setCubeMap("cubemap.png");
+		
 		
 //		String vs = Gdx.files.internal("defaultVS.glsl").readString();
 //		String fs = Gdx.files.internal("directional_fs.glsl").readString();
@@ -115,11 +120,11 @@ public class MyGdxGame extends ApplicationAdapter {
 
 		//TODO Arreglar lo de padre e hijo y completar los casos que faltan.
 		env = Scene.getCurrentScene();
-//		env.addLight("directional", new DirectionalLight(new Vector3(0, 15, 0), new Vector3(0, 1, 0), new Color(1, 1, 1, 1)));
+//		env.addLight("directional", new DirectionalLight(new Vector3(2, 50, 0), new Vector3(0, -1,0), new Color(1f, 11f, 1f, 1)));
 //        env.addLight("point", new PointLight(new Vector3(1.5f,0,0), new Color(1, 1, 1, 1)));
 //		env.addLight("light", new DirectionalLight(new Vector3(0, 15, 0), new Vector3(0, 1, 0), new Color(1, 1, 1, 1)));
 
-		SpotLight light = new SpotLight(new Vector3(2, 50, 0), new Vector3((float) (Math.PI * 1.5f), 0, 0), new Color(1, 1, 1, 1));
+		SpotLight light = new SpotLight(new Vector3(2, 50, 0), new Vector3((float) (Math.PI * 1.5f), 0, 0), new Color(0.6f, 0.6f, 1f, 1));
 		env.addLight("light", light);
 		light.setInnerAngle(50f);
 		light.setOutterAngle(65f);
@@ -128,15 +133,15 @@ public class MyGdxGame extends ApplicationAdapter {
 
 		currentInputs = new Inputs(id);
 		Gdx.input.setInputProcessor(new SimpleInputController(currentInputs));
-        env.setDefaultLight("light");
 
-//		env.addLight("mainShipLight", new SpotLight(new Vector3(2, 50, 0), new Vector3((float) (Math.PI * 1.5f), 0, 0), new Color(1, 1, 1, 1)));
+
+//		env.addLight("mainShipLight", new SpotLight(new Vector3(0, 0, -2), new Vector3((float) (Math.PI * 1.5f), 0, 0), new Color(1, 1, 1, 1)));
 //		SpotLight l = (SpotLight) env.getLight("mainShipLight");
 //		l.setInnerAngle(45.4f);
 //		l.setOutterAngle(48f);
-
-//		env.getDefaultLight().setRotationX(-(float) Math.PI / 2);
-
+//		l.setRotationX(-(float) Math.PI / 2);
+//		l.setFather(mainShip);
+      env.setDefaultLight("light");
 		try {
 			client = new GameClient(2345 + id);
 			client.connect(new NetworkAddress("localhost", 9001));
@@ -204,7 +209,7 @@ public class MyGdxGame extends ApplicationAdapter {
 //		l.setRotationX(mainShip.getRotationX() - 0.2f);
 //		l.setRotationZ(mainShip.getRotationZ());
 
-
+		scene.renderCubeMap();
 		Gdx.gl.glEnable(GL20.GL_DEPTH_TEST);
 		Gdx.gl.glDepthFunc(GL20.GL_LEQUAL);
 		for(Light light: env.getLights()){

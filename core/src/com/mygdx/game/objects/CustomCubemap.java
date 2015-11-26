@@ -2,7 +2,6 @@ package com.mygdx.game.objects;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Mesh;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -12,9 +11,8 @@ import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Quaternion;
-import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Disposable;
-import com.badlogic.gdx.utils.GdxRuntimeException;
+import com.mygdx.game.cam.Cam;
 
 public class CustomCubemap implements Disposable{
 
@@ -134,18 +132,14 @@ public class CustomCubemap implements Disposable{
 	 * Sirve para dibujar el qubemap
 	 */
 	float a = 0;
-	public void cubeMapRender(Vector3 direction){
+	public void cubeMapRender(Cam cam){
 		bindCubemap();
+		cam.getViewMatrix().getRotation(q,true);
+		q.conjugate();
 //		Gdx.gl20.glDepthFunc(GL20.GL_GREATER);
     	worldTrans.idt();
     	a = a + 0.1f;
-    	
-    	
-    	
-    	Quaternion quat  = new Quaternion(direction.x, direction.y, direction.z, 0);
-//    	quat.setEulerAngles(direction.y, direction.x, direction.z);
-    	worldTrans.rotate(quat);
-//        worldTrans.rotate(new Quaternion(new Vector3(0,1,0), a));
+    	worldTrans.rotate(q);
 	    renderCubeShader.begin(); 
 //	    renderCubeShader.setUniform3fv("direction", new float[]{direction.x,direction.y,direction.z}, 0, 3);
 	    renderCubeShader.setUniformMatrix("u_worldView", worldTrans.translate(0, 0, -1)); //aca trabajar

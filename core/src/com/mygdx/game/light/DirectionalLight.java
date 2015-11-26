@@ -132,7 +132,7 @@ public class DirectionalLight extends Light{
 			shader.setUniform4fv("eye", new float[]{position.x,position.y,position.z,1}, 0, 4);
 			shader.setUniform4fv("specular_color", new float[]{specularColor.r,specularColor.g,specularColor.b,1}, 0, 4);
 			//Ambiente
-			shader.setUniform4fv("ambient_color", new float[]{0,0,1,1}, 0, 4);
+			shader.setUniform4fv("ambient_color", new float[]{0,0,0.1f,1}, 0, 4);
 			object.getMesh().render(shader, GL20.GL_TRIANGLES);
 
 			shader.end();

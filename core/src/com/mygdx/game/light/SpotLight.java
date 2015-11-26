@@ -28,7 +28,6 @@ public class SpotLight extends PointLight {
     private ShaderProgram renderShadowShader;
     
     private PerspectiveProjection perspectiveProjection;
-    CustomCubemap envCubemap = new CustomCubemap(new Pixmap(Gdx.files.internal("cubemap.png")));
 
     private Mesh fullScreenQuad;
 
@@ -42,7 +41,7 @@ public class SpotLight extends PointLight {
         setRotationX(lightRotation.x);
         setRotationY(lightRotation.y);
         perspectiveProjection = new PerspectiveProjection();
-        perspectiveProjection.setProjection(10f, 1000, 30, 30);
+        perspectiveProjection.setProjection(10f, 1000, 200, 200);
         initShader();
     }
     
@@ -115,15 +114,11 @@ public class SpotLight extends PointLight {
 
 //        renderShadowMap();
         //-----------------
-        renderCubeMap(scene);
         renderObjects(scene);
         //-----------------
 
     }
-    //Test code
-    private void renderCubeMap(Scene scene){
-    	envCubemap.cubeMapRender(scene.getCurrentCam().getDirection());
-    }
+    
     
     private void renderShadowMap(){
     shadowMapBuffer.getColorBufferTexture().bind();

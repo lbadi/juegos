@@ -38,18 +38,18 @@ void main() {
     vec4 diffusal_irradiance = normal_dot_light  * gl_FragColor  * light_color ;
 
     //Especular
-    float m_shine = 1.0; //Brillo del material
+    float m_shine = 0.001; //Brillo del material
     vec4 r = -1.0*light_vector + 2.0 * normal_dot_light * normal;
     vec4 m_spec = vec4(0.1,0.1,0.1,1); //Materia especular
     vec4 specular_irradiance = max(0.0, pow(dot(r, eye-v_position), m_shine)) * m_spec * specular_color;
-
+	
 
     //Ambient
-    vec4 m_ambient = vec4(0.0001,0.0001,0.0001,1); //Material ambiente
+    vec4 m_ambient = vec4(1.0,1.0,1.0,1); //Material ambiente
     vec4 ambient_irradiance = m_ambient * ambient_color;
 
     //Phone
-    gl_FragColor =  diffusal_irradiance + specular_irradiance  + ambient_irradiance ;
+    gl_FragColor =  vec4((diffusal_irradiance.xyz + specular_irradiance.xyz  + ambient_irradiance.xyz) , 1) ;
 
     //Shadows
     gl_FragColor = vec4(gl_FragColor.xyz * visibility,gl_FragColor.a);

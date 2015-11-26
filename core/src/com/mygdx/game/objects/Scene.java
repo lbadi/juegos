@@ -2,6 +2,8 @@ package com.mygdx.game.objects;
 
 import java.util.*;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.mygdx.game.cam.Cam;
 import com.mygdx.game.light.Light;
 
@@ -16,6 +18,7 @@ public class Scene {
 	private Map<String, Light> lights;
 	private Map<String, Cam> cams;
     private Map<String, GenericObject> objects;
+    CustomCubemap envCubemap;
 
 
     private long objectsCount;
@@ -127,5 +130,15 @@ public class Scene {
         allObjects.addAll(objects.values());
         return allObjects;
     }
+
+	public void setCubeMap(String path) {
+		envCubemap = new CustomCubemap(new Pixmap(Gdx.files.internal(path)));
+	}
+	public CustomCubemap getCustomCubemap(){
+		return envCubemap;
+	}
+	public void renderCubeMap(){
+		envCubemap.cubeMapRender(getCurrentCam());
+	}
 
 }
